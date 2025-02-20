@@ -1,0 +1,133 @@
+.navbar {
+    width: 100%;
+    height: 100dvh;
+    padding-top: 6rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    transform: translateX(100%) scaleX(0);
+    transform-origin: right;
+    opacity: 0;
+    transition: all 0.7s ease-out;
+    background-color: $clr-primary;
+
+    &__button-mobile {
+        @include flex-center;
+        width: 5rem;
+        height: 5rem;
+        z-index: 1;
+        font-size: 8rem;
+        overflow: hidden;
+
+        .icon {
+            margin: -0.8rem;
+            color: #fff;
+
+            &[name="close-outline"] {
+                display: none;
+            }
+        }
+    }
+
+    &.open {
+        transform: translateX(0) scaleX(1);
+        opacity: 1;
+
+        & + .navbar__button-mobile .icon[name="close-outline"] {
+            display: block;
+        }
+
+        & + .navbar__button-mobile .icon[name="menu-outline"] {
+            display: none;
+        }
+    }
+
+    &__list {
+        height: 80%;
+        width: 100%;
+        padding-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-around;
+    }
+
+    &__item {
+        width: 100%;
+        position: relative;
+        color: $bg-clr-primary;
+        font-family: "Poppins", sans-serif;
+
+        &:hover {
+            color: #fff;
+        }
+
+        & > * {
+            width: 100%;
+            display: inline-block;
+            color: inherit;
+            font-family: inherit;
+            font-size: 2.4rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+    }
+}
+
+
+
+
+@media (min-width: 769px) {
+    .navbar {
+        all: initial;
+        // flex: 1;
+        width: 60%;
+
+        // background: lightblue;
+
+        display: flex;
+        // justify-content: space-between;
+        // flex-direction: row;
+        gap: 5%;
+
+        &__list {
+            // flex: 1;
+            padding: 0;
+            height: auto;
+
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__item {
+            width: auto;
+
+            & > * {
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    .navbar__button-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 820px) {
+    .navbar {
+        width: 65%;
+        gap: 7%;
+    }
+}
+
+@media (min-width: 969px) {
+    .navbar {
+        // width: 70%;
+        gap: 15%;
+    }
+}
