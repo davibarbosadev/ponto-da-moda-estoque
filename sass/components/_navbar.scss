@@ -47,7 +47,7 @@
     }
 
     &__list {
-        height: 80%;
+        height: 85%;
         width: 100%;
         padding-left: 2rem;
         display: flex;
@@ -59,7 +59,7 @@
     &__item {
         width: 100%;
         position: relative;
-        color: $bg-clr-primary;
+        color: $bg-clr-secondary;
         font-family: "Poppins", sans-serif;
 
         &:hover {

@@ -1,0 +1,99 @@
+.btn {
+    display: inline-block;
+    font-size: 1.6rem;
+    font-family: "Poppins", sans-serif;
+    border-radius: 0.8rem;
+
+    &--sign-in {
+        font-size: 2.4rem;
+        font-weight: 600;
+        line-height: 1;
+        padding: 1.2rem 3.6rem;
+        color: $clr-primary;
+        background-color: $bg-clr-primary;
+        align-self: center;
+    }
+
+    &--clean,
+    &--print,
+    &--submit {
+        padding: 1rem;
+        border: 1px solid $clr-primary;
+        border-radius: 0.8rem;
+        text-align: center;
+        line-height: 1;
+    }
+
+    &--clean,
+    &--print {
+        color: $clr-primary;
+        background-color: #fff;
+
+        &:hover {
+            color: #fff;
+            background: $clr-primary;
+        }
+    }
+
+    &--print {
+        @include flex-center;
+        gap: 0.4rem;
+    }
+
+    &--submit {
+        color: #fff;
+        background-color: $clr-primary;
+    }
+
+    &--icons {
+        color: $clr-primary;
+        background-color: transparent;
+        border: 1px solid $clr-primary;
+        border-radius: 0.4rem;
+        height: 3rem;
+        width: 3rem;
+
+        &:hover {
+            color: #fff;
+            background-color: $clr-primary;
+        }
+    }
+}
+
+/* botões de edicão  */
+.btns__options {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    padding-top: 1rem;
+    background-color: #fff;
+    border-radius: 0.4rem;
+    list-style: none;
+    border-top: 1px solid $bg-clr-primary;
+
+    &__item {
+        color: $clr-primary;
+        background-color: transparent;
+        border: 1px solid $clr-primary;
+        border-radius: 0.4rem;
+        height: 3rem;
+        width: 3rem;
+
+        &:hover {
+            color: #fff;
+            background-color: $clr-primary;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .btn {
+        &--sign-in {
+            padding: 0.8rem 2.4rem;
+            font-size: 1.8rem;
+        }
+    }
+    .controls-btns {
+        padding: 0;
+    }
+}

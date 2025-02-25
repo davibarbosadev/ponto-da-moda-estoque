@@ -1,0 +1,27 @@
+.header {
+    background-color: $clr-primary;
+
+    &__container {
+        max-width: 120rem;
+        margin: 0 auto;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 1s ease;
+    }
+
+   
+
+    &__logo-img {
+        width: 5rem;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+@media (min-width: 768px) {
+    .header__container {
+        padding: 0.5rem 3rem;
+    }
+}

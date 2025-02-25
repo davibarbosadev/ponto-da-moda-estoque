@@ -1,0 +1,1 @@
+{"name":"estoque-ponto_da_moda","version":"1.0.0","main":"index.js","scripts":{"sass":"sass --watch sass/main.scss css/style.css"},"author":"Davi barbosa","license":"ISC","description":"","dependencies":{"jspdf":"^3.0.0","sass":"^1.81.0"}}

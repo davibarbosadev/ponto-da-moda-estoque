@@ -1,0 +1,186 @@
+/*****container para os formulários******/
+main.container {
+    width: 95%;
+    max-width: 85rem;
+    margin: 8rem auto;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    border-radius: 1.2rem;
+    transition: all 1s;
+}
+
+@media (min-width: 768px) {
+    main.container {
+        width: 90%;
+        padding: 1rem 2rem;
+    }
+}
+
+/******form global******/
+.form {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0.5rem;
+
+    &__label {
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid;
+        border-radius: 0.8rem;
+        font-size: clamp(1.2rem, 4vw, 1.6rem);
+        text-transform: uppercase;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    &__controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+
+        .btn:nth-child(1) {
+            grid-area: 1 / 1 / 2 / -1;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .form {
+        &__controls {
+            grid-template-columns: 1fr 1fr 1fr;
+
+            .btn:nth-child(1) {
+                grid-area: 1 / 1 / 2 / 2;
+            }
+        }
+    }
+}
+
+/*****formulário para descrição de produto******/
+.form--description-product {
+    .form__group {
+        &:nth-child(1) {
+            grid-area: 1 / 1 / 2 / -1;
+        }
+
+        &:nth-child(2) {
+            grid-area: 2 / 1 / 3 / -1;
+        }
+
+        &:nth-child(3) {
+            grid-area: 3 / 1 / 4 / -1;
+        }
+    }
+
+    .form__controls {
+        grid-area: 5 / 1 / 6 / -1;
+    }
+}
+
+@media (min-width: 768px) {
+    .form--description-product {
+        .form__group {
+            &:nth-child(1) {
+                grid-area: 1 / 1 / 2 / -1;
+            }
+
+            &:nth-child(2) {
+                grid-area: 2 / 1 / 3 / 9;
+            }
+
+            &:nth-child(3) {
+                grid-area: 2 / 9 / 3 / 13;
+            }
+        }
+    }
+}
+
+/*****formulário descrição de transferência******/
+.form-description-transference {
+    .form__group:nth-child(1) {
+        // background: lightblue;
+        grid-area: 1 / 1 / 2 / -1;
+    }
+
+    .form__group:nth-child(2) {
+        grid-area: 2 / 1 / 3 / -1;
+    }
+
+    .form__group:nth-child(3) {
+        grid-area: 3 / 1 / 4 / 7;
+    }
+
+    .form__group:nth-child(4) {
+        grid-area: 3 / 7 / 4 / -1;
+    }
+
+    .form__controls {
+        grid-area: 4 / 1 / 5 / -1;
+    }
+
+    select {
+        width: 100%;
+        border: 1px solid;
+        padding: 0.8rem;
+        border-radius: 0.8rem;
+        background-color: #fff;
+        cursor: pointer;
+        font-size: 1.6rem;
+
+        &:focus {
+            border: 1px solid;
+        }
+        
+        :disabled {
+            color: $placeholder-text-clr;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .form-description-transference {
+        .form__group:nth-child(1) {
+            // background: lightblue;
+            grid-area: 1 / 1 / 2 / 7;
+        }
+
+        .form__group:nth-child(2) {
+            grid-area: 1 / 7 / 2 / -1;
+        }
+
+        .form__group:nth-child(3) {
+            grid-area: 2 / 1 / 3 / 7;
+        }
+
+        .form__group:nth-child(4) {
+            grid-area: 2 / 7 / 3 / -1;
+        }
+
+        .form__controls {
+            grid-area: 3 / 1 / 4 / -1;
+        }
+    }
+}
+
+/*********formulário para circular*********/
+.form--circular {
+    .form__group {
+        &:nth-child(1) {
+            grid-area: 1 / 1 / 2 / -1;
+        }
+    }
+
+    .btn--submit {
+        grid-area: 2 / 1 / 3 / -1;
+        width: 100%;
+        max-width: 40rem;
+        justify-self: center;
+    }
+}

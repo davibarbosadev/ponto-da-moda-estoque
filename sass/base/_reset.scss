@@ -1,0 +1,34 @@
+/* reset basic */
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $bg-clr-primary;
+    overflow-x: hidden;
+}
+
+strong {
+    font-weight: 500;
+}
+
+button {
+    border: none;
+    line-height: 1;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+a:any-link {
+    text-decoration: none;
+    // color: inherit
+}
+
+ul,
+ol {
+    list-style: none;
+}
