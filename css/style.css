@@ -701,60 +701,57 @@ main.container {
   opacity: 1;
 }
 
-.product__description-pdf {
+table,
+td,
+tr {
   font-family: "Roboto", sans-serif;
-  background-color: #fff;
-}
-.product__description-pdf table,
-.product__description-pdf td,
-.product__description-pdf tr {
   border: 1px solid;
   border-collapse: collapse;
 }
-.product__description-pdf table {
+
+table {
   margin: 2rem auto;
   width: 55rem;
 }
-.product__description-pdf .product {
+
+.product {
   display: grid;
   grid-template-columns: 76px repeat(4, 1fr);
 }
-.product__description-pdf .product__img {
+.product__img {
   border: 1px solid;
   display: flex;
   justify-content: center;
-  width: 76px;
-  height: 76px;
   grid-area: 1/1/3/2;
-  background-color: #ffff00;
 }
-.product__description-pdf .product__img img {
+.product__img img {
   width: 100%;
 }
-.product__description-pdf .product__description {
+.product__description {
   display: flex;
   align-items: end;
   grid-area: 1/2/2/-1;
 }
-.product__description-pdf .product__reference {
+.product__reference {
   display: flex;
   align-items: last baseline;
   grid-area: 2/2/3/5;
 }
-.product__description-pdf .product__price {
+.product__price {
   display: flex;
   align-items: last baseline;
   grid-area: 2/5/3/-1;
 }
-.product__description-pdf .product__text-title {
+.product .product__text-title {
   padding-left: 0.4rem;
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: bold;
   line-height: 1;
 }
-.product__description-pdf .product__text-content {
-  font-size: 1.4rem;
-  padding-left: 0.2rem;
+.product .product__text-content {
+  font-size: 1.6rem;
+  padding-left: 0.4rem;
+  font-weight: 600;
 }
 
 .sr-only {
