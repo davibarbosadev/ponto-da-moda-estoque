@@ -109,8 +109,9 @@ html {
   color: #fff;
   background-color: #273f87;
 }
-.btn--icons:active {
+.btn--icons.pressed {
   background-color: #273f87;
+  color: #fff;
 }
 
 /* botões de edicão  */
@@ -119,22 +120,9 @@ html {
   justify-content: end;
   gap: 1rem;
   padding-top: 1rem;
-  background-color: #fff;
   border-radius: 0.4rem;
   list-style: none;
   border-top: 1px solid #e9ecf3;
-}
-.btns__options__item {
-  color: #273f87;
-  background-color: transparent;
-  border: 1px solid #273f87;
-  border-radius: 0.4rem;
-  height: 3rem;
-  width: 3rem;
-}
-.btns__options__item:hover {
-  color: #fff;
-  background-color: #273f87;
 }
 
 @media (min-width: 768px) {

@@ -78,38 +78,48 @@ descriptionList.addEventListener("click", (event) => {
     const index = button.dataset.index;
     if (index === undefined) return;
 
-    // Verifica se o botão clicado é de edição
-    if (button.classList.contains("btn-edit")) {
-        if (form.description.value || form.reference.value || form.price.value) {
-            alert("Finalize a edição atual antes de editar outro item.");
-            return;
-        }
-        const product = productList[index];
-        form.description.value = product.description;
-        form.reference.value = product.reference;
-        form.price.value = product.price.replace(",", ".");
-        productList.splice(index, 1);
-    }
+    // Adiciona efeito de clique e vibração
+    button.classList.add("pressed");
+    if (navigator.vibrate) navigator.vibrate(50); // Vibração de 50ms
 
-    // Verifica se o botão clicado é de duplicação
-    if (button.classList.contains("btn-duplicate")) {
-        productList.splice(Number(index) + 1, 0, { ...productList[index] });
-    }
+    // Aguarda 150ms antes de executar as ações principais
+    setTimeout(() => {
+        button.classList.remove("pressed");
 
-    // Verifica se o botão clicado é de exclusão
-    if (button.classList.contains("btn-delete")) {
-        if (confirm("Deseja excluir esse item?")) {
+        // Verifica se o botão clicado é de edição
+        if (button.classList.contains("btn-edit")) {
+            if (form.description.value || form.reference.value || form.price.value) {
+                alert("Finalize a edição atual antes de editar outro item.");
+                return;
+            }
+            const product = productList[index];
+            form.description.value = product.description;
+            form.reference.value = product.reference;
+            form.price.value = product.price.replace(",", ".");
             productList.splice(index, 1);
         }
-    }
 
-    updateLocalStorage();
-    renderProducts();
+        // Verifica se o botão clicado é de duplicação
+        if (button.classList.contains("btn-duplicate")) {
+            productList.splice(Number(index) + 1, 0, { ...productList[index] });
+        }
+
+        // Verifica se o botão clicado é de exclusão
+        if (button.classList.contains("btn-delete")) {
+            if (confirm("Deseja excluir esse item?")) {
+                productList.splice(index, 1);
+            }
+        }
+
+        updateLocalStorage();
+        renderProducts();
+    }, 100); // Pequeno atraso para exibir o efeito antes da re-renderização
 });
+
+
 
 // Limpa toda a lista de produtos com confirmação
 btnClean.addEventListener("click", () => {
-    console.log("alguma coisa")
     if (confirm("Deseja limpar tudo?")) {
         productList = [];
         updateLocalStorage();
