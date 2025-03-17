@@ -163,6 +163,7 @@ html {
 .description-list .description__text-title {
   font-size: clamp(1.4rem, 2vw, 1.6rem);
   font-weight: 600;
+  margin-right: 0.2rem;
 }
 .description-list .description__text-content {
   font-family: "Roboto", sans-serif;
@@ -713,42 +714,41 @@ table {
   margin: 2rem auto;
   width: 55rem;
 }
-
-.product {
+table .product {
   display: grid;
   grid-template-columns: 76px repeat(4, 1fr);
 }
-.product__img {
+table .product__img {
   border: 1px solid;
   display: flex;
   justify-content: center;
   grid-area: 1/1/3/2;
 }
-.product__img img {
+table .product__img img {
   width: 100%;
 }
-.product__description {
+table .product__description {
   display: flex;
   align-items: end;
   grid-area: 1/2/2/-1;
 }
-.product__reference {
+table .product__reference {
   display: flex;
   align-items: last baseline;
   grid-area: 2/2/3/5;
 }
-.product__price {
+table .product__price {
   display: flex;
   align-items: last baseline;
   grid-area: 2/5/3/-1;
 }
-.product .product__text-title {
+table .product .product__text-title {
   padding-left: 0.4rem;
   font-size: 1.6rem;
   font-weight: bold;
   line-height: 1;
 }
-.product .product__text-content {
+table .product .product__text-content {
   font-size: 1.6rem;
   padding-left: 0.4rem;
   font-weight: 600;
