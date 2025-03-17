@@ -57,6 +57,10 @@
             color: #fff;
             background-color: $clr-primary;
         }
+
+        &:active {
+            background-color: $clr-primary;
+        }
     }
 }
 

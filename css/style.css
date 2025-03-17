@@ -109,6 +109,9 @@ html {
   color: #fff;
   background-color: #273f87;
 }
+.btn--icons:active {
+  background-color: #273f87;
+}
 
 /* botões de edicão  */
 .btns__options {
