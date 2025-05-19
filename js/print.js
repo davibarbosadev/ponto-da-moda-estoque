@@ -1,88 +1,3 @@
-/* const body = document.querySelector("body");
-
-let productList;
-
-const createPDF = () => {
-    let sheet = "";
-    for (let index = 0; index < productList.length; index++) {
-        if (index === 0 || (index % 13) + 1 === 1) {
-            sheet += `
-             <table>
-                <tr class="product">
-                    <td class="product__img">
-                        <img src="../assets/img/LOGO-PONTO-DA-MODA-COLORIDA.jpg" alt="logo ponto da moda"/>
-                    </td>
-                    <td class="product__description">
-                        <span class="product__text-content">${productList[index].description}</span>
-                    </td>
-                    <td class="product__reference">
-                        <span class="product__text-title">Ref:</span> 
-                        <span class="product__text-content">${productList[index].reference}</span>
-                    </td>
-                    <td class="product__price">
-                        <span class="product__text-title">R$:</span>
-                        <span class="product__text-content">${productList[index].price}</span>
-                    </td>
-                </tr>
-            `;
-        } else if (index % 13 === 0) {
-            sheet += `
-                <tr class="product">
-                    <td class="product__img">
-                        <img src="../assets/img/LOGO-PONTO-DA-MODA-COLORIDA.jpg" alt="logo ponto da moda"/>
-                    </td>
-                    <td class="product__description">
-                        <span class="product__text-content">${productList[index].description}</span>
-                    </td>
-                    <td class="product__reference">
-                        <span class="product__text-title">Ref:</span> 
-                        <span class="product__text-content">${productList[index].reference}</span>
-                    </td>
-                    <td class="product__price">
-                        <span class="product__text-title">R$:</span>
-                        <span class="product__text-content">${productList[index].price}</span>
-                    </td>
-                </tr>
-            </table>
-            `;
-        } else {
-            sheet += `
-            <tr class="product">
-                    <td class="product__img">
-                        <img src="../assets/img/LOGO-PONTO-DA-MODA-COLORIDA.jpg" alt="logo ponto da moda"/>
-                    </td>
-                    <td class="product__description">
-                        <span class="product__text-content">${productList[index].description}</span>
-                    </td>
-                    <td class="product__reference">
-                        <span class="product__text-title">Ref:</span> 
-                        <span class="product__text-content">${productList[index].reference}</span>
-                    </td>
-                    <td class="product__price">
-                        <span class="product__text-title">R$:</span>
-                        <span class="product__text-content">${productList[index].price}</span>
-                    </td>
-                </tr>
-            `;
-        }
-    }
-    body.innerHTML = sheet;
-
-    setTimeout(() => {
-        print();
-    }, 300);
-};
-
-const toCheckLocalStorage = () => {
-    if (JSON.parse(localStorage.getItem("productList")) !== null) {
-        productList = JSON.parse(localStorage.getItem("productList"));
-    }
-    createPDF();
-};
-
-toCheckLocalStorage();
- */
-
 const body = document.querySelector("body");
 
 let productList;
@@ -99,7 +14,7 @@ const createTableRow = (product) => {
             </td>
             <td class="product__reference">
                 <span class="product__text-title">Ref:</span> 
-                <span class="product__text-content">${product.reference}</span>
+               <span class="product__text-content">${product.reference}</span> 
             </td>
             <td class="product__price">
                 <span class="product__text-title">R$:</span>
@@ -111,7 +26,6 @@ const createTableRow = (product) => {
 
 const createPDF = () => {
     let sheet = "";
-    let pageCounter = 0;
 
     // Iterando pela lista de produtos
     for (let index = 0; index < productList.length; index++) {

@@ -1,3 +1,7 @@
+body {
+    background-color: #fff;
+}
+
 table,
 td,
 tr {
@@ -59,5 +63,14 @@ table {
 }
 
 @media print {
-    
+    table {
+        width: 70%;
+        page-break-before: always;
+        /* break-before: page; */ /* Alternativa moderna */
+    }
+
+    table:first-of-type {
+        page-break-before: auto;
+        /* break-before: auto; */ /* Evita quebra antes da primeira tabela */
+    }
 }

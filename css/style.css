@@ -35,7 +35,6 @@ ol {
 }
 
 /*
-
 --- 01 TYPOGRAPHY SYSTEM
 
 - FONT SIZE SYSTEM (px)
@@ -403,7 +402,6 @@ main.container {
   height: 5rem;
   z-index: 1;
   font-size: 8rem;
-  overflow: hidden;
 }
 .navbar__button-mobile .icon {
   margin: -0.8rem;
@@ -693,6 +691,10 @@ main.container {
   opacity: 1;
 }
 
+body {
+  background-color: #fff;
+}
+
 table,
 td,
 tr {
@@ -745,6 +747,17 @@ table .product .product__text-content {
   font-weight: 600;
 }
 
+@media print {
+  table {
+    width: 70%;
+    page-break-before: always;
+    /* break-before: page; */ /* Alternativa moderna */
+  }
+  table:first-of-type {
+    page-break-before: auto;
+    /* break-before: auto; */ /* Evita quebra antes da primeira tabela */
+  }
+}
 .sr-only {
   position: absolute;
   width: 1px;
