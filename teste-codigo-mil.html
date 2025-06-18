@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Product Data Extractor</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: #f8fafc;
+                padding: 40px 20px;
+                min-height: 100vh;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                overflow: hidden;
+            }
+
+            .header {
+                background: linear-gradient(135deg, #4f46e5, #7c3aed);
+                color: white;
+                padding: 30px;
+                text-align: center;
+            }
+
+            .header h1 {
+                font-size: 2em;
+                font-weight: 300;
+                margin-bottom: 8px;
+            }
+
+            .header p {
+                opacity: 0.9;
+            }
+
+            .main-content {
+                padding: 40px;
+            }
+
+            .form--extract-product-data {
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            label {
+                font-weight: 600;
+                color: #374151;
+                margin-bottom: 10px;
+                display: block;
+                font-size: 1.1em;
+            }
+
+            textarea {
+                width: 100%;
+                min-height: 300px;
+                padding: 20px;
+                border: 2px solid #e5e7eb;
+                border-radius: 8px;
+                font-family: "Courier New", monospace;
+                font-size: 14px;
+                resize: vertical;
+                transition: border-color 0.3s ease;
+                background: #fafafa;
+            }
+
+            textarea:focus {
+                outline: none;
+                border-color: #4f46e5;
+                background: white;
+            }
+
+            .button-group {
+                display: flex;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            button {
+                padding: 15px 30px;
+                border: none;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 16px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                min-width: 140px;
+            }
+
+            .btn-primary {
+                background: linear-gradient(135deg, #4f46e5, #7c3aed);
+                color: white;
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+            }
+
+            .btn-secondary {
+                background: #6b7280;
+                color: white;
+            }
+
+            .btn-secondary:hover {
+                background: #4b5563;
+                transform: translateY(-2px);
+            }
+
+            .btn-download {
+                background: #059669;
+                color: white;
+            }
+
+            .btn-download:hover {
+                background: #047857;
+                transform: translateY(-2px);
+            }
+
+            .example {
+                background: #fef3c7;
+                border-left: 4px solid #f59e0b;
+                padding: 20px;
+                margin-top: 20px;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .example h4 {
+                color: #92400e;
+                margin-bottom: 10px;
+            }
+
+            .example code {
+                background: rgba(0, 0, 0, 0.1);
+                padding: 2px 6px;
+                border-radius: 4px;
+                font-family: "Courier New", monospace;
+            }
+
+            .status {
+                text-align: center;
+                padding: 15px;
+                border-radius: 8px;
+                margin-top: 20px;
+                font-weight: 500;
+            }
+
+            .status.success {
+                background: #d1fae5;
+                color: #065f46;
+                border: 1px solid #a7f3d0;
+            }
+
+            .status.error {
+                background: #fee2e2;
+                color: #991b1b;
+                border: 1px solid #fca5a5;
+            }
+
+            .status.info {
+                background: #dbeafe;
+                color: #1e40af;
+                border: 1px solid #93c5fd;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            @media (max-width: 600px) {
+                .button-group {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                button {
+                    width: 100%;
+                    max-width: 300px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>🏷️ Product Data Extractor</h1>
+                <p>Cole seus dados CSV e baixe o arquivo JSON processado</p>
+            </div>
+
+            <div class="main-content">
+                <form class="form--extract-product-data">
+                    <div>
+                        <label for="csvInput">Cole seus dados CSV aqui:</label>
+                        <textarea
+                            name="csvInput"
+                            id="csvInput"
+                            placeholder='Cole aqui seus dados no formato:
+"ES07";"CF8363MODOF1GG - BODY ASSIMÉTRICO C BABADO NOVARA P AO GGOFFGG - Un";"1"
+"ES07";"AB1234TESTE123 - PRODUTO TESTE DESCRIÇÃO LONGA - Pç";"5"'
+                        ></textarea>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn-primary">
+                            🔍 Processar & Baixar JSON
+                        </button>
+                        <button type="button" class="btn-secondary" onclick="clearAll()">
+                            🗑️ Limpar
+                        </button>
+                    </div>
+                </form>
+
+                <div id="status" class="status hidden"></div>
+            </div>
+        </div>
+
+        <script>
+            const form = document.querySelector(".form--extract-product-data");
+            const statusDiv = document.getElementById("status");
+
+            if (!form) {
+                console.error("Formulário não encontrado");
+            } else {
+                form.addEventListener("submit", handleFormSubmission);
+            }
+
+            async function handleFormSubmission(event) {
+                event.preventDefault();
+
+                try {
+                    const csvInput = form.querySelector('[name="csvInput"]');
+
+                    if (!csvInput) {
+                        throw new Error("Campo de entrada CSV não encontrado");
+                    }
+
+                    const csvData = csvInput.value.trim();
+
+                    if (!csvData) {
+                        showStatus("Por favor, insira dados CSV válidos", "error");
+                        return;
+                    }
+
+                    const products = extractProductData(csvData);
+
+                    if (products.length === 0) {
+                        showStatus("Nenhum produto ES07 encontrado nos dados", "info");
+                        return;
+                    }
+
+                    // Baixa o arquivo JSON
+                    downloadJSON(products);
+                    showStatus(
+                        `✅ Arquivo baixado com sucesso! ${products.length} produto(s) processado(s)`,
+                        "success"
+                    );
+                } catch (error) {
+                    console.error("Erro ao processar formulário:", error);
+                    showStatus(
+                        "❌ Erro ao processar os dados. Verifique o formato do CSV.",
+                        "error"
+                    );
+                }
+            }
+
+            function extractProductData(csvString) {
+                const lines = csvString.split(/\r?\n/).filter((line) => line.trim() !== "");
+                const productsExtracted = [];
+
+                lines.forEach((line, index) => {
+                    try {
+                        const columns = parseCSVLine(line);
+
+                        if (columns.length < 3) {
+                            console.warn(
+                                `Linha ${index + 1} não possui colunas suficientes:`,
+                                line
+                            );
+                            return;
+                        }
+
+                        const source = columns[0].trim();
+                        if (source === "ES07") {
+                            const productInfo = columns[1].trim();
+                            const quantity = columns[2].trim();
+
+                            if (!productInfo) {
+                                console.warn(
+                                    `Linha ${index + 1}: Informação do produto está vazia`
+                                );
+                                return;
+                            }
+
+                            const parsedProduct = parseProductInfo(productInfo);
+
+                            if (parsedProduct) {
+                                const product = {
+                                    source: source,
+                                    section: extractSection(parsedProduct.reference),
+                                    reference: parsedProduct.reference,
+                                    description: parsedProduct.description,
+                                    quantity: quantity || "0",
+                                };
+
+                                productsExtracted.push(product);
+                            }
+                        }
+                    } catch (error) {
+                        console.warn(`Erro ao processar linha ${index + 1}:`, error.message);
+                    }
+                });
+
+                return productsExtracted;
+            }
+
+            function parseCSVLine(line) {
+                const result = [];
+                let current = "";
+                let inQuotes = false;
+                let quoteChar = null;
+
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+
+                    if (!inQuotes && (char === '"' || char === "'")) {
+                        inQuotes = true;
+                        quoteChar = char;
+                    } else if (inQuotes && char === quoteChar) {
+                        if (line[i + 1] === quoteChar) {
+                            current += char;
+                            i++;
+                        } else {
+                            inQuotes = false;
+                            quoteChar = null;
+                        }
+                    } else if (!inQuotes && char === ";") {
+                        result.push(current.trim());
+                        current = "";
+                    } else {
+                        current += char;
+                    }
+                }
+
+                result.push(current.trim());
+                return result;
+            }
+
+            function extractSection(reference) {
+                if (reference && reference.length >= 2) {
+                    return reference.substring(0, 2).toUpperCase();
+                }
+                return "";
+            }
+
+            function parseProductInfo(productInfo) {
+                const referenceMatch = productInfo.match(/^([A-Z0-9]+(?:[A-Z0-9])*)/);
+
+                if (!referenceMatch) {
+                    console.warn("Referência não encontrada em:", productInfo);
+                    return null;
+                }
+
+                const reference = referenceMatch[1];
+                let remainingText = productInfo.substring(reference.length).trim();
+
+                if (remainingText.startsWith(" - ")) {
+                    remainingText = remainingText.substring(3).trim();
+                } else if (remainingText.startsWith("-")) {
+                    remainingText = remainingText.substring(1).trim();
+                }
+
+                let description = remainingText.replace(/\s*-\s*(Un|Pç|Peça|Unidade)$/i, "").trim();
+                description = description.replace(/\s*-\s*[A-Z]{1,3}$/i, "").trim();
+
+                if (!description) {
+                    console.warn("Descrição não encontrada para referência:", reference);
+                    return null;
+                }
+
+                return {
+                    reference: reference,
+                    description: description,
+                };
+            }
+
+            function downloadJSON(products) {
+                const jsonData = JSON.stringify(products, null, 2);
+                const blob = new Blob([jsonData], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = `products_${new Date().toISOString().slice(0, 10)}.json`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                URL.revokeObjectURL(url);
+            }
+
+            function clearAll() {
+                const csvInput = document.getElementById("csvInput");
+                csvInput.value = "";
+                csvInput.focus();
+                hideStatus();
+            }
+
+            function showStatus(message, type) {
+                statusDiv.textContent = message;
+                statusDiv.className = `status ${type}`;
+                statusDiv.classList.remove("hidden");
+            }
+
+            function hideStatus() {
+                statusDiv.classList.add("hidden");
+            }
+        </script>
+    </body>
+</html>

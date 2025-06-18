@@ -1,6 +1,9 @@
 .submenu {
+    padding: 0.8rem;
+
     &__button {
-        position: relative;
+        padding: 0;
+        padding-left: 0.8rem;
         width: 100%;
         display: flex;
         align-items: center;
@@ -15,7 +18,7 @@
 
                 &[name="chevron-down-outline"] {
                     opacity: 0;
-                    transform: translate(0, 3px);
+                    transform: translateY(10px);
                 }
             }
         }
@@ -26,84 +29,73 @@
 
         &[name="chevron-up-outline"] {
             position: absolute;
-            left: 126px;
+            left: 133.5px;
+            transform: translateY(-10px);
             opacity: 0;
         }
 
         &[name="chevron-down-outline"] {
             opacity: 1;
-            transform: translate(0);
         }
     }
 
     &__list {
-        position: absolute;
-        top: 100%;
+        padding: 0;
         max-height: 0;
-        width: calc(100dvw - 2rem);
-        overflow: hidden;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        background-color: $bg-clr-primary;
-        transition: max-height 0.5s ease-in-out;
         border-radius: 0.8rem;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
 
         &.open {
-            max-height: 8rem;
+            max-height: 14rem;
         }
     }
 
     &__item {
-        padding-left: 2rem;
-        color: $clr-primary;
+        padding: 0.4rem;
+        padding-left: 0.8rem;
         font-weight: 500;
         font-family: "Poppins", sans-serif;
-        border: 2px solid $bg-clr-primary;
         border-radius: 0.8rem;
-        color: $clr-primary;
 
         &:hover {
-            color: $bg-clr-primary;
             background-color: $clr-primary;
         }
     }
 
     &__link {
-        font-size: 2rem;
+        font-size: 1.6rem;
         display: inline-block;
         width: 100%;
         color: inherit;
     }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 820px) {
     .submenu {
+        padding: 0.4rem;
+
+        &__button {
+            padding: 0.4rem;
+        }
+
+        &__item {
+            padding: 0.4rem;
+        }
+
+        &__link {
+            font-size: 1.4rem;
+        }
+
         &__icon {
             &[name="chevron-up-outline"] {
                 position: absolute;
                 left: 95px;
+                opacity: 0;
             }
-        }
-
-        &__list {
-            max-width: 29rem;
-            top: 200%;
-            background: $clr-primary;
-        }
-
-        &__item {
-            color: $bg-clr-primary;
-            border-color: $clr-primary;
-
-            &:hover {
-                color: $clr-primary;
-                background: $bg-clr-primary;
-            }
-        }
-
-        &__link {
-            font-size: 1.8rem;
         }
     }
 }

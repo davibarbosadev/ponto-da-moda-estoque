@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extrator de Referências</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        
+        textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        button:hover {
+            background: #45a049;
+        }
+        
+        .results {
+            margin-top: 20px;
+        }
+        
+        .result-section {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .result-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .reference-list {
+            background: white;
+            padding: 10px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 12px;
+            word-break: break-all;
+        }
+        
+        .pattern-analysis {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .pattern-item {
+            margin: 5px 0;
+            padding: 5px;
+            background: white;
+            border-radius: 3px;
+        }
+        
+        .pattern-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .pattern-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .toggle-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .toggle-btn:hover {
+            background: #1976D2;
+        }
+        
+        .copy-btn {
+            background: #FF9800;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .copy-btn:hover {
+            background: #F57C00;
+        }
+        
+        .references-content {
+            margin-top: 10px;
+            padding: 8px;
+            background: #f5f5f5;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 11px;
+            word-break: break-all;
+            display: none;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Extrator de Referências de Produtos</h1>
+        
+        <form class="form--extract-reference">
+            <div class="form-group">
+                <label for="csvInput">Cole os dados dos produtos aqui:</label>
+                <textarea 
+                    id="csvInput" 
+                    name="csvInput" 
+                    placeholder="Cole aqui os dados no formato:
+CF0001INT - SOUTIAN NADADOR BASICO INTIMA FLOR (Un)
+CF000390LUNLI4G - BLUSA MALHA CANELADA ML LUNENDER P AO GGL.ISOCELESG (Un)
+..."
+                ></textarea>
+            </div>
+            
+            <button type="submit">🚀 Extrair Referências</button>
+        </form>
+        
+        <div class="results" id="results" style="display: none;">
+            <div class="result-section">
+                <div class="result-title" id="referencesTitle">📋 Referências Extraídas:</div>
+            </div>
+            
+            <div class="result-section">
+                <div class="result-title">📊 Análise de Padrões de Tamanho:</div>
+                <div id="patternAnalysis"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector(".form--extract-reference");
+        
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            
+            const csvData = form.csvInput.value;
+            const references = extractReference(csvData);
+            console.log(references);
+            
+            // Mostra os resultados
+            displayResults(references);
+            
+            // Junta todas as referências em uma única string separada por ponto e vírgula
+            const resultString = references.join(";");
+            
+            try {
+                await navigator.clipboard.writeText(resultString);
+                showSuccessMessage("✅ Referências copiadas para a área de transferência!");
+            } catch (err) {
+                console.error('Erro ao copiar:', err);
+                showSuccessMessage("⚠️ Referências extraídas! (Copie manualmente se necessário)");
+            }
+            
+            // Limpa o campo de entrada
+            form.csvInput.value = "";
+        });
+
+        function extractReference(csvString) {
+            const lines = csvString.trim().split("\n");
+            console.log("Linhas encontradas:", lines);
+            const referencesExtracted = [];
+
+            lines.forEach((line, index) => {
+                // Remove aspas e espaços extras
+                const cleanLine = line.trim().replace(/"/g, "");
+                console.log(`Linha ${index + 1}:`, cleanLine);
+
+                // Extrai a referência antes do primeiro " - "
+                const match = cleanLine.match(/^([A-Z0-9]+)/);
+                if (match) {
+                    const reference = match[1];
+                    referencesExtracted.push(reference);
+                    console.log(`Referência extraída: ${reference}`);
+                } else {
+                    console.log(`Nenhuma referência encontrada na linha: ${cleanLine}`);
+                }
+            });
+
+            return referencesExtracted;
+        }
+
+        function analyzePatterns(references) {
+            const patterns = {};
+            const lengthDistribution = {};
+            
+            references.forEach(ref => {
+                const length = ref.length;
+                
+                // Contagem por tamanho
+                lengthDistribution[length] = (lengthDistribution[length] || 0) + 1;
+                
+                // Análise de padrões
+                const pattern = ref.replace(/\d/g, 'N').replace(/[A-Z]/g, 'L');
+                patterns[pattern] = patterns[pattern] || [];
+                patterns[pattern].push(ref);
+            });
+            
+            return { patterns, lengthDistribution };
+        }
+
+        function displayResults(references) {
+            const resultsDiv = document.getElementById('results');
+            const referencesTitleDiv = document.getElementById('referencesTitle');
+            const patternAnalysisDiv = document.getElementById('patternAnalysis');
+            
+            // Mostra a seção de resultados
+            resultsDiv.style.display = 'block';
+            
+            // Atualiza o título com o número de referências
+            referencesTitleDiv.innerHTML = `📋 Referências Extraídas: (${references.length} encontradas)`;
+            
+            // Análise de padrões
+            const analysis = analyzePatterns(references);
+            
+            let analysisHTML = '<div class="pattern-analysis">';
+            
+            analysisHTML += '<h4>🔍 Padrões Identificados:</h4>';
+            Object.entries(analysis.patterns)
+                .sort(([, refsA], [, refsB]) => refsA[0].length - refsB[0].length)
+                .forEach(([pattern, refs], index) => {
+                    const charCount = refs[0].length;
+                    const uniqueId = `pattern-${index}`;
+                    analysisHTML += `<div class="pattern-item">
+                        <div class="pattern-header">
+                            <strong>Padrão com ${charCount} caracteres (${refs.length} ocorrência(s)): </strong>
+                            <div class="pattern-buttons">
+                                <button class="toggle-btn" onclick="toggleReferences('${uniqueId}')">Visualizar</button>
+                                <button class="copy-btn" onclick="copyPatternReferences(${JSON.stringify(refs).replace(/"/g, '&quot;')})">📋 Copiar</button>
+                            </div>
+                        </div>
+                        <div class="references-content" id="${uniqueId}">
+                            ${refs.join(', ')}
+                        </div>
+                    </div>`;
+                });
+            
+            analysisHTML += '</div>';
+            patternAnalysisDiv.innerHTML = analysisHTML;
+        }
+
+        function showSuccessMessage(message) {
+            const existingMessage = document.querySelector('.success-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.textContent = message;
+            
+            const form = document.querySelector('.form--extract-reference');
+            form.parentNode.insertBefore(successDiv, form.nextSibling);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 3000);
+        }
+
+        function toggleReferences(elementId) {
+            const element = document.getElementById(elementId);
+            const button = element.previousElementSibling.querySelector('.toggle-btn');
+            
+            if (element.style.display === 'none' || element.style.display === '') {
+                element.style.display = 'block';
+                button.innerHTML = 'Ocultar';
+            } else {
+                element.style.display = 'none';
+                button.innerHTML = 'Visualizar';
+            }
+        }
+
+        async function copyPatternReferences(refs) {
+            const formattedRefs = refs.join(';');
+            
+            try {
+                await navigator.clipboard.writeText(formattedRefs);
+                showSuccessMessage(`✅ ${refs.length} referências copiadas com formatação de ponto-e-vírgula!`);
+            } catch (err) {
+                console.error('Erro ao copiar:', err);
+                showSuccessMessage('⚠️ Erro ao copiar. Tente novamente.');
+            }
+        }
+
+        // Dados de exemplo para teste
+        const exampleData = `CF0001INT - SOUTIAN NADADOR BASICO INTIMA FLOR (Un)
+CF000390LUNLI4G - BLUSA MALHA CANELADA ML LUNENDER P AO GGL.ISOCELESG (Un)
+CF000390LUNLI4GG - BLUSA MALHA CANELADA ML LUNENDER P AO GGL.ISOCELESGG (Un)
+CF000390LUNLI4M - BLUSA MALHA CANELADA ML LUNENDER P AO GGL.ISOCELESM (Un)
+CF000390LUNLI4P - BLUSA MALHA CANELADA ML LUNENDER P AO GGL.ISOCELESP (Un)
+CF000390LUNRO35G - BLUSA MALHA CANELADA ML LUNENDER P AO GGROSA MADEIMOSELLEG (Un)`;
+
+        // Botão para carregar dados de exemplo
+        const loadExampleBtn = document.createElement('button');
+        loadExampleBtn.textContent = '📝 Carregar Dados de Exemplo';
+        loadExampleBtn.type = 'button';
+        loadExampleBtn.style.background = '#2196F3';
+        loadExampleBtn.style.marginBottom = '10px';
+        loadExampleBtn.onclick = () => {
+            document.getElementById('csvInput').value = exampleData;
+        };
+        
+        form.insertBefore(loadExampleBtn, form.querySelector('button'));
+    </script>
+</body>
+</html>

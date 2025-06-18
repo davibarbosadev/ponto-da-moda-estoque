@@ -1,10 +1,19 @@
 /* reset basic */
+
+html {
+    font-size: 62.5%;
+    font-weight: 400;
+    color: $text-clr;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
 *,
 *::after,
 *::before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: inherit;
 }
 
 body {
@@ -26,6 +35,13 @@ button {
 a:any-link {
     text-decoration: none;
     // color: inherit
+}
+
+button,
+a:any-link{
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 ul,

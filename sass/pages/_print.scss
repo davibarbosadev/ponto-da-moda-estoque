@@ -1,5 +1,7 @@
 body {
+    // display: block;
     background-color: #fff;
+    
 }
 
 table,
@@ -22,7 +24,7 @@ table {
             border: 1px solid;
             display: flex;
             justify-content: center;
-            grid-area: 1 / 1 / 3 / 2;
+            grid-area: 1 / 1 / 4 / 2;
 
             img {
                 width: 100%;
@@ -47,6 +49,20 @@ table {
             grid-area: 2 / 5 / 3 / -1;
         }
 
+        &__sizes {
+            display: flex;
+            align-items: last baseline;
+            grid-area: 3 / 2 / 4 / 3;
+        }
+
+        &__colors {
+            display: flex;
+            // flex-direction: column;
+            flex-wrap: wrap;
+            align-items: last baseline;
+            grid-area: 3 / 3 / 4 / -1;
+        }
+
         .product__text-title {
             padding-left: 0.4rem;
             font-size: 1.6rem;
@@ -63,10 +79,21 @@ table {
 }
 
 @media print {
+    body {
+        font-size: 1.4rem;
+    }
+
     table {
         width: 70%;
         page-break-before: always;
         /* break-before: page; */ /* Alternativa moderna */
+
+        .product {
+            .product__text-title,
+            .product__text-content {
+                font-size: 1.4rem;
+            }
+        }
     }
 
     table:first-of-type {

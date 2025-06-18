@@ -1,6 +1,46 @@
+.navbar__button-mobile {
+    position: relative;
+    z-index: 2;
+    @include flex-center;
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 4.5rem;
+    border-radius: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .icon {
+        margin: -0.8rem;
+        color: #fff;
+
+        &[name="close-outline"] {
+            display: none;
+        }
+    }
+
+    &.open {
+        & > .icon[name="close-outline"] {
+            display: block;
+        }
+
+        & > .icon[name="menu-outline"] {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 820px) {
+    .navbar__button-mobile {
+        display: none;
+    }
+}
+
 .btn {
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-family: "Poppins", sans-serif;
     border-radius: 0.8rem;
 
@@ -26,12 +66,14 @@
 
     &--clean,
     &--print {
-        color: $clr-primary;
+        border-color:  $text-clr;
+        color: $text-clr;
         background-color: #fff;
 
         &:hover {
             color: #fff;
             background: $clr-primary;
+            border-color: $clr-primary;
         }
     }
 
@@ -58,7 +100,7 @@
             background-color: $clr-primary;
         }
 
-        &.pressed{
+        &.pressed {
             // transform: scale(.5);
             background-color: $clr-primary;
             color: #fff;
@@ -70,7 +112,7 @@
 .btns__options {
     display: flex;
     justify-content: end;
-    gap: 1rem;
+    gap: 1.2rem;
     padding-top: 1rem;
     border-radius: 0.4rem;
     list-style: none;

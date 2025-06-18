@@ -8,14 +8,14 @@
 @import "components/description";
 @import "components/form";
 @import "components/header";
-@import "components/navbar";
+@import "components/sidebar";
 @import "components/search-form";
 @import "components/submenu";
 
 @import "layout/media-queries";
 
-@import "pages/login";
 @import "pages/circular";
 @import "pages/print";
+@import "pages/codigo-mil";
 
 @import "utilitaries/sr-only";

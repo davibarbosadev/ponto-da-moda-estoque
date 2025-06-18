@@ -1,19 +1,25 @@
-const buttonMenuMobile = document.querySelector(".navbar__button-mobile");
-const navbar = document.querySelector(".navbar")
-const buttonSubmenu = document.querySelector(".submenu__button");
-const submenuList = document.querySelector(".submenu__list");
+function iniciarSidebar() {
+    const buttonMenuMobile = document.querySelector(".navbar__button-mobile");
+    const sidebar = document.querySelector(".sidebar");
+    const buttonSubmenu = document.querySelector(".submenu__button");
+    const submenuList = document.querySelector(".submenu__list");
 
+    buttonMenuMobile.addEventListener("click", function () {
+        buttonMenuMobile.classList.toggle("open");
+        sidebar.classList.toggle("open");
 
-buttonMenuMobile.addEventListener("click", function () {
-    navbar.classList.toggle("open");
+        if (!buttonMenuMobile.classList.contains("open")) {
+            submenuList.classList.remove("open");
+            buttonSubmenu.classList.remove("open");
+        }
+    });
 
-    if (!navbar.classList.contains("open")) {
-        submenuList.classList.remove("open");
-    }
-});
+    buttonSubmenu.addEventListener("click", function () {
+        buttonSubmenu.classList.toggle("open");
+        submenuList.classList.toggle("open");
+    });
+}
 
-
-buttonSubmenu.addEventListener("click", function () {
-    buttonSubmenu.classList.toggle("open");
-    submenuList.classList.toggle("open")
-});
+setTimeout(() => {
+    iniciarSidebar();
+}, 1000);

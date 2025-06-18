@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+
+.main.codigo-mil {
+    grid-template-rows: auto 1fr;
+
+    .heading-primary {
+        text-align: center;
+        font-size: clamp(2.4rem, 10vw, 4.8rem);
+    }
+}
+
+.container-links {
+    padding: 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    background-color: $clr-primary;
+    border-radius: 0.8rem;
+}
+
+.container-links a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8rem;
+    border-radius: 0.8rem;
+    font-family: "Poetsen One", sans-serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+    color: $bg-clr-primary;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    // background-color: RED;
+}
+
+@media (min-width: 360px) {
+    .container-links a {
+        // width: 10rem;
+        // height: 10rem;
+        // background-color: red;
+    }
+}
+
+.container-links a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.container-links a:active {
+    background-color: rgba(255, 255, 255, 0);
+}

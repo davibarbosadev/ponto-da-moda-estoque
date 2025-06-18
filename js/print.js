@@ -16,9 +16,19 @@ const createTableRow = (product) => {
                 <span class="product__text-title">Ref:</span> 
                <span class="product__text-content">${product.reference}</span> 
             </td>
+            <td class="product__sizes">
+                <span class="product__text-title">Tam:</span> 
+               <span class="product__text-content">${product.sizes}</span> 
+            </td>
+            <td class="product__colors">
+                <span class="product__text-title">Cores:</span> 
+               <span class="product__text-content">${product.colors}</span> 
+            </td>
             <td class="product__price">
                 <span class="product__text-title">R$:</span>
-                <span class="product__text-content">${product.price}</span>
+                <span class="product__text-content">${product.price
+                    .toString()
+                    .replace(".", ",")}</span>
             </td>
         </tr>
     `;

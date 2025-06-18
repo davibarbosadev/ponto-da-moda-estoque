@@ -31,9 +31,17 @@ const renderProducts = () => {
                 <span class="description__text-title">Ref:</span>
                 <span class="description__text-content">${product.reference}</span>
             </div>
+            <div class="product__grid">
+                <span class="description__text-title">Tamanho:</span>
+                <span class="description__text-content">${product.sizes}</span>
+            </div>
+            <div class="product__color">
+                <span class="description__text-title">Cores:</span>
+                <span class="description__text-content">${product.colors}</span>
+            </div>
             <div class="product__price">
                 <span class="description__text-title">R$:</span>
-                <span class="description__text-content">${product.price}</span>
+                <span class="description__text-content">${product.price.toString().replace(".", ",")}</span>
             </div>
             <div class="btns__options">
                 <button class="btn--icons btn-edit" data-index="${index}">
@@ -61,10 +69,13 @@ form.addEventListener("submit", (event) => {
     const product = {
         description: form.description.value.toUpperCase(),
         reference: form.reference.value.toUpperCase(),
-        price: form.price.value.replace(".", ","),
+        sizes: form.sizes.value.toUpperCase(),
+        colors: form.colors.value.toUpperCase(),
+        price: Number(form.price.value)
     };
 
     productList.unshift(product);
+    console.log(productList)
     updateLocalStorage();
     renderProducts();
     clearForm();
@@ -88,14 +99,16 @@ descriptionList.addEventListener("click", (event) => {
 
         // Verifica se o botão clicado é de edição
         if (button.classList.contains("btn-edit")) {
-            if (form.description.value || form.reference.value || form.price.value) {
+            if (form.description.value || form.reference.value || form.sizes.value || form.colors.value || form.price.value) {
                 alert("Finalize a edição atual antes de editar outro item.");
                 return;
             }
             const product = productList[index];
             form.description.value = product.description;
             form.reference.value = product.reference;
-            form.price.value = product.price.replace(",", ".");
+            form.sizes.value = product.sizes;
+            form.colors.value = product.colors;
+            form.price.value = product.price;
             productList.splice(index, 1);
         }
 
