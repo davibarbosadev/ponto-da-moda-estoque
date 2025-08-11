@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link rel="stylesheet" href="../css/style.css" />
+            <script
+                type="module"
+                src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+            ></script>
+            <script
+                nomodule
+                src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+            ></script>
+            <script defer src="../js/load-components.js"></script>
+            <script defer src="../js/btn-mobile.js"></script>
+            <script defer src="../js/extract-reference.js"></script>
+            <script defer src="../js/formate-product.js"></script>
+            <title>Ponto da Moda - Estoque</title>
+        </head>
+    </head>
+    <body>
+        <header id="header" class="header"></header>
+        <div class="main-container">
+           <aside id="sidebar" class="sidebar"></aside>
+
+            <main class="main">
+                <div class="form-container">
+                    <h1 class="heading-primary">🎯 Painel Admin - Descrição de produtos</h1>
+
+                    <div class="message-display"></div>
+
+                    <h2 class="heading-secondary">Passo 1 - Extrair Referência</h2>
+
+                    <form class="form form--extract-reference">
+                        <div class="form__group">
+                            <label for="description" class="form__label">Dados CSV</label>
+
+                            <textarea
+                                id="csvInput"
+                                placeholder='Cole aqui seus dados CSV no formato:
+"codigo";"descrição"
+"ES07";"CF000480MISCL1M - PRODUTO..."'
+                            ></textarea>
+                        </div>
+                        <button class="btn btn--submit">Extrair referência e Copiar</button>
+                    </form>
+
+                    <h3 class="heading-secondary">Passo 2 - Gerar Descrição</h3>
+
+                    <form class="form form--formate-product-description">
+                        <div class="form__group">
+                            <label for="csvInput" class="form__label">Dados CSV</label>
+
+                            <textarea
+                                id="csvInput"
+                                placeholder='Cole aqui seus dados CSV  no formato:
+"referência - descrição";"preço"
+"CF000480MISCL1G - DESCRIÇÃO DO PRODUTO";"79,99"'
+                            ></textarea>
+                        </div>
+                        <button class="btn btn--submit">Gerar descrição</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

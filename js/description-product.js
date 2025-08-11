@@ -24,25 +24,39 @@ const renderProducts = () => {
         .map(
             (product, index) => `
         <div class="description product">
-            <div class="product__description">
-                <span class="description__text-content">${product.description}</span>
+            <div class="header-component">
+                <div class="product__description">
+                    <span class="description__text-content">${product.description}</span>
+                </div>
+                <div class="product__fashion-style">
+                    <span class="description__text-content">${product.fashionStyle}</span>
+                </div>
             </div>
+            
             <div class="product__reference">
                 <span class="description__text-title">Ref:</span>
                 <span class="description__text-content">${product.reference}</span>
             </div>
-            <div class="product__grid">
+
+            <div class="product__sizes">
                 <span class="description__text-title">Tamanho:</span>
                 <span class="description__text-content">${product.sizes}</span>
             </div>
+
             <div class="product__color">
                 <span class="description__text-title">Cores:</span>
-                <span class="description__text-content">${product.colors}</span>
+                <span class="description__text-content">
+                    ${product.colors.join(" - ")}
+                </span>
             </div>
+
             <div class="product__price">
                 <span class="description__text-title">R$:</span>
-                <span class="description__text-content">${product.price.toString().replace(".", ",")}</span>
+                <span class="description__text-content">${product.price
+                    .toString()
+                    .replace(".", ",")}</span>
             </div>
+
             <div class="btns__options">
                 <button class="btn--icons btn-edit" data-index="${index}">
                     <ion-icon name="pencil-outline"></ion-icon>
@@ -69,13 +83,18 @@ form.addEventListener("submit", (event) => {
     const product = {
         description: form.description.value.toUpperCase(),
         reference: form.reference.value.toUpperCase(),
+        fashionStyle: form.fashionStyle.value.toUpperCase(),
         sizes: form.sizes.value.toUpperCase(),
-        colors: form.colors.value.toUpperCase(),
-        price: Number(form.price.value)
+        colors: form.colors.value
+            .toUpperCase()
+            .split("-")
+            .map((item) => item.trim())
+            .filter((item) => item.length > 0), // Remove itens vazios
+        price: Number(form.price.value),
     };
 
     productList.unshift(product);
-    console.log(productList)
+    console.log(productList);
     updateLocalStorage();
     renderProducts();
     clearForm();
@@ -99,15 +118,22 @@ descriptionList.addEventListener("click", (event) => {
 
         // Verifica se o botão clicado é de edição
         if (button.classList.contains("btn-edit")) {
-            if (form.description.value || form.reference.value || form.sizes.value || form.colors.value || form.price.value) {
+            if (
+                form.description.value ||
+                form.reference.value ||
+                form.sizes.value ||
+                form.colors.value ||
+                form.price.value
+            ) {
                 alert("Finalize a edição atual antes de editar outro item.");
                 return;
             }
             const product = productList[index];
             form.description.value = product.description;
             form.reference.value = product.reference;
+            form.fashionStyle.value = product.fashionStyle;
             form.sizes.value = product.sizes;
-            form.colors.value = product.colors;
+            form.colors.value = product.colors.join(" - ");
             form.price.value = product.price;
             productList.splice(index, 1);
         }
@@ -128,8 +154,6 @@ descriptionList.addEventListener("click", (event) => {
         renderProducts();
     }, 100); // Pequeno atraso para exibir o efeito antes da re-renderização
 });
-
-
 
 // Limpa toda a lista de produtos com confirmação
 btnClean.addEventListener("click", () => {

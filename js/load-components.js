@@ -10,10 +10,15 @@ function loadComponent(component, containerId) {
 
 // Função para carregar todos os componentes
 function loadComponents() {
-    loadComponent("components/header.html", "header");
-    loadComponent("components/sidebar.html", "sidebar");
-    //   loadComponent('footer.html', 'footer-container');
+    if (document.getElementById("header")) {
+        loadComponent("/components/header.html", "header");
+    }
+
+    if (document.getElementById("sidebar")) {
+        loadComponent("components/sidebar.html", "sidebar");
+    }
 }
 
 // Carregar os componentes assim que a página for carregada
 document.addEventListener("DOMContentLoaded", loadComponents);
+

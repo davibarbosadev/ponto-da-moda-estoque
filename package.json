@@ -9,8 +9,9 @@
     "license": "ISC",
     "description": "",
     "dependencies": {
+        "eslint": "^9.31.0",
         "jspdf": "^3.0.0",
-        "sass": "^1.81.0"
+        "sass": "^1.89.2"
     },
     "repository": {
         "type": "git",

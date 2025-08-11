@@ -1,53 +1,353 @@
-@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
 
-.main.codigo-mil {
-    grid-template-rows: auto 1fr;
+// .button__group {
+//     margin-top: 3.2rem;
+//     padding: 1.2rem;
+//     display: grid;
+//     grid-template-columns: 1fr;
+//     gap: 1.2rem;
+//     background-color: $clr-primary;
+//     border-radius: 0.8rem;
 
-    .heading-primary {
-        text-align: center;
-        font-size: clamp(2.4rem, 10vw, 4.8rem);
-    }
-}
+//     & button {
+//         width: 100%;
+//         height: min-content;
+//         padding: .8rem;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         font-size: 3rem;
+//         line-height: 1;
+//         text-transform: uppercase;
+//         font-family: "Poetsen One", sans-serif;
 
-.container-links {
-    padding: 1.2rem;
+//         border: 1px solid transparent;
+//         border-radius: 0.8rem;
+//         color: $bg-clr-primary;
+//         background-color: rgba(255, 255, 255, 0.1);
+//         transition: all 0.3s ease;
+//     }
+// }
+
+// @media (min-width: 768px) {
+//     .container-links {
+//         grid-template-columns: repeat(2, 1fr);
+
+//         & a {
+//             width: 100%;
+//             // aspect-ratio: 1;
+//         }
+//     }
+// }
+
+// .container-links a:hover {
+//     background-color: rgba(255, 255, 255, 0.2);
+//     border-color: rgba(255, 255, 255, 0.2);
+// }
+
+// .container-links a:active {
+//     background-color: rgba(255, 255, 255, 0);
+// }
+
+/* ===== ESTILOS ESPECÍFICOS PARA PÁGINA CÓDIGO MIL ===== */
+
+/* Container principal da página */
+// .main-container {
+//     max-width: 800px;
+//     margin: 0 auto;
+//     padding: 20px;
+// }
+
+/* Container do formulário principal */
+// .form--container {
+//     background: white;
+//     padding: 40px;
+//     border-radius: 12px;
+//     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+//     margin: 20px 0;
+// }
+
+/* Título principal da página */
+// .heading-primary {
+//     color: #333;
+//     text-align: center;
+//     margin-bottom: 40px;
+//     font-size: 2.5em;
+//     font-weight: 600;
+//     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+//     -webkit-background-clip: text;
+//     -webkit-text-fill-color: transparent;
+//     background-clip: text;
+// }
+
+/* ===== ESTILOS DO FORMULÁRIO ===== */
+
+/* Grupo de campos do formulário */
+// .form__group {
+//     margin-bottom: 25px;
+// }
+
+// /* Rótulos dos campos */
+// .form__label {
+//     display: block;
+//     margin-bottom: 8px;
+//     font-weight: 600;
+//     color: #333;
+//     font-size: 14px;
+//     text-transform: uppercase;
+//     letter-spacing: 0.5px;
+// }
+
+// /* Campos de entrada e select */
+// .form__input,
+// select {
+//     width: 100%;
+//     padding: 14px 16px;
+//     border: 2px solid #e1e5e9;
+//     border-radius: 8px;
+//     font-size: 16px;
+//     transition: all 0.3s ease;
+//     background-color: #f8f9fa;
+//     box-sizing: border-box;
+// }
+
+// /* Efeito de foco nos campos */
+// .form__input:focus,
+// select:focus {
+//     outline: none;
+//     border-color: #667eea;
+//     background-color: white;
+//     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+//     transform: translateY(-1px);
+// }
+
+// /* ===== GRUPO DE DATAS ===== */
+
+// /* Container das datas em grid */
+// .date__group {
+//     display: grid;
+//     grid-template-columns: 1fr 1fr;
+//     gap: 25px;
+//     margin-bottom: 30px;
+// }
+
+/* ===== GRUPO DE BOTÕES ===== */
+
+/* Container dos botões de ação */
+.button__group {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.2rem;
-    background-color: $clr-primary;
-    border-radius: 0.8rem;
-}
-
-.container-links a {
-    width: 100%;
-    display: flex;
-    align-items: center;
+    gap: 15px;
     justify-content: center;
-    height: 8rem;
-    border-radius: 0.8rem;
-    font-family: "Poetsen One", sans-serif;
-    font-size: 4rem;
-    text-transform: uppercase;
-    color: $bg-clr-primary;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-    // background-color: RED;
+    // margin-top: 40px;
+    flex-wrap: wrap;
 }
 
-@media (min-width: 360px) {
-    .container-links a {
-        // width: 10rem;
-        // height: 10rem;
-        // background-color: red;
+/* Estilização dos botões de ação */
+.reference-button {
+    background: $clr-primary;
+    color: white;
+    border: none;
+    padding: 16px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 90px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito de brilho nos botões */
+// .reference-button::before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: -100%;
+//     width: 100%;
+//     height: 100%;
+//     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+//     transition: left 0.5s;
+// }
+
+/* Efeito hover nos botões */
+.reference-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.reference-button:hover::before {
+    left: 100%;
+}
+
+/* Efeito de clique nos botões */
+.reference-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* ===== MENSAGENS DE FEEDBACK ===== */
+
+/* Container de mensagens */
+#messageContainer {
+    margin: 10px 0 20px;
+    height: 40px;
+
+    // //   background-color: #fee2e2;
+    // // color: #dc2626;
+    // padding: 12px 16px;
+    // border-radius: 8px;
+    // margin: 10px 0 20px;
+    // border-color:#fecaca;
+    // text-align: center;
+    // font-weight: 500;
+    // animation: slideIn 0.3s ease;
+}
+
+/* Mensagens de erro */
+.error-message {
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 12px 16px;
+    border-radius: 8px;
+    // margin: 10px 0;
+    border-color:#fecaca;
+    text-align: center;
+    font-weight: 500;
+    animation: slideIn 0.3s ease;
+}
+
+/* Mensagens de sucesso */
+.success-message {
+    background-color: #ecfdf5;
+    color: #059669;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border: 1px solid #a7f3d0;
+    text-align: center;
+    font-weight: 500;
+    animation: slideIn 0.3s ease;
+}
+
+/* Animação de entrada das mensagens */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-.container-links a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.2);
+/* ===== RESPONSIVIDADE ===== */
+
+// /* Tablets */
+// @media (max-width: 768px) {
+//     .main-container {
+//         padding: 15px;
+//     }
+
+//     .form--container {
+//         padding: 30px 20px;
+//     }
+
+//     .heading-primary {
+//         font-size: 2em;
+//         margin-bottom: 30px;
+//     }
+
+//     .date__group {
+//         grid-template-columns: 1fr;
+//         gap: 20px;
+//     }
+
+//     .button__group {
+//         flex-direction: column;
+//         align-items: center;
+//         gap: 12px;
+//     }
+
+//     .action-button {
+//         width: 100%;
+//         max-width: 300px;
+//         padding: 18px 28px;
+//     }
+// }
+
+// /* Smartphones */
+// @media (max-width: 480px) {
+//     .main-container {
+//         padding: 10px;
+//     }
+
+//     .form--container {
+//         padding: 25px 15px;
+//     }
+
+//     .heading-primary {
+//         font-size: 1.8em;
+//         margin-bottom: 25px;
+//     }
+
+//     .form__input,
+//     select {
+//         padding: 12px 14px;
+//         font-size: 16px; /* Evita zoom no iOS */
+//     }
+
+//     .action-button {
+//         padding: 16px 24px;
+//         font-size: 15px;
+//     }
+// }
+
+/* ===== ESTILOS PARA CAMPOS COM ERRO ===== */
+
+/* Campo com erro */
+.form__input.error,
+select.error {
+    border-color: #dc2626;
+    background-color: #fef2f2;
 }
 
-.container-links a:active {
-    background-color: rgba(255, 255, 255, 0);
+.form__input.error:focus,
+select.error:focus {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+
+/* Foco visível para navegação por teclado */
+// .action-button:focus-visible {
+//     outline: 2px solid #667eea;
+//     outline-offset: 2px;
+// }
+
+// .form__input:focus-visible,
+// select:focus-visible {
+//     outline: 2px solid #667eea;
+//     outline-offset: 2px;
+// }
+
+/* ===== ANIMAÇÕES SUAVES ===== */
+
+/* Transições suaves para todos os elementos interativos */
+* {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Desabilita animações para usuários que preferem movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

@@ -1,5 +1,3 @@
-/* reset basic */
-
 html {
     font-size: 62.5%;
     font-weight: 400;
@@ -17,6 +15,7 @@ html {
 }
 
 body {
+    color: $text-clr;
     background-color: $bg-clr-primary;
     overflow-x: hidden;
 }
@@ -34,14 +33,12 @@ button {
 
 a:any-link {
     text-decoration: none;
-    // color: inherit
 }
 
 button,
-a:any-link{
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
+a:any-link {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 ul,

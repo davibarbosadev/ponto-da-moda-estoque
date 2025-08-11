@@ -2,6 +2,7 @@
     margin-top: 3rem;
     width: 100%;
     overflow-y: scroll;
+    scrollbar-width: thin;
 
     .description {
         display: grid;
@@ -30,15 +31,27 @@
     /* layout para descrição de produto */
     /*****************/
     .product {
-        &__description {
+        .header-component {
             grid-area: 1 / 1 / 2 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: .8rem;
+
+            .product__fashion-style {
+                align-self: start;
+                padding: .4rem 1.2rem .2rem;
+                border-radius: 100px;
+                color: $white;
+                background-color: $clr-primary;
+            }
         }
 
         &__reference {
             grid-area: 2 / 1 / 3 / -1;
         }
 
-        &__grid {
+        &__sizes {
             grid-area: 3 / 1 / 4 / -1;
         }
 

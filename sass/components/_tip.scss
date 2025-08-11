@@ -1,0 +1,114 @@
+.tip {
+    width: 100%;
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2rem;
+    background: linear-gradient(145deg, rgba(39, 63, 135, 0.09), $clr-secondary-pale);
+    border: 0.1rem solid rgba(39, 63, 135, 0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(1rem);
+}
+
+.tip::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.4rem;
+    background: $clr-primary;
+}
+
+.tip-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(135deg, #273f87, rgba(39, 63, 135, 0.8));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #ffd700;
+    box-shadow: 0 0.8rem 2rem rgba(39, 63, 135, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.tip-content {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #273f87;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.tip-highlight {
+    font-weight: 700;
+    text-shadow: 0 0.1rem 0.2rem rgba(39, 63, 135, 0.2);
+}
+
+.tip-accent {
+    position: absolute;
+    width: 10rem;
+    height: 10rem;
+    background: linear-gradient(45deg, rgba(39, 63, 135, 0.08), rgba(39, 63, 135, 0.05));
+    border-radius: 50%;
+    top: -5rem;
+    right: -5rem;
+    z-index: 1;
+    animation: float 4s ease-in-out infinite;
+}
+
+.tip-accent:nth-child(2) {
+    width: 6rem;
+    height: 6rem;
+    top: auto;
+    bottom: -3rem;
+    left: -3rem;
+    animation-delay: -2s;
+    background: linear-gradient(45deg, rgba(39, 63, 135, 0.06), rgba(39, 63, 135, 0.03));
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0rem) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-2rem) rotate(180deg);
+    }
+}
+
+@media (min-width: 768px) {
+    .tip {
+        padding: 2rem;
+        padding-bottom: 1rem;
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .tip-icon {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.8rem;
+    }
+
+    .tip-content {
+        padding-left: 1.6rem;
+        font-size: 1.4rem;
+    }
+}

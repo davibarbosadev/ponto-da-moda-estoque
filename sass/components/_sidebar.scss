@@ -8,12 +8,11 @@
     padding-top: 6.4rem;
     background-color: $clr-primary;
     transform: translateX(100%) scaleX(0);
-    transform-origin: left;
-    transition: all 0.7s ease;
+    transform-origin: right;
+    transition: all 0.7s ease-out;
 
     &.open {
         transform: translateX(0) scaleX(1);
-        transform-origin: left;
     }
 }
 
@@ -40,7 +39,6 @@
             width: 100%;
             display: inline-block;
             color: #fff;
-            font-family: inherit;
             font-size: 2rem;
             font-weight: 500;
             line-height: 1.5;
@@ -60,9 +58,6 @@
 @media (min-width: 820px) {
     .sidebar {
         position: static;
-        // position: fixed;
-        // top: 7.5rem;
-        // left: 1.2rem;
         width: max-content;
         height: calc(100% - 9rem);
         height: calc(100vh - 8.8rem);

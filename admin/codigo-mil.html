@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <script defer src="../js/load-components.js"></script>
+        <script defer src="../js/btn-mobile.js"></script>
+        <script defer src="../js/add-product-codigo-mil.js"></script>
+        <title>Ponto da Moda - Estoque</title>
+    </head>
+    <body>
+        <header id="header" class="header"></header>
+        <div class="main-container">
+            <aside class="sidebar">
+                <div class="sidebar-container">
+                    <nav class="navbar">
+                        <ul class="navbar__list">
+                            <li class="navbar__item">
+                                <a class="navbar__link" href="codigo-mil.html">Código Mil</a>
+                            </li>
+                            <li class="navbar__item">
+                                <a class="navbar__link" href="descrição-produto.html"
+                                    >Descrição de Produto</a
+                                >
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+            <main class="main">
+                <div class="form-container">
+                    <h1 class="heading-primary">🎯 Painel Admin - Código Mil</h1>
+
+                    <div class="message-display"></div>
+
+                    <h2 class="heading-secondary">Adicionar produtos para conferência</h2>
+
+                    <form class="form form--codigo-mil">
+                        <div class="form__group">
+                            <label for="csvInput" class="form__label">Dados CSV</label>
+
+                            <textarea
+                                id="csvInput"
+                                placeholder="Cole aqui seus dados CSV:"
+                            ></textarea>
+                        </div>
+
+                        <button class="btn btn--submit">Processar Dados</button>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

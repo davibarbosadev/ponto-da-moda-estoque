@@ -17,9 +17,9 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
             <script src="js/load-components.js"></script>
             <script defer src="js/btn-mobile.js"></script>
-            <script defer src="js/extract-reference.js"></script>
-            <script defer src="js/formate-product.js"></script>
-            <!-- <script defer src="js/description-product.js"></script> -->
+            <!-- <script defer src="js/extract-reference.js"></script> -->
+            <!-- <script defer src="js/formate-product.js"></script> -->
+            <script defer src="js/description-auto.js"></script>
             <title>Ponto da Moda - Estoque</title>
         </head>
     </head>
@@ -30,32 +30,24 @@
 
             <main class="main">
                 <div class="form-container">
-                    <h2 class="heading-primary">Descrição de Produto - (Automático)</h2>
+                    <h2 class="heading-primary">Descrição de Produto</h2>
 
-                    <h3 class="heading-secondary">Passo 1 - Extrair Referência</h3>
-                    <form class="form form--extract-reference">
+                    <form class="form form--description-auto">
                         <div class="form__group">
-                            <textarea
-                                id="csvInput"
-                                placeholder='Cole aqui seus dados CSV no formato:
-"codigo";"descrição"
-"ES07";"CF000480MISCL1M - PRODUTO..."'
-                            ></textarea>
+                            <label for="references" class="form__label">Referencia</label>
+                            <input class="form__input" type="text" id="references" required />
                         </div>
-                        <button class="btn btn--submit">Processar e Copiar</button>
-                    </form>
 
-                    <h3 class="heading-secondary">Passo 2 - Formatar Descrição</h3>
-                    <form class="form form--formate-product-descriptiom">
-                        <div class="form__group">
-                            <textarea
-                                id="csvInput"
-                                placeholder='Cole aqui seus dados CSV  no formato:
-"referência - descrição";"preço"
-"CF000480MISCL1G - DESCRIÇÃO DO PRODUTO";"79,99"'
-                            ></textarea>
+                        <div class="form__controls">
+                            <button class="btn btn--submit" type="submit">Gerar Descrição</button>
+
+                            <button class="btn btn--clean" type="button">Limpar Tudo</button>
+
+                            <button class="btn btn--print" type="button">
+                                <ion-icon class="form__icon" name="print-outline"></ion-icon>
+                                <span>Imprimir</span>
+                            </button>
                         </div>
-                        <button class="btn btn--submit">Formatar e Copiar</button>
                     </form>
                 </div>
 

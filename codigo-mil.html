@@ -1,47 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
+        <!-- Define a codificação de caracteres para UTF-8 -->
         <meta charset="UTF-8" />
+        <!-- Configura a viewport para responsividade em dispositivos móveis -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Sistema interno do Ponto da Moda para gestão de estoque. Conferência de mercadorias, circulares, registro de reposições e impressão de descrições detalhadas para otimizar a operação diária."
-        />
+        <!-- Vincula o arquivo CSS principal -->
         <link rel="stylesheet" href="css/style.css" />
+        <!-- Carrega ícones do Ionicons via CDN -->
         <script
             type="module"
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
         ></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <script denfer src="js/load-components.js"></script>
+        <!-- Carrega scripts JavaScript com defer para não bloquear o rendering -->
+        <script defer src="js/load-components.js"></script>
         <script defer src="js/btn-mobile.js"></script>
+        <script defer src="js/codigo-mil.js"></script>
+        <!-- Título da página exibido na aba do navegador -->
         <title>Ponto da Moda - Estoque</title>
     </head>
     <body>
+        <!-- Cabeçalho da página carregado dinamicamente -->
         <header id="header" class="header"></header>
+        
+        <!-- Container principal da aplicação -->
         <div class="main-container">
+            <!-- Barra lateral carregada dinamicamente -->
             <aside id="sidebar" class="sidebar"></aside>
-            <main class="main codigo-mil">
-                <div class="form-container">
-                <h1 class="heading-primary">Código Mil</h1>
-
-                    <h2 class="heading-secondary">Adicione os dados abaixo:</h2>
-                    <form class="form form--extract-reference">
+            
+            <!-- Conteúdo principal da página -->
+            <main class="main">
+                <div class="form--container">
+                    <!-- Título principal da página -->
+                    <h1 class="heading-primary">Código Mil</h1>
+                    
+                    <!-- Container para exibir mensagens de erro e sucesso -->
+                    
+                    <!-- Formulário principal para seleção de dados -->
+                    <form class="form form--codigo-mil" id="codigoMilForm">
+                        <!-- Campo de seleção da loja -->
                         <div class="form__group">
-                            <textarea
-                                id="csvInput"
-                                placeholder='Cole aqui seus dados CSV:'
-                            ></textarea>
+                            <label class="form__label" for="storeSelect">Loja:</label>
+                            <select id="storeSelect" name="storeSelect" required>
+                                <option value="">Selecione uma loja</option>
+                                <option value="LE01">Loja 01 - Guilherme Rocha</option>
+                                <option value="LE02">Loja 02 - Pacajus</option>
+                                <option value="LE03">Loja 03 - Cascavel</option>
+                                <option value="LE04">Loja 04 - Solon Pinheiro</option>
+                                <option value="LE05">Loja 05 - Juazeiro</option>
+                                <option value="LE06">Loja 06 - Maracanaú</option>
+                                <option value="LE08">Loja 08 - Sobral</option>
+                                <option value="LE09">Loja 09 - Caucaia</option>
+                                <option value="LE10">Loja 10 - Eusébio</option>
+                                <option value="LE11">Loja 11 - Messejana</option>
+                                <option value="LE12">Loja 12 - Rio Mar</option>
+                                <option value="LE13">Loja 13 - Jóquei</option>
+                                <option value="LE14">Loja 14 - José Walter</option>
+                            </select>
                         </div>
-                        <button class="btn btn--submit">Processar Dados</button>
+
+                        <!-- Grupo de campos para seleção de datas -->
+                        <div class="date__group">
+                            <!-- Campo para data inicial -->
+                            <div class="form__group">
+                                <label class="form__label" for="dateStart">Data Inicial:</label>
+                                <input
+                                class="form__input"
+                                type="date"
+                                id="dateStart"
+                                name="dateStart"
+                                required
+                                />
+                            </div>
+                            
+                            <!-- Campo para data final -->
+                            <div class="form__group">
+                                <label class="form__label" for="dateEnd">Data Final:</label>
+                                <input
+                                    class="form__input"
+                                    type="date"
+                                    id="dateEnd"
+                                    name="dateEnd"
+                                    required
+                                />
+                            </div>
+                        </div>
                     </form>
-                </div>
-                <div class="container-links">
-                    <a href="#">cm</a>
-                    <a href="#">cf</a>
-                    <a href="#">ci</a>
-                    <a href="#">la</a>
-                    <a href="#">va</a>
+                    <div id="messageContainer"></div>
+
+                    <!-- Grupo de botões de ação para diferentes tipos de relatório -->
+                    <div class="button__group">
+                        <!-- Botão para relatório CM (Código Mil) -->
+                        <button
+                            type="button"
+                            class="reference-button"
+                            data-start-reference="cm"
+                        >
+                            CM
+                        </button>
+                        <!-- Botão para relatório CF (Código Final) -->
+                        <button
+                            type="button"
+                            class="reference-button"
+                            data-start-reference="cf"
+                        >
+                            CF
+                        </button>
+                        <!-- Botão para relatório CI (Código Inicial) -->
+                        <button
+                            type="button"
+                            class="reference-button"
+                            data-start-reference="ci"
+                        >
+                            CI
+                        </button>
+                        <!-- Botão para relatório LA (Lista A) -->
+                        <button
+                            type="button"
+                            class="reference-button"
+                            data-start-reference="la"
+                        >
+                            LA
+                        </button>
+                        <!-- Botão para relatório VA (Vendas A) -->
+                        <button
+                            type="button"
+                            class="reference-button"
+                            data-start-reference="va"
+                        >
+                            VA
+                        </button>
+                    </div>
                 </div>
             </main>
         </div>

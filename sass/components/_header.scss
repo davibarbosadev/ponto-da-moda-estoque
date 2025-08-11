@@ -26,13 +26,7 @@
 
 @media (min-width: 820px) {
     .header__container {
-        margin: 0 1.2rem;
-    }
-}
-
-
-@media (min-width: 1024px) {
-    .header__container {
         margin: 0 auto;
+        padding-inline: 1.2rem;
     }
 }
