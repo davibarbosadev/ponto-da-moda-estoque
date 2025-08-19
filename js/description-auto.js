@@ -98,16 +98,10 @@ const renderProducts = () => {
                 <span class="description__text-content">${product.sizes || ''}</span>
             </div>
 
-            <div class="product__color">
+            <div class="product__colors">
                 <span class="description__text-title">Cores:</span>
                 <span class="description__text-content">
-                    ${product.colors
-                        .map(
-                            (color) => `
-                            <span class="color-box ${color}" title="${color}"></span>
-                        `
-                        )
-                    .join("")}
+                     ${product.colors.join(" - ")}
                 </span>
             </div>
 

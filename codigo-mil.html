@@ -1,47 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        <!-- Define a codificação de caracteres para UTF-8 -->
         <meta charset="UTF-8" />
-        <!-- Configura a viewport para responsividade em dispositivos móveis -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- Vincula o arquivo CSS principal -->
         <link rel="stylesheet" href="css/style.css" />
-        <!-- Carrega ícones do Ionicons via CDN -->
         <script
             type="module"
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
         ></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <!-- Carrega scripts JavaScript com defer para não bloquear o rendering -->
         <script defer src="js/load-components.js"></script>
         <script defer src="js/btn-mobile.js"></script>
         <script defer src="js/codigo-mil.js"></script>
-        <!-- Título da página exibido na aba do navegador -->
         <title>Ponto da Moda - Estoque</title>
     </head>
-    <body>
-        <!-- Cabeçalho da página carregado dinamicamente -->
+    <body class="codigo-mil">
         <header id="header" class="header"></header>
-        
-        <!-- Container principal da aplicação -->
+
         <div class="main-container">
-            <!-- Barra lateral carregada dinamicamente -->
             <aside id="sidebar" class="sidebar"></aside>
-            
-            <!-- Conteúdo principal da página -->
+
             <main class="main">
                 <div class="form--container">
-                    <!-- Título principal da página -->
                     <h1 class="heading-primary">Código Mil</h1>
-                    
-                    <!-- Container para exibir mensagens de erro e sucesso -->
-                    
-                    <!-- Formulário principal para seleção de dados -->
+
                     <form class="form form--codigo-mil" id="codigoMilForm">
-                        <!-- Campo de seleção da loja -->
                         <div class="form__group">
-                            <label class="form__label" for="storeSelect">Loja:</label>
+                            <label class="form__label" for="storeSelect">Loja</label>
                             <select id="storeSelect" name="storeSelect" required>
                                 <option value="">Selecione uma loja</option>
                                 <option value="LE01">Loja 01 - Guilherme Rocha</option>
@@ -60,23 +46,20 @@
                             </select>
                         </div>
 
-                        <!-- Grupo de campos para seleção de datas -->
                         <div class="date__group">
-                            <!-- Campo para data inicial -->
                             <div class="form__group">
-                                <label class="form__label" for="dateStart">Data Inicial:</label>
+                                <label class="form__label" for="dateStart">Data Inicial</label>
                                 <input
-                                class="form__input"
-                                type="date"
-                                id="dateStart"
-                                name="dateStart"
-                                required
+                                    class="form__input"
+                                    type="date"
+                                    id="dateStart"
+                                    name="dateStart"
+                                    required
                                 />
                             </div>
-                            
-                            <!-- Campo para data final -->
+
                             <div class="form__group">
-                                <label class="form__label" for="dateEnd">Data Final:</label>
+                                <label class="form__label" for="dateEnd">Data Final</label>
                                 <input
                                     class="form__input"
                                     type="date"
@@ -87,52 +70,27 @@
                             </div>
                         </div>
                     </form>
+                    
                     <div id="messageContainer"></div>
+                </div>
 
-                    <!-- Grupo de botões de ação para diferentes tipos de relatório -->
                     <div class="button__group">
-                        <!-- Botão para relatório CM (Código Mil) -->
-                        <button
-                            type="button"
-                            class="reference-button"
-                            data-start-reference="cm"
-                        >
+                        <button type="button" class="reference-button" data-start-reference="cm">
                             CM
                         </button>
-                        <!-- Botão para relatório CF (Código Final) -->
-                        <button
-                            type="button"
-                            class="reference-button"
-                            data-start-reference="cf"
-                        >
+                        <button type="button" class="reference-button" data-start-reference="cf">
                             CF
                         </button>
-                        <!-- Botão para relatório CI (Código Inicial) -->
-                        <button
-                            type="button"
-                            class="reference-button"
-                            data-start-reference="ci"
-                        >
+                        <button type="button" class="reference-button" data-start-reference="ci">
                             CI
                         </button>
-                        <!-- Botão para relatório LA (Lista A) -->
-                        <button
-                            type="button"
-                            class="reference-button"
-                            data-start-reference="la"
-                        >
+                        <button type="button" class="reference-button" data-start-reference="la">
                             LA
                         </button>
-                        <!-- Botão para relatório VA (Vendas A) -->
-                        <button
-                            type="button"
-                            class="reference-button"
-                            data-start-reference="va"
-                        >
+                        <button type="button" class="reference-button" data-start-reference="va">
                             VA
                         </button>
                     </div>
-                </div>
             </main>
         </div>
     </body>

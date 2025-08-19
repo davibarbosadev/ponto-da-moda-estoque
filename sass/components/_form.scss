@@ -10,44 +10,38 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 0.8rem;
+    gap: .4rem .8rem;
 
     &__group {
         display: flex;
         flex-direction: column;
+        gap: .2rem;
     }
 
     &__label {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 500;
-        margin-bottom: .2rem;
         color: $text-clr-secondary;
     }
 
     &__input,
     select {
         width: 100%;
-        padding: 0.8rem;
+        padding:.8rem;
         border: none;
-        outline: 1px solid gray;
-        // border: 1px solid gray;
+        outline: 1px solid $outline-form;
         border-radius: 0.8rem;
-        font-size: clamp(1.4rem, 1.4vw, 1.6rem);
+        font-size: clamp(1.2rem, 1.4vw, 1.4rem);
         text-transform: uppercase;
-        line-height: 1.5;
+        line-height: 1;
         color: $input-text-clr;
         cursor: pointer;
-        transition: outline 0.1s ease-out;
+        transition: outline 0.5s ease-out;
         background-color: $white;
 
         &:focus {
-            outline: 2px solid $clr-secondary;
+            outline: 1px solid $clr-secondary;
         }
-    }
-
-    select {
-        padding: 1rem;
-        // padding-right: 5rem;
     }
 
     textarea {
@@ -91,7 +85,7 @@
         }
 
         &__label {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
         }
 
         &__controls {
@@ -120,12 +114,13 @@
         }
 
         &:nth-child(4) {
-            grid-area: 3 / 7 / 4 / -1;
+            grid-area: 3 / 1 / 4 / 7;
         }
 
         &:nth-child(5) {
-            grid-area: 3 / 1 / 4 / 7;
+            grid-area: 3 / 7 / 4 / -1;
         }
+
 
         &:nth-child(6) {
             grid-area: 4 / 1 / 5 / -1;
@@ -151,19 +146,24 @@
             &:nth-child(3) {
                 grid-area: 2 / 1 / 3 / 6;
             }
-
+            
             &:nth-child(4) {
-                grid-area: 2 / 10 / 3 / -1;
+                grid-area: 2 / 6 / 3 / 10;
             }
 
             &:nth-child(5) {
-                grid-area: 2 / 6 / 3 / 10;
+                grid-area: 2 / 10 / 3 / -1;
             }
 
             &:nth-child(6) {
                 grid-area: 3 / 1 / 4 / -1;
+                // background-color: red;
             }
         }
+
+        .form__controls {
+        grid-area: 4 / 1 / 5 / -1;
+    }
     }
 }
 
@@ -231,6 +231,8 @@
     }
 }
 
+
+/*********formulário para codigo mil*********/
 .form--codigo-mil {
     .form__group {
         flex: 1;
@@ -244,18 +246,5 @@
         gap: 1.2rem;
         justify-content: space-between;
         grid-area: 2 / 1 / 3 / -1;
-    }
-}
-
-@media (min-width: 768px) {
-    .form--codigo-mil {
-        .form__group {
-            &:nth-child(1) {
-                grid-area: 1 / 1 / 2 / 5;
-            }
-        }
-        .date__group {
-            grid-area: 1 / 5 / 2 / -1;
-        }
     }
 }

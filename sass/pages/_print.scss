@@ -63,10 +63,6 @@ table {
         }
 
         &__colors {
-            display: flex;
-            gap: .4rem;
-            flex-wrap: wrap;
-            align-items: center;
             grid-area: 4 / 2 / 5 / -1;
         }
 
@@ -76,7 +72,7 @@ table {
             font-weight: bold;
             line-height: 1;
         }
-
+        
         .product__text-content {
             font-size: 1.4rem;
             padding-left: 0.4rem;
