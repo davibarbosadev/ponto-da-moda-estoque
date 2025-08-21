@@ -61,6 +61,9 @@ class ProductProcessor {
         "AREIA",
         "SPLASH",
         "BEGONIA",
+        "ALUMINIO",
+        "LAGO",
+        "CEREJA",
     ];
 
     static UNIT_PATTERNS = /\s?\((un|pç|pc|cj|par)\)/i;
