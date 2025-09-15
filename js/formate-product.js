@@ -29,6 +29,7 @@ class ProductProcessor {
         "36 AO 46",
         "36 AO 48",
         "36 AO 52",
+        "36 A 52",
         "38 AO 46",
         "38 AO 48",
         "40 AO 46",
@@ -64,6 +65,7 @@ class ProductProcessor {
         "ALUMINIO",
         "LAGO",
         "CEREJA",
+        "SPLASH",
     ];
 
     static UNIT_PATTERNS = /\s?\((un|pç|pc|cj|par)\)/i;
@@ -371,7 +373,6 @@ class ProductProcessor {
                 ? ProductProcessor.SORTED_CODE
                 : [],
             price: productData.price,
-            // price: this.parsePrice(productData.price).toFixed(2),
         };
 
         console.log("DEBUG: validateProductData - saída:", validated);
@@ -886,7 +887,7 @@ class ProductProcessor {
         if (!description || typeof description !== "string") return description;
 
         const descUpper = description.toUpperCase();
-        const KEEP_COLOR_PRODUCTS = ["SACOLA", "BOLSA"];
+        const KEEP_COLOR_PRODUCTS = ["SACOLA", "BOLSA", "BODY"];
 
         // Verifica se deve manter as cores na descrição
         const shouldKeepColor = KEEP_COLOR_PRODUCTS.some((product) =>
@@ -984,9 +985,14 @@ class ProductProcessor {
 
         const normalizedDescription = description.toUpperCase();
 
+        const EXCEPTIONS = {
+            " AO GG": "P AO GG",
+            "36 A 52": "36 AO 52",
+        };
+
         for (const size of ProductProcessor.SIZE_PATTERNS) {
             if (normalizedDescription.includes(size)) {
-                return size === " AO GG" ? "P AO GG" : size;
+                return EXCEPTIONS[size] || size;
             }
         }
 
