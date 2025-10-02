@@ -398,58 +398,98 @@ class ProductProcessor {
      * @private
      */
     #extractFashionStyle(sectionPath, reference) {
-        if (!sectionPath || typeof sectionPath !== "string") {
+        if (!this.#isValidSectionPath(sectionPath)) {
             return "";
         }
 
-        // Converter para caixa alta
-        const upperSectionPath = sectionPath.toUpperCase();
+        const normalizedPath = sectionPath.toUpperCase();
 
-        // Encontrar todas as posições dos hífens
-        const hyphenPositions = [];
-        for (let i = 0; i < upperSectionPath.length; i++) {
-            if (upperSectionPath[i] === "-") {
-                hyphenPositions.push(i);
-            }
+        // Verificar padrões específicos (prioridade)
+        const specificPattern = this.#extractSpecificPattern(normalizedPath);
+        if (specificPattern) {
+            return specificPattern;
         }
 
-        // Verificar se a referência inicia com "CI"
-        const startsWithCI =
-            reference && typeof reference === "string" && reference.toUpperCase().startsWith("CI");
+        // Lógica padrão com hífens
+        const hyphenPositions = this.#findHyphenPositions(normalizedPath);
+        const isCIReference = this.#isCIReference(reference);
 
-        let extractedValue = "";
-
-        if (startsWithCI) {
-            // Lógica original: verificar se temos pelo menos 4 hífens
-            if (hyphenPositions.length < 4) {
-                return "";
-            }
-
-            // Extrair o texto entre o terceiro e quarto hífen
-            const startPos = hyphenPositions[2] + 1; // Após o terceiro hífen
-            const endPos = hyphenPositions[3]; // Antes do quarto hífen
-
-            extractedValue = upperSectionPath.slice(startPos, endPos).trim();
-        } else {
-            // Nova lógica: verificar se temos pelo menos 3 hífens
-            if (hyphenPositions.length < 3) {
-                return "";
-            }
-
-            // Extrair o texto entre o segundo e terceiro hífen
-            const startPos = hyphenPositions[1] + 1; // Após o segundo hífen
-            const endPos = hyphenPositions[2]; // Antes do terceiro hífen
-
-            extractedValue = upperSectionPath.slice(startPos, endPos).trim();
+        const requiredHyphens = isCIReference ? 4 : 3;
+        if (hyphenPositions.length < requiredHyphens) {
+            return "";
         }
 
-        // Verificar se o valor é "JUV FEM" e substituir por "JUVENIL FEMININO"
-        if (extractedValue === "JUV FEM") {
-            return "JUVENIL FEMININO";
-        }
+        const extractedStyle = this.#extractStyleSegment(
+            normalizedPath,
+            hyphenPositions,
+            isCIReference
+        );
 
-        return extractedValue;
+        return this.#normalizeStyleName(extractedStyle);
     }
+
+    #extractSpecificPattern(normalizedPath) {
+        // Lista de padrões específicos para buscar
+        // Adicione novos padrões aqui conforme necessário
+        const specificPatterns = [
+            "MODA SONHO",
+            "PET",
+            // Adicione mais padrões aqui no futuro:
+            // "PLUS SIZE",
+            // "GESTANTE",
+            // "PRAIA",
+        ];
+
+        // Verifica se algum padrão específico existe no caminho
+        for (const pattern of specificPatterns) {
+            if (normalizedPath.includes(pattern)) {
+                return pattern;
+            }
+        }
+
+        return null;
+    }
+
+    #isValidSectionPath(sectionPath) {
+        return sectionPath && typeof sectionPath === "string";
+    }
+
+    #findHyphenPositions(text) {
+        const positions = [];
+        const regex = / - /g;
+        let match;
+
+        while ((match = regex.exec(text)) !== null) {
+            positions.push(match.index + 1);
+        }
+
+        return positions;
+    }
+
+    #isCIReference(reference) {
+        return (
+            reference && typeof reference === "string" && reference.toUpperCase().startsWith("CI")
+        );
+    }
+
+    #extractStyleSegment(normalizedPath, hyphenPositions, isCIReference) {
+        const segmentIndex = isCIReference ? 2 : 1;
+        const startPos = hyphenPositions[segmentIndex] + 1;
+        const endPos = hyphenPositions[segmentIndex + 1];
+
+        return normalizedPath.slice(startPos, endPos).trim();
+    }
+
+    #normalizeStyleName(styleName) {
+        const styleMap = {
+            "JUV FEM": "JUVENIL FEMININO",
+            "INF JUV MASC": "INFANTOJUVENIL MASCULINO",
+            "INF JUV FEM": "INFANTOJUVENIL FEMININO",
+        };
+
+        return styleMap[styleName] || styleName;
+    }
+
     /**
      * Remove números e códigos do início da descrição
      * @param {string} description - Descrição do produto
