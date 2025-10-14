@@ -455,13 +455,27 @@ class ProductProcessor {
         return sectionPath && typeof sectionPath === "string";
     }
 
+    // #findHyphenPositions(text) {
+    //     const positions = [];
+    //     const regex = / - /g;
+    //     let match;
+
+    //     while ((match = regex.exec(text)) !== null) {
+    //         positions.push(match.index + 1);
+    //     }
+
+    //     return positions;
+    // }
+
     #findHyphenPositions(text) {
         const positions = [];
-        const regex = / - /g;
+        const regex = /\s-\s|\s-\S/g;
         let match;
 
         while ((match = regex.exec(text)) !== null) {
-            positions.push(match.index + 1);
+            // Garante que pegamos o índice real do hífen
+            const hyphenIndex = text.indexOf("-", match.index);
+            positions.push(hyphenIndex);
         }
 
         return positions;
