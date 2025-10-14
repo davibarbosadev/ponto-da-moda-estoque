@@ -14,11 +14,13 @@
 @import "components/sidebar";
 @import "components/submenu";
 @import "components/tip";
-@import "components/card-product-conference";
+@import "components/card--product-conference";
 @import "components/modal";
 @import "components/summary";
+@import "components/card--product-reference";
 
 @import "layout/media-queries";
+@import "layout/product-reference.scss";
 
 @import "pages/print";
 @import "pages/codigo-mil";
