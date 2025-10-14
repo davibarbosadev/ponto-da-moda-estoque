@@ -407,7 +407,7 @@ class ProductProcessor {
         // Verificar padrões específicos (prioridade)
         const specificPattern = this.#extractSpecificPattern(normalizedPath);
         if (specificPattern) {
-            return specificPattern;
+            return this.#normalizeStyleName(specificPattern);
         }
 
         // Lógica padrão com hífens
@@ -434,6 +434,7 @@ class ProductProcessor {
         const specificPatterns = [
             "MODA SONHO",
             "PET",
+            "ACESSORIOS",
             // Adicione mais padrões aqui no futuro:
             // "PLUS SIZE",
             // "GESTANTE",
@@ -485,6 +486,7 @@ class ProductProcessor {
             "JUV FEM": "JUVENIL FEMININO",
             "INF JUV MASC": "INFANTOJUVENIL MASCULINO",
             "INF JUV FEM": "INFANTOJUVENIL FEMININO",
+            ACESSORIOS: "ACESSÓRIOS",
         };
 
         return styleMap[styleName] || styleName;
