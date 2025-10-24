@@ -1,9 +1,7 @@
 .submenu {
-    padding: 0.8rem;
 
     &__button {
-        padding: 0;
-        padding-left: 0.8rem;
+        position: relative;
         width: 100%;
         display: flex;
         align-items: center;
@@ -25,11 +23,11 @@
     }
 
     &__icon {
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition: all 0.3s ease;
 
         &[name="chevron-up-outline"] {
             position: absolute;
-            left: 133.5px;
+            left: 111.4px;
             transform: translateY(-1rem);
             opacity: 0;
         }
@@ -43,20 +41,20 @@
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
-        padding: 0;
+        padding-inline: .8rem;
         max-height: 0;
         overflow: hidden;
         border-radius: 0.8rem;
-        transition: max-height 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
 
         &.open {
+            margin-bottom: 0.8rem;
             max-height: 14rem;
         }
     }
 
     &__item {
-        padding: 0.4rem;
-        padding-left: 0.8rem;
+        padding: 0.8rem;
         font-weight: 500;
         font-family: "Poppins", sans-serif;
         border-radius: 0.8rem;
@@ -67,33 +65,18 @@
     }
 
     &__link {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         display: inline-block;
-        width: 100%;
-        color: inherit;
+        color: $white;
     }
 }
 
 @media (min-width: 820px) {
     .submenu {
-        padding: 0.4rem;
-
-        &__button {
-            padding: 0.4rem;
-        }
-
-        &__item {
-            padding: 0.4rem;
-        }
-
-        &__link {
-            font-size: 1.4rem;
-        }
-
         &__icon {
             &[name="chevron-up-outline"] {
                 position: absolute;
-                left: 95px;
+                left: 111.5px;
                 opacity: 0;
             }
         }

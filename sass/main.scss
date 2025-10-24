@@ -10,8 +10,6 @@
 @import "components/buttons";
 @import "components/description";
 @import "components/form";
-@import "components/header";
-@import "components/sidebar";
 @import "components/submenu";
 @import "components/tip";
 @import "components/card--product-conference";
@@ -19,7 +17,9 @@
 @import "components/summary";
 @import "components/card--product-reference";
 
+@import "layout/header";
 @import "layout/media-queries";
+@import "layout/sidebar";
 @import "layout/product-reference.scss";
 
 @import "pages/print";
