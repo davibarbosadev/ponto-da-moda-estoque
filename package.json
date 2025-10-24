@@ -3,15 +3,14 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "sass": "sass --watch sass/main.scss css/style.css"
+        "sass": "sass sass/main.scss css/style.css --watch"
     },
     "author": "Davi barbosa",
     "license": "ISC",
     "description": "",
     "dependencies": {
         "eslint": "^9.31.0",
-        "jspdf": "^3.0.0",
-        "sass": "^1.89.2"
+        "jspdf": "^3.0.0"
     },
     "repository": {
         "type": "git",
@@ -22,5 +21,8 @@
     "bugs": {
         "url": "https://github.com/davibarbosadev/ponto-da-moda-estoque/issues"
     },
-    "homepage": "https://github.com/davibarbosadev/ponto-da-moda-estoque#readme"
+    "homepage": "https://github.com/davibarbosadev/ponto-da-moda-estoque#readme",
+    "devDependencies": {
+        "sass": "^1.93.2"
+    }
 }
