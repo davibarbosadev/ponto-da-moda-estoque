@@ -1,24 +1,25 @@
-// Função genérica para carregar qualquer componente HTML dinamicamente
-function loadComponent(component, containerId) {
+function loadComponent(component, containerId, callback) {
     fetch(component)
-        .then((response) => response.text())
-        .then((data) => {
-            document.getElementById(containerId).innerHTML = data;
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.text();
         })
-        .catch((error) => console.error(`Erro ao carregar o componente ${component}:`, error));
+        .then(html => {
+            const container = document.getElementById(containerId);
+            if (container) container.innerHTML = html;
+            if (callback) callback();
+        })
+        .catch(err => console.error(`Erro ao carregar o componente ${component}:`, err));
 }
 
-// Função para carregar todos os componentes
 function loadComponents() {
     if (document.getElementById("header")) {
-        loadComponent("/components/header.html", "header");
+        loadComponent("./components/header.html", "header");
     }
 
     if (document.getElementById("sidebar")) {
-        loadComponent("components/sidebar.html", "sidebar");
+        loadComponent("./components/sidebar.html", "sidebar", iniciarSidebar);
     }
 }
 
-// Carregar os componentes assim que a página for carregada
 document.addEventListener("DOMContentLoaded", loadComponents);
-
