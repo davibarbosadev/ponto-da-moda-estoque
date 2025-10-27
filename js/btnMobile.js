@@ -4,11 +4,8 @@ function iniciarSidebar() {
     const buttonSubmenu = document.querySelector(".submenu__button");
     const submenuList = document.querySelector(".submenu__list");
     
-    // Garante que os elementos principais existem
-    if (!buttonMenuMobile || !sidebar) {
-        console.warn("Sidebar ou botão mobile não encontrados.");
-        return;
-    }
+    // Sai silenciosamente se elementos essenciais não existirem
+    if (!buttonMenuMobile || !sidebar) return;
 
     buttonMenuMobile.addEventListener("click", function () {
         buttonMenuMobile.classList.toggle("open");
