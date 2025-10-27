@@ -1,149 +1,82 @@
-// // function iniciarSidebar() {
-// //     const buttonMenuMobile = document.querySelector(".navbar__button-mobile");
-// //     const sidebar = document.querySelector(".sidebar");
-// //     const buttonSubmenu = document.querySelector(".submenu__button");
-// //     const submenuList = document.querySelector(".submenu__list");
-    
-// //     // Sai silenciosamente se elementos essenciais não existirem
-// //     if (!buttonMenuMobile || !sidebar) return;
-
-// //     buttonMenuMobile.addEventListener("click", function () {
-// //         buttonMenuMobile.classList.toggle("open");
-// //         sidebar.classList.toggle("open");
-
-// //         // Fecha submenu ao fechar sidebar
-// //         if (buttonSubmenu && submenuList && !buttonMenuMobile.classList.contains("open")) {
-// //             submenuList.classList.remove("open");
-// //             buttonSubmenu.classList.remove("open");
-// //         }
-// //     });
-
-// //     if (buttonSubmenu && submenuList) {
-// //         buttonSubmenu.addEventListener("click", function () {
-// //             buttonSubmenu.classList.toggle("open");
-// //             submenuList.classList.toggle("open");
-// //         });
-// //     }
-// // }
-
-
-// // function iniciarSidebar() {
-// //     const observer = new MutationObserver(() => {
-// //         const buttonMenuMobile = document.querySelector(".navbar__button-mobile");
-// //         const sidebar = document.querySelector(".sidebar");
-// //         const buttonSubmenu = document.querySelector(".submenu__button");
-// //         const submenuList = document.querySelector(".submenu__list");
-
-// //         if (buttonMenuMobile && sidebar) {
-// //             // Liga os eventos
-// //             buttonMenuMobile.addEventListener("click", () => {
-// //                 buttonMenuMobile.classList.toggle("open");
-// //                 sidebar.classList.toggle("open");
-// //                 if (buttonSubmenu && submenuList && !buttonMenuMobile.classList.contains("open")) {
-// //                     submenuList.classList.remove("open");
-// //                     buttonSubmenu.classList.remove("open");
-// //                 }
-// //             });
-
-// //             if (buttonSubmenu && submenuList) {
-// //                 buttonSubmenu.addEventListener("click", () => {
-// //                     buttonSubmenu.classList.toggle("open");
-// //                     submenuList.classList.toggle("open");
-// //                 });
-// //             }
-
-// //             observer.disconnect(); // Para de observar quando tudo estiver pronto
-// //         }
-// //     });
-
-// //     observer.observe(document.body, { childList: true, subtree: true });
-// // }
-
-
-// function iniciarSidebar() {
-//     const observer = new MutationObserver(() => {
-//         const buttonMenuMobile = document.querySelector(".navbar__button-mobile");
-//         const sidebar = document.querySelector(".sidebar");
-//         const buttonSubmenu = document.querySelector(".submenu__button");
-//         const submenuList = document.querySelector(".submenu__list");
-
-//         // Só inicializa quando os elementos essenciais existirem
-//         if (buttonMenuMobile && sidebar) {
-//             // Adiciona evento do botão principal
-//             buttonMenuMobile.addEventListener("click", () => {
-//                 buttonMenuMobile.classList.toggle("open");
-//                 sidebar.classList.toggle("open");
-
-//                 // Fecha submenu ao fechar sidebar
-//                 if (buttonSubmenu && submenuList && !buttonMenuMobile.classList.contains("open")) {
-//                     submenuList.classList.remove("open");
-//                     buttonSubmenu.classList.remove("open");
-//                 }
-//             });
-
-//             // Adiciona evento do submenu, se existir
-//             if (buttonSubmenu && submenuList) {
-//                 buttonSubmenu.addEventListener("click", () => {
-//                     buttonSubmenu.classList.toggle("open");
-//                     submenuList.classList.toggle("open");
-//                 });
-//             }
-
-//             observer.disconnect(); // Para de observar quando tudo estiver pronto
-//         }
-//     });
-
-//     // Observa mudanças no DOM inteiro
-//     observer.observe(document.body, { childList: true, subtree: true });
-// }
-
-
-// arquivo: sidebar.js
+// btnMobile.js
 function iniciarSidebar() {
-    let eventListenersAdded = false; // Flag para prevenir duplicação
-    let timeoutId;
+    console.log("🔄 Iniciando sidebar...");
 
-    const observer = new MutationObserver(() => {
-        const buttonMenuMobile = document.querySelector(".navbar__button-mobile");
+    let tentativas = 0;
+    const maxTentativas = 30; // 3 segundos (30 x 100ms)
+    
+    const inicializar = () => {
+        // Busca os elementos no DOM
+        const btnMobile = document.querySelector(".navbar__button-mobile");
         const sidebar = document.querySelector(".sidebar");
-        const buttonSubmenu = document.querySelector(".submenu__button");
+        const btnSubmenu = document.querySelector(".submenu__button");
         const submenuList = document.querySelector(".submenu__list");
 
-        // Só inicializa uma vez e quando os elementos essenciais existirem
-        if (buttonMenuMobile && sidebar && !eventListenersAdded) {
-            eventListenersAdded = true;
+        // Verifica se os elementos essenciais existem
+        if (btnMobile && sidebar) {
+            console.log("✅ Elementos encontrados, configurando eventos...");
 
-            // Adiciona evento do botão principal
-            buttonMenuMobile.addEventListener("click", function toggleMenu() {
-                buttonMenuMobile.classList.toggle("open");
+            // ==== EVENTO: Botão Menu Mobile ====
+            btnMobile.addEventListener("click", function() {
+                const isOpen = btnMobile.classList.toggle("open");
                 sidebar.classList.toggle("open");
 
-                // Fecha submenu ao fechar sidebar
-                if (buttonSubmenu && submenuList && !buttonMenuMobile.classList.contains("open")) {
+                console.log(`📱 Menu mobile ${isOpen ? 'aberto' : 'fechado'}`);
+
+                // Fecha o submenu quando fechar a sidebar
+                if (!isOpen && btnSubmenu && submenuList) {
+                    btnSubmenu.classList.remove("open");
                     submenuList.classList.remove("open");
-                    buttonSubmenu.classList.remove("open");
                 }
             });
 
-            // Adiciona evento do submenu, se existir
-            if (buttonSubmenu && submenuList) {
-                buttonSubmenu.addEventListener("click", function toggleSubmenu() {
-                    buttonSubmenu.classList.toggle("open");
+            // ==== EVENTO: Botão Submenu (opcional) ====
+            if (btnSubmenu && submenuList) {
+                btnSubmenu.addEventListener("click", function() {
+                    const isSubmenuOpen = btnSubmenu.classList.toggle("open");
                     submenuList.classList.toggle("open");
+                    
+                    console.log(`📂 Submenu ${isSubmenuOpen ? 'aberto' : 'fechado'}`);
                 });
+            } else {
+                console.info("ℹ️ Submenu não encontrado (isso é normal se não houver submenu)");
             }
 
-            observer.disconnect(); // Para de observar quando tudo estiver pronto
-            clearTimeout(timeoutId); // Limpa o timeout
+            // ==== FECHAR SIDEBAR AO CLICAR FORA (Opcional) ====
+            document.addEventListener("click", function(event) {
+                const clickForaSidebar = !sidebar.contains(event.target) && !btnMobile.contains(event.target);
+                
+                if (clickForaSidebar && sidebar.classList.contains("open")) {
+                    btnMobile.classList.remove("open");
+                    sidebar.classList.remove("open");
+                    console.log("👆 Sidebar fechada ao clicar fora");
+                }
+            });
+
+            console.log("✅ Sidebar inicializada com sucesso!");
+            return true;
         }
-    });
 
-    // Timeout de segurança: desconecta observer após 5 segundos
-    timeoutId = setTimeout(() => {
-        observer.disconnect();
-        console.warn("Sidebar: Timeout atingido. Elementos não encontrados.");
-    }, 5000);
+        // Se não encontrou os elementos, tenta novamente
+        tentativas++;
+        if (tentativas < maxTentativas) {
+            setTimeout(inicializar, 100);
+        } else {
+            console.error("❌ Timeout: Elementos não encontrados após", tentativas, "tentativas");
+            console.error("Elementos buscados:", {
+                "btnMobile (.navbar__button-mobile)": !!btnMobile,
+                "sidebar (.sidebar)": !!sidebar,
+                "btnSubmenu (.submenu__button)": !!btnSubmenu,
+                "submenuList (.submenu__list)": !!submenuList
+            });
+        }
 
-    // Observa mudanças no DOM
-    observer.observe(document.body, { childList: true, subtree: true });
+        return false;
+    };
+
+    // Inicia a primeira tentativa
+    inicializar();
 }
+
+// Se o script carregar antes do loadComponents, não faz nada
+// A função iniciarSidebar será chamada como callback do loadComponent

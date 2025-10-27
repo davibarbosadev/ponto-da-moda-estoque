@@ -1,101 +1,49 @@
-// // // Função para carregar um componente e chamar callback apenas se o container existir
-// // async function loadComponent(component, containerId, callback) {
-// //     try {
-// //         const response = await fetch(component);
-// //         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-// //         const html = await response.text();
-// //         const container = document.getElementById(containerId);
-
-// //         if (container) {
-// //             container.innerHTML = html;
-// //             if (callback) callback();
-// //         } else {
-// //             console.info(`Container #${containerId} não encontrado. Componente ${component} não foi inserido.`);
-// //         }
-// //     } catch (err) {
-// //         console.error(`Erro ao carregar o componente ${component}:`, err);
-// //     }
-// // }
-
-// // // Função principal para carregar todos os componentes
-// // function loadComponents() {
-// //     if (document.getElementById("header")) {
-// //         loadComponent("./components/header.html", "header");
-// //     }
-
-// //     if (document.getElementById("sidebar")) {
-// //         loadComponent("./components/sidebar.html", "sidebar", iniciarSidebar);
-// //     }
-// // }
-
-// // // Executa quando o DOM principal estiver pronto
-// // document.addEventListener("DOMContentLoaded", loadComponents);
-
-
-// // Função para carregar um componente e chamar callback apenas se o container existir
-// async function loadComponent(component, containerId, callback) {
-//     try {
-//         const response = await fetch(component);
-//         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-//         const html = await response.text();
-//         const container = document.getElementById(containerId);
-
-//         if (container) {
-//             container.innerHTML = html;
-//             if (callback) callback(); // chama callback somente se container existe
-//         } else {
-//             console.info(`Container #${containerId} não encontrado. Componente ${component} não foi inserido.`);
-//         }
-//     } catch (err) {
-//         console.error(`Erro ao carregar o componente ${component}:`, err);
-//     }
-// }
-
-// // Função principal para carregar todos os componentes
-// async function loadComponents() {
-//     if (document.getElementById("header")) {
-//         await loadComponent("./components/header.html", "header");
-//     }
-
-//     if (document.getElementById("sidebar")) {
-//         await loadComponent("./components/sidebar.html", "sidebar", iniciarSidebar);
-//     }
-// }
-
-// // Executa quando o DOM principal estiver pronto
-// document.addEventListener("DOMContentLoaded", loadComponents);
-
-
-// arquivo: component-loader.js
-async function loadComponent(component, containerId, callback) {
+// loadComponents.js
+async function loadComponent(componentPath, containerId, callback) {
     try {
-        const response = await fetch(component);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const response = await fetch(componentPath);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status} - ${response.statusText}`);
+        }
 
         const html = await response.text();
         const container = document.getElementById(containerId);
 
         if (container) {
             container.innerHTML = html;
-            if (callback) callback();
+            console.log(`✅ Componente carregado: ${componentPath}`);
+            
+            // Executa o callback após um pequeno delay para garantir renderização
+            if (callback && typeof callback === 'function') {
+                setTimeout(callback, 100);
+            }
         } else {
-            console.info(`Container #${containerId} não encontrado. Componente ${component} não foi inserido.`);
+            console.warn(`⚠️ Container #${containerId} não encontrado`);
         }
-    } catch (err) {
-        console.error(`Erro ao carregar o componente ${component}:`, err);
+    } catch (erro) {
+        console.error(`❌ Erro ao carregar ${componentPath}:`, erro);
     }
 }
 
 async function loadComponents() {
-    if (document.getElementById("header")) {
-        await loadComponent("/components/header.html", "header"); // Caminho absoluto
+    // Carrega o header primeiro
+    const headerElement = document.getElementById("header");
+    if (headerElement) {
+        await loadComponent("./components/header.html", "header");
     }
 
-    if (document.getElementById("sidebar")) {
-        await loadComponent("/components/sidebar.html", "sidebar", iniciarSidebar);
+    // Carrega a sidebar e depois inicializa os eventos
+    const sidebarElement = document.getElementById("sidebar");
+    if (sidebarElement) {
+        await loadComponent("./components/sidebar.html", "sidebar", iniciarSidebar);
     }
 }
 
-document.addEventListener("DOMContentLoaded", loadComponents);
+// Executa quando o DOM estiver completamente carregado
+if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", loadComponents);
+} else {
+    // DOM já está pronto (caso o script carregue depois)
+    loadComponents();
+}
