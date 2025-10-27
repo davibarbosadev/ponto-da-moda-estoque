@@ -1,15 +1,15 @@
 function loadComponent(component, containerId, callback) {
     fetch(component)
-        .then(response => {
+        .then((response) => {
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             return response.text();
         })
-        .then(html => {
+        .then((html) => {
             const container = document.getElementById(containerId);
             if (container) container.innerHTML = html;
-            if (callback) callback();
+            if (callback) callback(); // ← chama iniciarSidebar no momento certo
         })
-        .catch(err => console.error(`Erro ao carregar o componente ${component}:`, err));
+        .catch((err) => console.error(`Erro ao carregar o componente ${component}:`, err));
 }
 
 function loadComponents() {
