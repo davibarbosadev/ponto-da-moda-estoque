@@ -30,7 +30,7 @@ async function loadComponents() {
     // Carrega o header primeiro
     const headerElement = document.getElementById("header");
     if (headerElement) {
-        await loadComponent("./components/header.html", "header");
+        await loadComponent("../components/header.html", "header");
     }
 
     // Carrega a sidebar e depois inicializa os eventos

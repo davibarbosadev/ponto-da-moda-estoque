@@ -257,6 +257,9 @@ ol {
   width: 100%;
   overflow-y: scroll;
   scrollbar-width: thin;
+  /*****************/
+  /* layout para descrição de produto */
+  /*****************/
 }
 .description-list .description {
   display: grid;
@@ -277,11 +280,6 @@ ol {
   font-family: "Roboto", sans-serif;
   font-size: clamp(1.2rem, 1.5vw, 1.4rem);
   text-transform: uppercase;
-}
-.description-list {
-  /*****************/
-  /* layout para descrição de produto */
-  /*****************/
 }
 .description-list .product .header-component {
   grid-area: 1/1/2/-1;
@@ -1110,7 +1108,7 @@ ol {
   padding: 1.2rem;
   font-size: 1.2rem;
   color: #334155;
-  box-shadow: 0px 0px 10px 1px hsla(0, 0%, 0%, 0.1);
+  box-shadow: 0px 0px 10px 1px hsla(0deg, 0%, 0%, 0.1);
 }
 .product__img {
   width: 100%;
