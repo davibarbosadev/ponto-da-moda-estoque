@@ -1,27 +1,23 @@
+@use "abstracts/utilities";
+
+@use "base/reset";
+@use "base/typography";
+
+@use "components/submenu";
+@use "components/form";
+@use "components/buttons";
+@use "components/description";
+@use "components/card--product-conference";
+@use "components/card--product-reference";
+@use "components/tip";
+@use "components/modal";
+@use "components/summary";
 
 
-@import "abstracts/mixins";
-@import "abstracts/variables";
-@import "abstracts/utilitaries";
+@use "layout/media-queries";
+@use "layout/header";
+@use "layout/sidebar";
+@use "layout/product-reference";
 
-@import "base/reset";
-@import "base/typography";
-
-@import "components/buttons";
-@import "components/description";
-@import "components/form";
-@import "components/submenu";
-@import "components/tip";
-@import "components/card--product-conference";
-@import "components/modal";
-@import "components/summary";
-@import "components/card--product-reference";
-
-@import "layout/header";
-@import "layout/media-queries";
-@import "layout/sidebar";
-@import "layout/product-reference.scss";
-
-@import "pages/print";
-@import "pages/codigo-mil";
-
+@use "pages/print";
+@use "pages/codigo-mil";

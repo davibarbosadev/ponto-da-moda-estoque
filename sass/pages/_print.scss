@@ -83,25 +83,13 @@ table {
 }
 
 @media print {
-    // body {
-    //     font-size: 1.4rem;
-    // }
 
     table {
         width: 71%;
         page-break-before: always;
-        /* break-before: page; */ /* Alternativa moderna */
-
-        // .product {
-        //     .product__text-title,
-        //     .product__text-content {
-        //         font-size: 1.4rem;
-        //     }
-        // }
     }
 
     table:first-of-type {
         page-break-before: auto;
-        /* break-before: auto; */ /* Evita quebra antes da primeira tabela */
     }
 }

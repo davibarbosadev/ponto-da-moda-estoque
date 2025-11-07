@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as variables;
+
 .form-container {
     height: min-content;
     position: relative;
@@ -21,7 +23,7 @@
     &__label {
         font-size: 1.2rem;
         font-weight: 500;
-        color: $text-clr-secondary;
+        color: variables.$text-clr-secondary;
     }
 
     &__input,
@@ -29,18 +31,18 @@
         width: 100%;
         padding:.8rem;
         border: none;
-        outline: 1px solid $outline-form;
+        outline: 1px solid variables.$outline-form;
         border-radius: 0.8rem;
         font-size: clamp(1.2rem, 1.4vw, 1.4rem);
         text-transform: uppercase;
         line-height: 1;
-        color: $input-text-clr;
+        color: variables.$input-text-clr;
         cursor: pointer;
         transition: outline 0.5s ease-out;
-        background-color: $white;
+        background-color: variables.$white;
 
         &:focus {
-            outline: 1px solid $clr-secondary;
+            outline: 1px solid variables.$clr-secondary;
         }
     }
 
@@ -51,18 +53,18 @@
         padding: 1.2rem;
         margin-top: 0.4rem;
         border-radius: 0.8rem;
-        color: $input-text-clr;
+        color: variables.$input-text-clr;
         border: none;
-        outline: 1px solid $bg-clr-secondary;
-        box-shadow: 0px 0px 5px $bg-clr-primary;
+        outline: 1px solid variables.$bg-clr-secondary;
+        box-shadow: 0px 0px 5px variables.$bg-clr-primary;
         transition: outline 0.1s ease-out;
 
         &::placeholder {
-            color: $placeholder-text-clr;
+            color: variables.$placeholder-text-clr;
         }
 
         &:focus {
-            outline: 2px solid $clr-secondary;
+            outline: 2px solid variables.$clr-secondary;
         }
     }
 
@@ -188,7 +190,7 @@
 .form--formate-product-description {
     margin-top: 0.8rem;
     padding: 1.2rem;
-    background-color: $bg-clr-primary;
+    background-color: variables.$bg-clr-primary;
     border-radius: 0.8rem;
 
     .form__group {

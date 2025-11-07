@@ -1,5 +1,7 @@
+@use "../abstracts/variables" as variables;
+
 .header {
-    background-color: $clr-primary;
+    background-color: variables.$clr-primary;
 
     &__container {
         max-width: 102.4rem;

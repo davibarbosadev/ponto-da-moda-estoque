@@ -1,6 +1,8 @@
+@use "../abstracts/variables" as variables;
+
 .summary {
     background: white;
-    border: 1px solid $gray-200;
+    border: 1px solid variables.$gray-200;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: 12px;
@@ -32,8 +34,8 @@
         align-items: center;
         padding: 0.4rem 1.2rem;
         font-size: 1.2rem;
-        color: $white;
-        background-color: $clr-primary;
+        color: variables.$white;
+        background-color: variables.$clr-primary;
         border-radius: 100px;
 
         .icon {
@@ -44,8 +46,8 @@
 
     &__subtitle {
         font-size: 1.4rem;
-        color: $placeholder-text-clr;
-        color: $gray-500;
+        color: variables.$placeholder-text-clr;
+        color: variables.$gray-500;
     }
 }
 
@@ -62,13 +64,13 @@
 
     &__line {
         width: 100%;
-        background-color: $gray-200;
+        background-color: variables.$gray-200;
         border-radius: 0.4rem;
         height: 0.8rem;
     }
 
     & {
-        background-color: $blue-500;
+        background-color: variables.$blue-500;
         height: 0.8rem;
         border-radius: 0.4rem;
         transition: width 0.3s ease;
@@ -78,7 +80,7 @@
     &__info-text {
         margin-top: 0.4rem;
         font-size: 1.2rem;
-        color: $gray-500;
+        color: variables.$gray-500;
     }
 }
 
@@ -94,7 +96,7 @@
 
         &:focus {
             outline: none;
-            border-color: $blue-500;
+            border-color: variables.$blue-500;
         }
     }
 }

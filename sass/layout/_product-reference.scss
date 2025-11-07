@@ -21,3 +21,19 @@
     }
 }
 
+@media (min-width: 820px) {
+    .products-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 2.4rem;
+    }
+}
+
+@media (min-width: 968px) {
+    .products-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 2.4rem;
+    }
+}
+

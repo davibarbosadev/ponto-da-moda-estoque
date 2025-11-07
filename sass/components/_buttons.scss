@@ -1,7 +1,10 @@
+@use "../abstracts/variables" as variables;
+@use "../abstracts/mixins" as mixins;
+
 .navbar__button-mobile {
     position: relative;
     z-index: 2;
-    @include flex-center;
+    @include mixins.flex-center;
     width: 4.5rem;
     height: 4.5rem;
     font-size: 4.5rem;
@@ -55,25 +58,25 @@
 
     &--clean,
     &--print {
-        border-color: $text-clr;
-        color: $text-clr;
+        border-color: variables.$text-clr;
+        color: variables.$text-clr;
         background-color: #fff;
 
         &:hover {
             color: #fff;
-            background: $clr-primary;
-            border-color: $clr-primary;
+            background: variables.$clr-primary;
+            border-color: variables.$clr-primary;
         }
     }
 
     &--print {
-        @include flex-center;
+        @include mixins.flex-center;
         gap: 0.4rem;
     }
 
     &--submit {
         color: #fff;
-        background-color: $clr-primary;
+        background-color: variables.$clr-primary;
     }
 
     &--copy {
@@ -84,27 +87,27 @@
         gap: 0.6rem;
         padding: 0.8rem;
         margin-block: 0.2rem 0.4rem;
-        color: $white;
+        color: variables.$white;
         border-radius: 0.4rem;
-        background-color: $clr-primary;
+        background-color: variables.$clr-primary;
         transition: 0.3s background-color ease;
 
         &:hover {
-            background-color: $clr-primary-dark;
+            background-color: variables.$clr-primary-dark;
         }
     }
 
     &--icons {
-        color: $clr-primary;
+        color: variables.$clr-primary;
         background-color: transparent;
-        border: 1px solid $clr-primary;
+        border: 1px solid variables.$clr-primary;
         border-radius: 0.4rem;
         height: 3.2rem;
         width: 3.2rem;
 
         &:hover {
             color: #fff;
-            background-color: $clr-primary;
+            background-color: variables.$clr-primary;
         }
     }
 }
@@ -115,11 +118,5 @@
     justify-content: end;
     gap: 1.2rem;
     padding-top: 1rem;
-    border-top: 1px solid $bg-clr-primary;
+    border-top: 1px solid variables.$bg-clr-primary;
 }
-
-// @media (min-width: 768px) {
-//     .btn {
-//         font-size: 1.2rem;
-//     }
-// }

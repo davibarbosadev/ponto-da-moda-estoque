@@ -1,9 +1,11 @@
+@use "../abstracts/variables" as variables;
+
 .product {
     &__card {
         max-width: 30rem;
         padding: 1.2rem;
         font-size: 1.2rem;
-        color: $text-clr-secondary;
+        color: variables.$text-clr-secondary;
         box-shadow: 0px 0px 10px 1px hsla(0, 0%, 0%, 0.1);
     }
 
@@ -30,7 +32,7 @@
 
     &__item {
         padding-bottom: 0.4rem;
-        border-bottom: 1px solid $gray-200;
+        border-bottom: 1px solid variables.$gray-200;
         margin-bottom: 0.8rem;
 
         &:last-child {

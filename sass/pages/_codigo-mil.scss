@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as variables;
+
 .codigo-mil {
     .main-container {
         max-width: 102.4rem;
@@ -57,14 +59,14 @@
     grid-template-columns: 1fr;
     gap: 1.2rem;
     flex-wrap: wrap;
-    background: $clr-primary;
+    background: variables.$clr-primary;
     border-radius: 1.2rem;
     align-content: space-evenly;
 }
 
 /* Estilização dos botões de ação */
 .reference-button {
-    color: $white;
+    color: variables.$white;
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
     padding-block: 1.2rem;

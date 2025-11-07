@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as variables;
+
 .products-list {
     font-family: "Roboto", sans-serif;
     display: flex;
@@ -8,7 +10,7 @@
 }
 
 .product-card {
-    background: $white;
+    background: variables.$white;
     border-radius: 0.8rem;
     box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
     padding: 1.2rem;
@@ -16,19 +18,19 @@
     transition: all 0.2s ease;
 
     &.not-checked {
-        border-color: $gray-200;
+        border-color: variables.$gray-200;
     }
 
     &.confirmed {
-        border-color: $green-500;
+        border-color: variables.$green-500;
     }
 
     &.not-received {
-        border-color: $red-500;
+        border-color: variables.$red-500;
     }
 
     &.divergent {
-        border-color: $yellow-300;
+        border-color: variables.$yellow-300;
     }
 }
 
@@ -41,7 +43,7 @@
 
 .product-reference {
     font-size: 1.4rem;
-    color: $gray-800;
+    color: variables.$gray-800;
     font-weight: 500;
     line-height: 1.2;
 }
@@ -56,29 +58,29 @@
     flex-shrink: 0;
 
     &.not-checked {
-        background-color: $gray-400;
-        color: $white;
+        background-color: variables.$gray-400;
+        color: variables.$white;
     }
 
     &.confirmed {
-        background-color: $green-600;
-        color: $white;
+        background-color: variables.$green-600;
+        color: variables.$white;
     }
 
     &.not-received {
-        background-color: $red-600;
-        color: $white;
+        background-color: variables.$red-600;
+        color: variables.$white;
     }
 
     &.divergent {
-        background-color: $yellow-500;
-        color: $white;
+        background-color: variables.$yellow-500;
+        color: variables.$white;
     }
 }
 
 .product-description div {
     font-size: 1.4rem;
-    color: $gray-800;
+    color: variables.$gray-800;
     line-height: 1.2;
 }
 
@@ -87,22 +89,22 @@
 
     .label {
         font-size: 1.2rem;
-        color: $gray-500;
+        color: variables.$gray-500;
     }
 
     .value {
         font-size: 1.4rem;
         font-weight: bold;
-        color: $blue-500;
+        color: variables.$blue-500;
     }
 }
 
 .quantity-input-section {
     margin-bottom: 1.2rem;
     padding: 0.8rem;
-    background-color: $yellow-100;
+    background-color: variables.$yellow-100;
     border-radius: 0.6rem;
-    border: 0.1rem solid $yellow-300;
+    border: 0.1rem solid variables.$yellow-300;
 }
 
 .quantity-input-row {
@@ -113,19 +115,19 @@
     label {
         font-size: 1.2rem;
         font-weight: 500;
-        color: $orange-800;
+        color: variables.$orange-800;
     }
 
     input {
         width: 6.4rem;
         padding: 0.4rem 0.8rem;
         font-size: 1.4rem;
-        border: 0.1rem solid $yellow-400;
+        border: 0.1rem solid variables.$yellow-400;
         border-radius: 0.4rem;
         outline: none;
 
         &:focus {
-            outline: 0.1rem solid $yellow-500;
+            outline: 0.1rem solid variables.$yellow-500;
         }
     }
 }
@@ -133,7 +135,7 @@
 .quantity-difference {
     margin-top: 0.8rem;
     font-size: 1.2rem;
-    color: $orange-800;
+    color: variables.$orange-800;
 }
 
 .action-buttons {
@@ -162,44 +164,44 @@
     }
 
     &.ok-inactive {
-        color: $green-500;
+        color: variables.$green-500;
 
         &:hover {
-            background-color: $green-200;
-            color: $green-600;
+            background-color: variables.$green-200;
+            color: variables.$green-600;
         }
     }
 
     &.ok-active {
-        background-color: $green-500;
-        color: $white;
+        background-color: variables.$green-500;
+        color: variables.$white;
     }
 
     &.falta-inactive {
-        color: $red-500;
+        color: variables.$red-500;
 
         &:hover {
-            background-color: $red-300;
-            color: $red-600;
+            background-color: variables.$red-300;
+            color: variables.$red-600;
         }
     }
 
     &.falta-active {
-        background-color: $red-500;
-        color: $white;
+        background-color: variables.$red-500;
+        color: variables.$white;
     }
 
     &.diverg-inactive {
-        color: $yellow-500;
+        color: variables.$yellow-500;
 
         &:hover {
-            background-color: $yellow-200;
-            color: $yellow-600;
+            background-color: variables.$yellow-200;
+            color: variables.$yellow-600;
         }
     }
 
     &.diverg-active {
-        background-color: $yellow-500;
-        color: $white;
+        background-color: variables.$yellow-500;
+        color: variables.$white;
     }
 }

@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as variables;
+
 .description-list {
     margin-top: 3rem;
     width: 100%;
@@ -10,9 +12,9 @@
         width: 100%;
         padding: 1rem;
         margin-bottom: 2rem;
-        border: 1px solid $bg-clr-primary;
+        border: 1px solid variables.$bg-clr-primary;
         border-radius: 0.8rem;
-        box-shadow: 0px 0px 5px $bg-clr-primary;
+        box-shadow: 0px 0px 5px variables.$bg-clr-primary;
 
         &__text-title {
             font-size: clamp(1.2rem, 1.5vw, 1.4rem);
@@ -42,8 +44,8 @@
                 align-self: start;
                 padding: .4rem 1.2rem .2rem;
                 border-radius: 100px;
-                color: $white;
-                background-color: $clr-primary;
+                color: variables.$white;
+                background-color: variables.$clr-primary;
             }
         }
 
