@@ -13,11 +13,13 @@ $bg-clr-secondary: #dde4f0; /* Conectado com o azul principal */
 $bg-clr-tertiary: #ffffff;
 
 /* Textos ajustados */
-$text-clr: #0f172a; /* Mais escuro para melhor contraste */
-$text-clr-secondary: #334155;
-$input-text-clr: #475569; /* Mais escuro */
-$placeholder-text-clr: #94a3b8; /* Mais suave */
-$outline-form:#e5e7eb;
+$text-clr: #0f172a; /* Título, texto principal */
+$text-clr-secondary: #334155; /* Subtítulos, textos secundários */
+$label-text-clr: #979797; /* Levemente mais escuro que o outline */
+$input-text-clr: #475569; /* Texto digitado */
+$placeholder-text-clr: #94a3b8; /* Placeholder mais suave */
+$outline-form: #9ca3af; /* Bordas e contornos */
+
 
 /* Cores de estado */
 $success-clr: #059669;
