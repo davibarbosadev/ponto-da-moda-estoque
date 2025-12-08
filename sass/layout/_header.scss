@@ -4,7 +4,6 @@
     background-color: variables.$clr-primary;
 
     &__container {
-        max-width: 102.4rem;
         margin: 0 1.2rem;
         padding: 0.6rem 0;
         display: flex;
@@ -28,7 +27,6 @@
 
 @media (min-width: 820px) {
     .header__container {
-        margin: 0 auto;
         padding-inline: 1.2rem;
     }
 }

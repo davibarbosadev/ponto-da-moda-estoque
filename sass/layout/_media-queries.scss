@@ -1,5 +1,5 @@
 .main-container {
-    max-width: 102.4rem;
+    max-width: 144rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.2rem;
@@ -29,7 +29,6 @@
 
 @media (min-width: 820px) {
     .main-container {
-        margin: 0 auto;
         padding: 1.2rem;
         grid-template-columns: auto 1fr;
     }
