@@ -69,9 +69,12 @@
 /* Mais neutro e suave */
 /* Conectado com o azul principal */
 /* Textos ajustados */
-/* Mais escuro para melhor contraste */
-/* Mais escuro */
-/* Mais suave */
+/* Título, texto principal */
+/* Subtítulos, textos secundários */
+/* Levemente mais escuro que o outline */
+/* Texto digitado */
+/* Placeholder mais suave */
+/* Bordas e contornos */
 /* Cores de estado */
 /* Sombras */
 /* ***************************************************** */
@@ -239,7 +242,7 @@ ol {
   width: 100%;
   padding: 0.8rem;
   border: none;
-  outline: 1px solid #e5e7eb;
+  outline: 1px solid #9ca3af;
   border-radius: 0.8rem;
   font-size: clamp(1.2rem, 1.4vw, 1.4rem);
   text-transform: uppercase;
@@ -1506,6 +1509,109 @@ select.error {
 select.error:focus {
   border-color: #dc2626;
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+body.login {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  background: linear-gradient(-45deg, #273f87, #1e2a5e);
+  background-size: 400% 400%;
+  animation: gradient 5s ease infinite;
+}
+
+.form--login {
+  font-size: 1.6rem;
+  width: 80%;
+  padding: 1.6rem 1.6rem 2.4rem;
+  border-radius: 1.2rem;
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+}
+.form--login .form__logo {
+  width: 7rem;
+}
+.form--login .form__logo img {
+  width: 100%;
+}
+.form--login .form__title {
+  color: #273f87;
+}
+.form--login .form__group {
+  width: 100%;
+  display: flex;
+  gap: 0.2rem;
+  flex-direction: column;
+}
+.form--login .form__group:nth-of-type(2) {
+  margin-bottom: 0.4rem;
+}
+.form--login .form__label {
+  font-size: 1.6rem;
+  color: #334155;
+}
+.form--login .form__input {
+  outline: none;
+  padding: 0.8rem;
+  border: 2px solid #d4d4d4;
+  border: 2px solid #9ca3af;
+  border-radius: 0.8rem;
+  color: #475569;
+  transition: 0.7s all ease;
+}
+.form--login .form__input:focus {
+  border: 2px solid #273f87;
+}
+.form--login .form__forgot-password {
+  align-self: end;
+  color: #273f87;
+  font-size: 1.2rem;
+  text-decoration: none;
+  margin-bottom: 0.4rem;
+}
+.form--login .form__submit {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.8rem;
+  color: #fff;
+  cursor: pointer;
+  background-color: #273f87;
+  box-shadow: 10px 10px 10px rgba(39, 63, 135, 0.1);
+  transition: all 0.7s ease-out;
+}
+.form--login .form__submit:hover {
+  background-color: #1e2a5e;
+}
+.form--login .form__submit:disabled {
+  cursor: not-allowed; /* cursor bloqueado */
+  transform: none; /* remove o hover */
+  opacity: 0.8; /* leve transparência */
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@media (min-width: 375px) {
+  .form--login {
+    width: 70%;
+  }
+}
+@media (min-width: 767px) {
+  .form--login {
+    max-width: 27rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
