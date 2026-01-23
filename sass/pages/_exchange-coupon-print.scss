@@ -1,0 +1,36 @@
+.exchange-coupon {
+    width: 8cm;
+    margin: 0 auto;
+    padding: 1.4rem;
+    font-size: 1.4rem;
+    border-bottom: 1px solid lightgrey;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > * {
+        text-align: center;
+    }
+
+    header, main {
+        margin-bottom: 1rem;
+        border-bottom: 2px dashed;
+    }
+
+    .adress {
+        margin-bottom: 1rem;
+    }
+
+    h1, h2 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        text-transform: uppercase;
+    }
+
+    .barcode-wrapper {
+        margin-top: 1rem;
+    }
+}

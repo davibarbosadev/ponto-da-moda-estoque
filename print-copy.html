@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../css/style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+        <script defer src="/js/exchangeCouponPrint.js"></script>
+        <title>Descrição de Produto - PDF</title>
+    </head>
+    <body>
+        <div class="exchange-coupon">
+            <header>
+                <h1>Ponto da Moda</h1>
+                <p>Comercial Ximenes Ltda</p>
+                <p class="adress">
+                    Lineu Machado, 419, Loja 1027/1028, Jóquei Clube, Fortaleza - CE
+                </p>
+                <p>CNPJ 72.286.628/0014-20 IE 071271392</p>
+            </header>
+
+            <main>
+                <h2>Cupom de troca</h2>
+                <p>Troca até o dia <strong id="data-troca"></strong></p>
+                <p>É imprescindível a apresentação deste cupom para a realização da troca.</p>
+
+                <div class="barcode-wrapper">
+                    <svg id="codigo-barras"></svg>
+                </div>
+            </main>
+
+            <footer>
+                <p id="data-geracao"></p>
+            </footer>
+        </div>
+    </body>
+</html>

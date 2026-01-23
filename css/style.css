@@ -408,6 +408,19 @@ ol {
   grid-area: 2/1/3/-1;
 }
 
+/*********formulário para cupom de troca*********/
+.form--cupom-de-troca .form__group:nth-child(1) {
+  grid-area: 1/1/2/5;
+}
+.form--cupom-de-troca .form__group:nth-child(2) {
+  grid-area: 1/5/2/7;
+}
+.form--cupom-de-troca .btn--submit {
+  grid-area: 1/7/2/11;
+  align-content: stretch;
+  align-self: end;
+}
+
 .navbar__button-mobile {
   position: relative;
   z-index: 2;
@@ -1612,6 +1625,35 @@ body.login {
   .form--login {
     max-width: 27rem;
   }
+}
+.exchange-coupon {
+  width: 8cm;
+  margin: 0 auto;
+  padding: 1.4rem;
+  font-size: 1.4rem;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.exchange-coupon > * {
+  text-align: center;
+}
+.exchange-coupon header, .exchange-coupon main {
+  margin-bottom: 1rem;
+  border-bottom: 2px dashed;
+}
+.exchange-coupon .adress {
+  margin-bottom: 1rem;
+}
+.exchange-coupon h1, .exchange-coupon h2 {
+  font-size: 1.6rem;
+}
+.exchange-coupon h2 {
+  text-transform: uppercase;
+}
+.exchange-coupon .barcode-wrapper {
+  margin-top: 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */

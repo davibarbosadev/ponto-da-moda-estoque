@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Sistema interno exclusivo do Ponto da Moda para gestão inteligente de estoque."
+        />
+        <link rel="icon" href="assets/img/favicon-pdm.ico" />
+        <link rel="stylesheet" href="css/style.css" />
+
+        <!-- Ionicons -->
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+        <!-- Scripts na ordem correta -->
+        <script src="./js/auth.js"></script>
+        <script defer src="./js/btnMobile.js"></script>
+        <script defer src="./js/loadComponents.js"></script>
+        <script defer src="./js/exchangeCoupon.js"></script>
+
+        <title>Ponto da Moda - Estoque</title>
+    </head>
+    <body>
+        <header id="header" class="header"></header>
+        <div class="main-container">
+            <aside id="sidebar" class="sidebar"></aside>
+
+            <main class="main">
+                <div class="form-container">
+                    <h2 class="heading-primary">Cupom de troca</h2>
+                    <form action="#" class="form form--cupom-de-troca">
+                        <div class="form__group">
+                            <label class="form__label" for="">Número da baixa</label>
+                            <input
+                                class="form__input"
+                                type="number"
+                            />
+                        </div>
+                        <div class="form__group">
+                            <label class="form__label" for="">Quantidade</label>
+                            <input
+                                class="form__input"
+                                type="number"
+                                
+                            />
+                        </div>
+                        <input class="btn btn--submit" type="submit" value="imprimir cupom" />
+                    </form>
+                </div>
+            </main>
+        </div>
+        <iframe id="iframeContent" style="display: none; width: 0; height: 0"></iframe>
+    </body>
+</html>
