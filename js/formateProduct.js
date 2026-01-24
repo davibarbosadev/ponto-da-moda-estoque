@@ -3,45 +3,38 @@
  * Processa dados CSV de produtos e envia para o banco
  */
 class ProductProcessor {
-    // Constantes da classe
-    static SIZE_PATTERNS = [
-        "P AO GG",
-        " AO GG",
-        "P AO G",
-        "P AO XGG",
-        "P AO EXG",
-        "G1 AO G2",
-        "G1 AO G3",
-        "1 AO 3",
-        "1 AO 10",
-        "4 AO 8",
-        "4 AO 10",
-        "4 AO 12",
-        "4 AO 14",
-        "4 AO 16",
-        "10 AO 14",
-        "10 AO 16",
-        "10 AO 18",
-        "12 AO 16",
-        "12 AO 18",
-        "14 AO 18",
-        "36 AO 44",
-        "36 AO 46",
-        "36 AO 48",
-        "36 AO 52",
-        "36 A 52",
-        "38 AO 46",
-        "38 AO 48",
-        "40 AO 46",
-        "46 AO 50",
-        "46 AO 52",
-        "48 AO 52",
-        "48 AO 54",
+
+    static SIZE_PATTERNS_REGEX = [
+        // ========== Padrões com LETRAS ==========
+
+        // Letras + AO + Letras: P AO GG, P AO XGG, P AO EXG, etc
+        /((?:PP?|E?X?G{1,2})\s+AO\s+(?:PP?|E?X?G{1,2}))(?=\s|[A-ZÁÀÂÃÉÊÍÓÔÕÚÇÑ]|$)/i,
+
+        // Letras + A + Letras: P A GG, P A XGG, P A EXG, etc
+        /((?:PP?|E?X?G{1,2})\s+A\s+(?:PP?|E?X?G{1,2}))(?=\s|[A-ZÁÀÂÃÉÊÍÓÔÕÚÇÑ]|$)/i,
+
+        // ========== Padrões com G+NÚMERO ==========
+
+        // G+número + AO + G+número: G1 AO G2, G1 AO G3
+        /(G\d\s+AO\s+G\d)(?=\s|[A-ZÁÀÂÃÉÊÍÓÔÕÚÇÑ]|$)/i,
+
+        // G+número + A + G+número: G1 A G2, G1 A G3
+        /(G\d\s+A\s+G\d)(?=\s|[A-ZÁÀÂÃÉÊÍÓÔÕÚÇÑ]|$)/i,
+
+        // ========== Padrões NUMÉRICOS ==========
+
+        // Números + AO + Números: 1 AO 3, 4 AO 16, 36 AO 52, etc
+        /(\d{1,2}\s+AO\s+\d{1,2})(?=\s|[A-ZÁÀÂÃÉÊÍÓÔÕÚÇÑ]|$)/,
+
+        // Números + A + Números: 1 A 3, 4 A 16, 36 A 52, etc
+        /(\d{1,2}\s+A\s+\d{1,2})(?=\s|[A-ZÁÀÂÃÉÊÍÓÔÕÚÇÑ]|$)/,
     ];
 
     static SIZES = ["P", "M", "GG", "G", "XGG", "EXG"];
 
     static COLOR_WORDS = [
+        "CAFE",
+        "CAFÉ",
         "BEGE",
         "AZUL",
         "MARINHO",
@@ -204,7 +197,7 @@ class ProductProcessor {
 
                 this.showMessage(
                     `${results.length} produto(s) salvos, ${errors.length} erro(s). Verifique o console para detalhes.`,
-                    "warning"
+                    "warning",
                 );
             } else {
                 this.showMessage(`✓ ${results.length} produto(s) salvos no banco!`, "success");
@@ -370,8 +363,8 @@ class ProductProcessor {
             colors: Array.isArray(productData.colors)
                 ? productData.colors
                 : productData.colors === ProductProcessor.SORTED_CODE
-                ? ProductProcessor.SORTED_CODE
-                : [],
+                  ? ProductProcessor.SORTED_CODE
+                  : [],
             price: productData.price,
         };
 
@@ -422,7 +415,7 @@ class ProductProcessor {
         const extractedStyle = this.#extractStyleSegment(
             normalizedPath,
             hyphenPositions,
-            isCIReference
+            isCIReference,
         );
 
         return this.#normalizeStyleName(extractedStyle);
@@ -704,9 +697,7 @@ class ProductProcessor {
         }
 
         // Verifica se a descrição contém padrões ou se a referência termina com 'U'
-        const hasSizePattern = ProductProcessor.SIZE_PATTERNS.some((pattern) =>
-            descUpper.includes(pattern)
-        );
+        const hasSizePattern = this.#hasSizePatternInDescription(descUpper);
         const endsWithU = refUpper.endsWith("U");
 
         if (!hasSizePattern && !endsWithU) {
@@ -781,10 +772,10 @@ class ProductProcessor {
 
                 console.log(
                     "vamos tirar a informação de cor da referencia: ",
-                    referenceWithoutInfoSize
+                    referenceWithoutInfoSize,
                 );
                 this.#addColorToCurrentProduct(
-                    this.#extractColorCodeFromReference(referenceWithoutInfoSize)
+                    this.#extractColorCodeFromReference(referenceWithoutInfoSize),
                 );
                 return;
             }
@@ -802,8 +793,18 @@ class ProductProcessor {
 
         console.log("vamos tirar a informação de cor da referencia: ", referenceWithoutInfoSize);
         this.#addColorToCurrentProduct(
-            this.#extractColorCodeFromReference(referenceWithoutInfoSize)
+            this.#extractColorCodeFromReference(referenceWithoutInfoSize),
         );
+    }
+
+    /**
+     * Verifica se a descrição contém padrões de tamanho válidos
+     * @param {string} descUpper - Descrição em maiúsculas
+     * @returns {boolean}
+     * @private
+     */
+    #hasSizePatternInDescription(descUpper) {
+        return ProductProcessor.SIZE_PATTERNS_REGEX.some((pattern) => pattern.test(descUpper));
     }
 
     /**
@@ -893,7 +894,7 @@ class ProductProcessor {
             try {
                 console.log(
                     "Salvando produto anterior antes de iniciar um novo:",
-                    this.currentProduct
+                    this.currentProduct,
                 );
                 const savedProduct = await this.#saveProduct({ ...this.currentProduct });
                 this.processingResults.push(savedProduct); // Armazena o resultado de sucesso
@@ -901,7 +902,7 @@ class ProductProcessor {
             } catch (error) {
                 console.error(
                     "Erro ao salvar produto anterior. Prosseguindo com o próximo...",
-                    error.message
+                    error.message,
                 );
                 // Permite que o processamento continue mesmo que o anterior falhe
                 // O erro já é registrado em #processProducts
@@ -935,7 +936,7 @@ class ProductProcessor {
 
         // Verifica se deve manter as cores na descrição
         const shouldKeepColor = KEEP_COLOR_PRODUCTS.some((product) =>
-            descUpper.startsWith(product)
+            descUpper.startsWith(product),
         );
         if (shouldKeepColor) return description;
 
@@ -1002,20 +1003,27 @@ class ProductProcessor {
 
         console.log("ultima limpeza da descrição");
 
-        const sizeIndex = this.currentProduct.description
-            .toUpperCase()
-            .indexOf(this.currentProduct.sizes);
+        const descUpper = this.currentProduct.description.toUpperCase();
 
-        if (sizeIndex !== -1) {
-            this.currentProduct.description = this.currentProduct.description
-                .slice(0, sizeIndex)
-                .trim();
+        // ✅ Tenta encontrar o padrão de tamanho na descrição usando regex
+        for (const pattern of ProductProcessor.SIZE_PATTERNS_REGEX) {
+            const match = descUpper.match(pattern);
+            if (match) {
+                const foundSize = match[1];
+                const sizeIndex = match.index;
+
+                // Remove o tamanho encontrado da descrição
+                this.currentProduct.description = this.currentProduct.description
+                    .slice(0, sizeIndex)
+                    .trim();
+
+                console.log(`Removido "${foundSize}" da descrição na posição ${sizeIndex}`);
+                break; // Para após encontrar o primeiro
+            }
         }
 
-        // Correção específica para " AO GG"
-        if (this.currentProduct.sizes === " AO GG") {
-            this.currentProduct.sizes = "P AO GG";
-        } else if (this.currentProduct.sizes === "G1 AO G2") {
+        // Correções específicas (agora só normalizações, não precisa mais do " AO GG")
+        if (this.currentProduct.sizes === "G1 AO G2") {
             this.currentProduct.sizes = "G1 AO G3";
         }
     }
@@ -1034,9 +1042,17 @@ class ProductProcessor {
             "36 A 52": "36 AO 52",
         };
 
-        for (const size of ProductProcessor.SIZE_PATTERNS) {
-            if (normalizedDescription.includes(size)) {
-                return EXCEPTIONS[size] || size;
+        // ✅ Tenta encontrar o padrão na descrição usando regex
+        for (const pattern of ProductProcessor.SIZE_PATTERNS_REGEX) {
+            const match = normalizedDescription.match(pattern);
+            if (match) {
+                let extractedSize = match[1];
+
+                // ✅ NORMALIZA "A" para "AO"
+                extractedSize = extractedSize.replace(/\s+A\s+/g, " AO ");
+
+                // Aplica exceções se necessário
+                return EXCEPTIONS[extractedSize] || extractedSize;
             }
         }
 
@@ -1057,7 +1073,7 @@ class ProductProcessorFactory {
 document.addEventListener("DOMContentLoaded", () => {
     try {
         const productProcessor = ProductProcessorFactory.create(
-            "https://api-ponto-da-moda.onrender.com/api/description"
+            "https://api-ponto-da-moda.onrender.com/api/description",
         );
 
         // Disponibiliza globalmente para debug
