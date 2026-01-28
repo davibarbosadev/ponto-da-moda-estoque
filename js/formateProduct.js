@@ -59,6 +59,13 @@ class ProductProcessor {
         "LAGO",
         "CEREJA",
         "SPLASH",
+        "NATURAL",
+        "AVELÃ",
+        "AVELA",
+        "TOSTADO",
+        "CREME",
+        "PEROLA",
+        "PÉROLA"
     ];
 
     static UNIT_PATTERNS = /\s?\((un|pç|pc|cj|par)\)/i;
@@ -644,7 +651,7 @@ class ProductProcessor {
     }
 
     /**
-     * Processa um produto individual - VERSÃO CORRIGIDA
+     * Processa um produto individual 
      * @private
      */
     async #processIndividualProduct({ fashionStyle, reference, description, price }) {
@@ -679,7 +686,7 @@ class ProductProcessor {
         // Caso especial: referência começa com LA e termina com tamanho conhecido
         if (
             refUpper.startsWith("LA") &&
-            ProductProcessor.SIZES.some((size) => refUpper.endsWith(size))
+            ProductProcessor.SIZES.some((size) => refUpper.endsWith(size)) || ProductProcessor.SIZES.some((size) => refUpper.endsWith(size))
         ) {
             console.log("Referência começa com 'LA' e termina com tamanho. Removendo tamanho.");
 
@@ -717,6 +724,7 @@ class ProductProcessor {
 
     // Função auxiliar privada para remover sufixo de tamanho baseado na descrição
     #removeSizeFromReference(reference, description) {
+        console.log(reference,description)
         const refUpper = reference.toUpperCase();
         const descUpper = description.toUpperCase();
 
