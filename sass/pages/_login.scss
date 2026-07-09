@@ -56,7 +56,7 @@ body.login {
             border: 2px solid variables.$outline-form;
             border-radius: 0.8rem;
             color: variables.$input-text-clr;
-            transition: 0.7s all ease;
+            transition: border 0.7s  ease;
 
             &:focus {
                 border: 2px solid variables.$clr-primary;
