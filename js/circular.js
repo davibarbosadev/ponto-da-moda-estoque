@@ -20,7 +20,7 @@ const stringToArray = (str) => {
 };
 
 const formatNewString = (array) => {
-    return array.join(",");
+    return array.map(ref => ref + "   ,").join("");
 };
 
 const copy = () => {

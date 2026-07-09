@@ -1,4 +1,4 @@
 export const LOGIN = {
-  USER: "davi",
-  PASSWORD: "753214",
+  USER: "estoque",
+  PASSWORD: "1234",
 };

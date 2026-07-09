@@ -1,5 +1,5 @@
 {
-    "name": "estoque-ponto_da_moda",
+    "name": "estoque_ponto_da_moda",
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
