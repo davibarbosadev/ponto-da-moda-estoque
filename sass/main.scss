@@ -7,11 +7,8 @@
 @use "components/form";
 @use "components/buttons";
 @use "components/description";
-@use "components/card--product-conference";
 @use "components/card--product-reference";
 @use "components/tip";
-@use "components/modal";
-@use "components/summary";
 
 
 @use "layout/media-queries";
@@ -20,5 +17,4 @@
 @use "layout/product-reference";
 
 @use "pages/print";
-@use "pages/codigo-mil";
 @use "pages/login";
