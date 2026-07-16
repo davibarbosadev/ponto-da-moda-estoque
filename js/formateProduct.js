@@ -370,8 +370,8 @@ class ProductProcessor {
             colors: Array.isArray(productData.colors)
                 ? productData.colors
                 : productData.colors === ProductProcessor.SORTED_CODE
-                  ? ProductProcessor.SORTED_CODE
-                  : [],
+                    ? ProductProcessor.SORTED_CODE
+                    : [],
             price: productData.price,
         };
 
@@ -428,22 +428,42 @@ class ProductProcessor {
         return this.#normalizeStyleName(extractedStyle);
     }
 
+    // #extractSpecificPattern(normalizedPath) {
+    //     // Lista de padrões específicos para buscar
+    //     // Adicione novos padrões aqui conforme necessário
+    //     const specificPatterns = [
+    //         "MODA SONHO",
+    //         "PET",
+    //         "ACESSORIOS",
+    //         // Adicione mais padrões aqui no futuro:
+    //         // "PLUS SIZE",
+    //         // "GESTANTE",
+    //         // "PRAIA",
+    //     ];
+
+    //     // Verifica se algum padrão específico existe no caminho
+    //     for (const pattern of specificPatterns) {
+    //         if (normalizedPath.includes(pattern)) {
+    //             return pattern;
+    //         }
+    //     }
+
+    //     return null;
+    // }
+
     #extractSpecificPattern(normalizedPath) {
-        // Lista de padrões específicos para buscar
-        // Adicione novos padrões aqui conforme necessário
         const specificPatterns = [
             "MODA SONHO",
             "PET",
             "ACESSORIOS",
-            // Adicione mais padrões aqui no futuro:
             // "PLUS SIZE",
             // "GESTANTE",
             // "PRAIA",
         ];
 
-        // Verifica se algum padrão específico existe no caminho
         for (const pattern of specificPatterns) {
-            if (normalizedPath.includes(pattern)) {
+            const regex = new RegExp(`\\b${pattern}\\b`, "i");
+            if (regex.test(normalizedPath)) {
                 return pattern;
             }
         }
@@ -724,7 +744,7 @@ class ProductProcessor {
 
     // Função auxiliar privada para remover sufixo de tamanho baseado na descrição
     #removeSizeFromReference(reference, description) {
-        console.log(reference,description)
+        console.log(reference, description)
         const refUpper = reference.toUpperCase();
         const descUpper = description.toUpperCase();
 

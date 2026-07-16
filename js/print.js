@@ -5,7 +5,7 @@ let productList;
 const createTableRow = (product) => {
     // Determina o label baseado na referência
     const getStyleLabel = (reference) => {
-        return /^(VA|LA|CI)/.test(reference) ? 'Seção' : 'Estilo';
+        return /^(VA|VC|LA|CI)/.test(reference) ? 'Seção' : 'Estilo';
     };
 
     return `
@@ -49,7 +49,7 @@ const createTableRow = (product) => {
 // Função para ordenar os produtos
 const sortProducts = (products) => {
     // Ordem de prioridade para as referências
-    const referenceOrder = ['CM', 'CF', 'CI', 'LA', 'VA'];
+    const referenceOrder = ['CM', 'CF', 'CI', 'LA', 'VA', 'VC'];
     
     return products.sort((a, b) => {
         // Extrai o prefixo da referência (ex: CM, CF, CI, LA, VA)
