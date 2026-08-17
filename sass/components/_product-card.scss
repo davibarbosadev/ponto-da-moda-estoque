@@ -1,0 +1,167 @@
+@use "../tokens/colors";
+
+.product-list {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 26rem);
+    gap: 2.4rem;
+
+    @media screen and (min-width: 360px) {
+        grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+    }
+}
+
+.product-card {
+    display: grid;
+    grid-template-columns: 100%;
+    border-radius: 1.2rem;
+
+    background-color: colors.$bg-color-light;
+    box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.025);
+    overflow-x: auto;
+
+    @media screen and (min-width: 360px) {
+        grid-template-columns: 40% 60%;
+    }
+
+    @media screen and (min-width: 436px) {
+        grid-template-columns: 100%;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.8rem;
+
+        padding: 1.2rem 1.2rem 1.6rem;
+    }
+
+    &__description {
+        line-height: 1.2;
+        font-weight: 500;
+        font-size: 1.6rem;
+    }
+
+    &__options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+
+        &-label {
+            font-weight: 400;
+            font-size: 0.925rem;
+            text-transform: uppercase;
+
+            color: colors.$placeholder-text-color;
+        }
+    }
+
+    &__option-list {
+        display: flex;
+        gap: 0.8rem;
+
+        padding-bottom: .8rem;
+
+        overflow-x: auto;
+
+        scrollbar-width: thin; /* ou 'auto' */
+        scrollbar-color: #888 #f1f1f1; /* cor da alça (thumb) e do trilho (track) */
+    }
+
+    &__option-item {
+        width: 2.4rem;
+        height: 2.4rem;
+        flex-shrink: 0;
+    }
+
+    /* Oculta o input radio original mantendo acessível */
+    &__option-radio {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* Estilo base das opções de Tamanho (Botões/Pills) */
+    &__option-label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: 100%;
+
+        font-size: 1rem;
+        line-height: 1;
+        font-weight: 600;
+
+        border-radius: 0.4rem;
+        border: 1px solid colors.$gray-200;
+
+        color: colors.$gray-400;
+        background-color: colors.$gray-050;
+
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s ease;
+
+        /* Efeito ao passar o mouse */
+        &:hover {
+            color: colors.$blue-900;
+            background-color: colors.$blue-100;
+
+            color: colors.$gray-500;
+            background-color: colors.$gray-100;
+            border-color: colors.$gray-300;
+        }
+    }
+
+    /* Estilo quando o radio correspondente está MARCADO (Checked) */
+    &__option-radio:checked + &__option-label {
+        color: colors.$blue-400;
+        border-color: colors.$blue-100;
+        background-color: colors.$blue-050;
+    }
+
+    /* --- ESTILO ESPECÍFICO PARA CORES --- */
+    &__option-label--color {
+        border-radius: 50%;
+        border: 2px solid #ccc;
+
+        /* Borda interna branca para destacar cores claras */
+        box-shadow: inset 0 0 0 2px #fff;
+    }
+
+    /* Destaque quando a COR está selecionada */
+    &__option-radio:checked + &__option-label--color {
+        border-color: colors.$color-primary;
+    }
+
+    &__details {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 0.2rem;
+
+        font-family: "Roboto", sans-serif;
+    }
+
+    &__price {
+        font-size: 1.4rem;
+        font-weight: 900;
+    }
+
+    &__reference {
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 0.825rem;
+
+        color: colors.$placeholder-text-color;
+    }
+}
