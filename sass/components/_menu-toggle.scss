@@ -1,0 +1,46 @@
+@use "../tokens/colors";
+
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+    z-index: 2;
+
+    padding: 0.2rem .4rem;
+
+    border-radius: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &__icon {
+        width: 3.6rem;
+        height: 3.6rem;
+
+        color: colors.$text-color-light;
+
+        &-close {
+            display: none;
+        }
+    }
+
+    &.open {
+        & > .menu-toggle__icon-hamburger {
+            display: none;
+        }
+
+        & > .menu-toggle__icon-close {
+            display: block;
+        }
+    }
+}
+
+@media (min-width: 820px) {
+    .menu-toggle {
+        display: none;
+    }
+}

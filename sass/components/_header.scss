@@ -1,0 +1,27 @@
+@use "../tokens/colors";
+
+.header {
+    display: flex;
+    flex-direction: column;
+
+    padding-block: 1.6rem;
+    color: colors.$text-color-light;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.125);
+
+    &__title {
+        font-size: 2rem;
+        letter-spacing: -.1rem;
+        line-height: 1;
+    }
+
+    &__subtitle {
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: 2.23px;
+
+        text-transform: uppercase;
+
+        color: colors.$text-color-light-md;
+    }
+}

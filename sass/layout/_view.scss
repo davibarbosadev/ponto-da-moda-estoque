@@ -1,0 +1,47 @@
+@use "../tokens/colors";
+
+.view-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    align-items: start;
+
+    position: relative;
+
+    max-width: 144rem;
+    height: 100dvh;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-items: start;
+
+    padding: 1.6rem;
+    height: calc(100dvh - 115px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+
+    background-color: colors.$bg-color-light-md;
+
+    &:empty {
+        height: 100dvh;
+    }
+}
+
+
+@media (min-width: 820px) {
+    .view-container {
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr;
+
+        padding: 0;
+    }
+
+    .main {
+        height: calc(100dvh - 53px);
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
+}
