@@ -1,47 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
     <head>
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Ponto da Moda - Estoque</title>
+
             <link rel="icon" href="assets/img/favicon-pdm.ico" />
 
-            <link rel="stylesheet" href="../css/style.css" />
-            <script
-                type="module"
-                src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-            ></script>
-            <script
-                nomodule
-                src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-            ></script>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+                rel="stylesheet"
+            />
+
+            <link rel="stylesheet" href="css/styles.css" />
+
             <script src="./js/auth.js"></script>
-            <script defer src="./js/btnMobile.js"></script>
-            <script defer src="./js/loadComponents.js"></script>
+            <script defer src="./js/loadSidebar.js"></script>
+            <script defer src="./js/menuToggle.js"></script>
             <script defer src="./js/circular.js"></script>
-            <title>Ponto da Moda - Estoque</title>
         </head>
     </head>
     <body>
-        <header id="header" class="header"></header>
-
-        <div class="main-container">
-            <aside id="sidebar" class="sidebar"></aside>
-
+        <div class="view-container">
+            <h2 class="heading-secondary">Formatar Circular</h2>
             <main class="main">
-                <div class="form-container">
-                    <h2 class="heading-primary">Formatar Circular</h2>
+                <p class="copied-notice">copiado para a área de transferêcia!</p>
 
-                    <p class="copied-notice">copiado para a área de transferêcia!</p>
+                <form class="form form--circular">
+                    <div class="form__group">
+                        <label class="form__label" for="text">Referências</label>
+                        <input
+                            class="form__input"
+                            type="text"
+                            id="text"
+                            required
+                            placeholder="Ex: LA1075SAO LA1003SAO..."
+                        />
+                    </div>
 
-                    <form class="form form--circular">
-                        <div class="form__group">
-                            <label class="form__label" for="text">Referência</label>
-                            <input class="form__input" type="text" id="text" required />
-                        </div>
-                        <button class="btn btn--submit">Formatar e Copiar</button>
-                    </form>
-                </div>
+                    <div class="form__actions">
+                        <button class="btn btn--solid" type="submit">Formatar e copiar</button>
+                    </div>
+                </form>
             </main>
         </div>
     </body>
