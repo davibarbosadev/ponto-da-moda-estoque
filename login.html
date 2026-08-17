@@ -1,28 +1,44 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="css/style.css" />
-        <script defer type="module" src="js/login.js"></script>
-        <title>Login</title>
+        <title>Ponto da Moda - Estoque</title>
+
+        <link rel="icon" href="./assets/img/favicon-pdm.ico" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="css/styles.css" />
+
+        <script type="module" src="./js/login.js"></script>
     </head>
+
     <body class="login">
         <form action="#" id="loginForm" class="form form--login">
             <div class="form__logo">
                 <img src="assets/img/logo-pdm-estoque-v-blue.svg" alt="logo lojas ponto da moda" />
             </div>
-            <!-- <h1 class="form__title">Login</h1> -->
+
             <div class="form__group">
                 <label for="username" class="form__label">Usuário</label>
                 <input type="text" id="username" class="form__input" required />
             </div>
+
             <div class="form__group">
                 <label for="password" class="form__label">Senha</label>
                 <input type="password" id="password" class="form__input" required />
             </div>
-            <a href="#" class="form__forgot-password">Esqueceu a senha?</a>
-            <input type="submit" value="Entrar" class="form__submit">
+
+            <!-- <a href="#" class="form__forgot-password">Esqueceu a senha?</a> -->
+
+            <button type="submit" class="btn btn--solid btn--full-width form-submit">Entrar</button>
         </form>
     </body>
 </html>

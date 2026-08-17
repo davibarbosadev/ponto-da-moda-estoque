@@ -1,27 +1,26 @@
-@use "../abstracts/variables" as variables;
+@use "../tokens/colors";
 
 body.login {
     display: grid;
     place-items: center;
+
     min-height: 100dvh;
-    background: linear-gradient(-45deg, variables.$clr-primary, variables.$clr-primary-dark);
+
+    background: linear-gradient(-45deg, colors.$color-primary, colors.$color-primary-dark);
     background-size: 400% 400%;
+
     animation: gradient 5s ease infinite;
 }
 
 .form--login {
-    font-size: 1.6rem;
-    width: 80%;
-    padding: 1.6rem 1.6rem 2.4rem;
-    border-radius: 1.2rem;
     display: flex;
-    gap: 0.4rem;
-    align-items: center;
     flex-direction: column;
-    background-color: #fff;
+
+    max-width: 24rem;
 
     .form {
         &__logo {
+            align-self: center;
             width: 7rem;
 
             img {
@@ -29,69 +28,13 @@ body.login {
             }
         }
 
-        &__title {
-            color: variables.$clr-primary;
-        }
-
-        &__group {
-            width: 100%;
-            display: flex;
-            gap: 0.2rem;
-            flex-direction: column;
-
-            &:nth-of-type(2) {
-                margin-bottom: 0.4rem;
-            }
-        }
-
-        &__label {
-            font-size: 1.6rem;
-            color: variables.$text-clr-secondary;
-        }
-
         &__input {
-            outline: none;
-            padding: 0.8rem;
-            border: 2px solid #d4d4d4;
-            border: 2px solid variables.$outline-form;
-            border-radius: 0.8rem;
-            color: variables.$input-text-clr;
-            transition: border 0.7s  ease;
-
-            &:focus {
-                border: 2px solid variables.$clr-primary;
-            }
+            border: 1px solid #d4d4d4;
         }
+    }
 
-        &__forgot-password {
-            align-self: end;
-            color: #273f87;
-            font-size: 1.2rem;
-            text-decoration: none;
-            margin-bottom: 0.4rem;
-        }
-
-        &__submit {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 0.8rem;
-            color: #fff;
-            cursor: pointer;
-            background-color: variables.$clr-primary;
-            box-shadow: 10px 10px 10px variables.$shadow-primary;
-            transition: all 0.7s ease-out;
-
-            &:hover {
-                background-color: variables.$clr-primary-dark;
-            }
-
-            &:disabled {
-                cursor: not-allowed; /* cursor bloqueado */
-                transform: none; /* remove o hover */
-                opacity: 0.8; /* leve transparência */
-            }
-        }
+    button[type="submit"] {
+        margin-block: 0.8rem !important;
     }
 }
 
@@ -104,18 +47,5 @@ body.login {
     }
     100% {
         background-position: 0% 50%;
-    }
-}
-
-@media (min-width: 375px) {
-    .form--login {
-        width: 70%;
-    }
-}
-
-@media (min-width: 767px) {
-    .form--login {
-        // background-color: red;
-        max-width: 27rem;
     }
 }
