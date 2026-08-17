@@ -1,0 +1,36 @@
+$blue-050: #eff4ff;
+$blue-100: #dde8ff;
+$blue-200: #c3d5fe;
+$blue-300: #97b7fd;
+$blue-400: #6090fa;
+$blue-500: #3b6ef5;
+$blue-600: #1e4dea;
+$blue-700: #1e3a8a; // base
+$blue-800: #1e306e;
+$blue-900: #1b2b58;
+$blue-1000: #131c3a;
+
+$gray-050: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+
+$color-primary: $blue-700;
+$color-primary-dark: $blue-800;
+
+$text-color-light: $gray-050;
+$text-color-light-md: $gray-300;
+$text-color-defaut: $gray-600;
+$text-color-dark: $gray-700;
+
+$placeholder-text-color: $gray-400;
+$input-text-color: $gray-600;
+
+$bg-color-light: #fff;
+$bg-color-light-md: $gray-100;
+
+$output-color: rgba($color-primary, 0.325);

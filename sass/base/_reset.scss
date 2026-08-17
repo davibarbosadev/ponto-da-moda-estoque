@@ -1,10 +1,8 @@
-@use "../abstracts/variables" as variables;
-
+@use "../tokens/colors";
 
 html {
     font-size: 62.5%;
     font-weight: 400;
-    color: variables.$text-clr;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
@@ -15,11 +13,12 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    color: variables.$text-clr;
-    overflow-x: hidden;
+    color: colors.$text-color-defaut;
+    // overflow-x: hidden;
 }
 
 strong {
@@ -33,14 +32,14 @@ button {
     cursor: pointer;
 }
 
-a:any-link {
+a {
     text-decoration: none;
+    color: inherit;
 }
 
 button,
-a:any-link {
+a {
     outline: none;
-    -webkit-tap-highlight-color: transparent;
 }
 
 ul,

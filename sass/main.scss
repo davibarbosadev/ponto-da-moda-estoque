@@ -3,18 +3,18 @@
 @use "base/reset";
 @use "base/typography";
 
-@use "components/submenu";
-@use "components/form";
 @use "components/buttons";
-@use "components/description";
-@use "components/card--product-reference";
-@use "components/tip";
+@use "components/description-card";
+@use "components/form";
+@use "components/header";
+@use "components/menu-toggle";
+@use "components/navigation";
+@use "components/product-card";
+@use "components/submenu";
+@use "components/user-sumary";
 
-
-@use "layout/media-queries";
-@use "layout/header";
+@use "layout/view";
 @use "layout/sidebar";
-@use "layout/product-reference";
 
 @use "pages/print";
 @use "pages/login";

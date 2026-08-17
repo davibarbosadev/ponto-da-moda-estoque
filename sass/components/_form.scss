@@ -1,101 +1,81 @@
-@use "../abstracts/variables" as variables;
-
-.form-container {
-    height: min-content;
-    position: relative;
-    grid-area: 1 / 1 / 2 /2;
-}
+@use "../tokens/colors";
 
 /******form global******/
 .form {
-    width: 100%;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: .4rem .8rem;
+    gap: .8rem;
+
+    width: 100%;
+
+    padding: 1.2rem;
+
+    border-radius: 0.8rem;
+    box-shadow: 0 0 2.4rem rgba(0, 0, 0, 0.075);
+    background-color: colors.$bg-color-light;
 
     &__group {
         display: flex;
         flex-direction: column;
-        gap: .2rem;
+        gap: .8rem;
     }
 
     &__label {
-        font-size: 1.2rem;
+        font-size: 1.6rem;
         font-weight: 500;
-        color: variables.$text-clr-secondary;
+        line-height: 1;
     }
 
     &__input,
-    select {
+    textarea {
         width: 100%;
-        padding:.8rem;
-        border: none;
-        outline: 1px solid variables.$outline-form;
-        border-radius: 0.8rem;
+
+        padding: 0.8rem 1.6rem;
+
         font-size: clamp(1.2rem, 1.4vw, 1.4rem);
-        text-transform: uppercase;
         line-height: 1;
-        color: variables.$input-text-clr;
+        text-transform: uppercase;
+
         cursor: pointer;
-        transition: outline 0.5s ease-out;
-        background-color: variables.$white;
+
+        border: none;
+        border-radius: 0.8rem;
+        outline: 0.3rem solid transparent;
+
+        color: colors.$input-text-color;
+        background-color: colors.$bg-color-light-md;
+
+        transition: outline 0.5s ease;
+
+        &::placeholder {
+            text-transform: none;
+            color: colors.$placeholder-text-color;
+        }
 
         &:focus {
-            outline: 1px solid variables.$clr-secondary;
+            outline-color: colors.$output-color;
         }
     }
 
     textarea {
-        width: 100%;
-        height: 9rem;
+        height: 7.2rem;
         resize: none;
-        padding: 1.2rem;
-        margin-top: 0.4rem;
-        border-radius: 0.8rem;
-        color: variables.$input-text-clr;
-        border: none;
-        outline: 1px solid variables.$bg-clr-secondary;
-        box-shadow: 0px 0px 5px variables.$bg-clr-primary;
-        transition: outline 0.1s ease-out;
-
-        &::placeholder {
-            color: variables.$placeholder-text-clr;
-        }
-
-        &:focus {
-            outline: 2px solid variables.$clr-secondary;
-        }
     }
 
-    &__controls {
-        margin-top: 0.4rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    &__actions {
+        display: flex;
         gap: 0.8rem;
 
-        .btn:nth-child(1) {
-            grid-area: 1 / 1 / 2 / -1;
-        }
+        margin-top: 0.8rem;
+
+        grid-column: 1 / -1;
     }
 }
 
 @media (min-width: 768px) {
     .form {
-        &__group {
-            gap: 0.2rem;
-        }
-
         &__label {
             font-size: 1.4rem;
-        }
-
-        &__controls {
-            grid-template-columns: 1fr 1fr 1fr;
-
-            .btn:nth-child(1) {
-                grid-area: 1 / 1 / 2 / 2;
-            }
         }
     }
 }
@@ -123,13 +103,12 @@
             grid-area: 3 / 7 / 4 / -1;
         }
 
-
         &:nth-child(6) {
             grid-area: 4 / 1 / 5 / -1;
         }
     }
 
-    .form__controls {
+    .form__actions {
         grid-area: 5 / 1 / 6 / -1;
     }
 }
@@ -148,7 +127,7 @@
             &:nth-child(3) {
                 grid-area: 2 / 1 / 3 / 6;
             }
-            
+
             &:nth-child(4) {
                 grid-area: 2 / 6 / 3 / 10;
             }
@@ -162,13 +141,13 @@
             }
         }
 
-        .form__controls {
-        grid-area: 4 / 1 / 5 / -1;
-    }
+        .form__actions {
+            grid-area: 4 / 1 / 5 / -1;
+        }
     }
 }
 
-/*****formulário para descrição de pruduto automatica******/
+/*****formulário para descrição de pruduto automática******/
 .form--description-auto {
     .form__group {
         &:nth-child(1) {
@@ -176,76 +155,50 @@
         }
     }
 
-    .form__controls {
+    .form__actions {
         grid-area: 2 / 1 / 3 / -1;
     }
 }
 
 /*****formulário para extrair referência de produto e formatar descrição automatica******/
 .form--extract-reference {
-    margin-bottom: 4.8rem;
+    margin-bottom: 3.2rem;
 }
 
 .form--extract-reference,
 .form--formate-product-description {
-    margin-top: 0.8rem;
-    padding: 1.2rem;
-    background-color: variables.$bg-clr-primary;
-    border-radius: 0.8rem;
+    height: min-content;
+    // padding: 2.4rem;
+    // margin-top: 0.8rem;
+
+    // border-radius: 0.8rem;
 
     .form__group {
         &:nth-child(1) {
             grid-area: 1 / 1 / 2 / -1;
+            // background-color: lightblue;
         }
     }
 
-    .btn--submit {
-        grid-area: 2 / 1 / 3 / -1;
-    }
+    // .btn--submit {
+    //     grid-area: 2 / 1 / 3 / -1;
+    // }
 }
 
 /*********formulário para circular*********/
 .form--circular {
-    height: min-content;
+    // height: min-content;
+
     .form__group {
-        &:nth-child(1) {
-            margin-top: 3rem;
-            grid-area: 1 / 1 / 2 / -1;
-        }
-    }
-
-    .btn--submit {
-        grid-area: 2 / 1 / 3 / -1;
-        width: 100%;
-        max-width: 40rem;
-        justify-self: center;
-    }
-}
-
-@media (min-width: 768px) {
-    .form--circular {
-        .form__group {
-            &:nth-child(1) {
-                margin-top: 2rem;
-            }
-        }
-    }
-}
-
-
-/*********formulário para codigo mil*********/
-.form--codigo-mil {
-    .form__group {
-        flex: 1;
         &:nth-child(1) {
             grid-area: 1 / 1 / 2 / -1;
         }
     }
 
-    .date__group {
-        display: flex;
-        gap: 1.2rem;
-        justify-content: space-between;
-        grid-area: 2 / 1 / 3 / -1;
-    }
+    // .btn--submit {
+    //     grid-area: 2 / 1 / 3 / -1;
+    //     width: 100%;
+    //     max-width: 40rem;
+    //     justify-self: center;
+    // }
 }

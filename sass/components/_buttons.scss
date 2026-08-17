@@ -1,122 +1,81 @@
-@use "../abstracts/variables" as variables;
-@use "../abstracts/mixins" as mixins;
-
-.navbar__button-mobile {
-    position: relative;
-    z-index: 2;
-    @include mixins.flex-center;
-    width: 4.5rem;
-    height: 4.5rem;
-    font-size: 4.5rem;
-    border-radius: 0.8rem;
-    background-color: rgba(255, 255, 255, 0.1);
-
-    &:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .icon {
-        margin: -0.8rem;
-        color: #fff;
-
-        &[name="close-outline"] {
-            display: none;
-        }
-    }
-
-    &.open {
-        & > .icon[name="close-outline"] {
-            display: block;
-        }
-
-        & > .icon[name="menu-outline"] {
-            display: none;
-        }
-    }
-}
-
-@media (min-width: 820px) {
-    .navbar__button-mobile {
-        display: none;
-    }
-}
+@use "../tokens/colors";
 
 .btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+
+    height: 3.2rem;
+
+    padding-inline: 1.6rem;
+
+    font-size: 1.2rem;
     line-height: 1;
-    font-size: 1rem;
-    text-align: center;
-    display: inline-block;
-    font-family: "Poppins", sans-serif;
 
-    &--clean,
-    &--print,
-    &--submit {
-        padding: 1rem;
-        border-radius: 0.8rem;
-        border: 1px solid;
+    border-radius: 0.8rem;
+
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease,
+        background-color 0.3s ease;
+
+    &__icon {
+        width: 1.4rem;
+        height: 1.4rem;
+        stroke-width: 1.5;
     }
 
-    &--clean,
-    &--print {
-        border-color: variables.$text-clr;
-        color: variables.$text-clr;
-        background-color: #fff;
+    &--solid {
+        color: colors.$text-color-light;
+        background-color: colors.$color-primary;
 
         &:hover {
-            color: #fff;
-            background: variables.$clr-primary;
-            border-color: variables.$clr-primary;
+            background-color: colors.$color-primary-dark;
         }
     }
 
-    &--print {
-        @include mixins.flex-center;
-        gap: 0.4rem;
+    &--soft {
+        color: colors.$color-primary;
+        background-color: colors.$blue-050;
+
+        &:hover {
+            color: colors.$text-color-light;
+            background-color: colors.$color-primary;
+        }
     }
 
-    &--submit {
-        color: #fff;
-        background-color: variables.$clr-primary;
+    &--outline {
+        color: colors.$gray-600;
+        border: 1px solid colors.$gray-400;
+
+        &:hover {
+            color: colors.$color-primary;
+            background-color: colors.$blue-100;
+            border-color: colors.$blue-300;
+        }
     }
 
-    &--copy {
+    &--danger {
+        &:hover {
+            color: #b91c1c;
+            background-color: #fecaca;
+            border-color: #f87171;
+        }
+    }
+
+    &--small {
+        height: 2.8rem;
+        padding-inline: 1.2rem;
+
+        font-size: 1rem;
+
+        span {
+            margin-top: 0.2rem;
+        }
+    }
+
+    &--full-width {
         width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.8rem;
-        margin-block: 0.2rem 0.4rem;
-        color: variables.$white;
-        border-radius: 0.4rem;
-        background-color: variables.$clr-primary;
-        transition: 0.3s background-color ease;
-
-        &:hover {
-            background-color: variables.$clr-primary-dark;
-        }
     }
-
-    &--icons {
-        color: variables.$clr-primary;
-        background-color: transparent;
-        border: 1px solid variables.$clr-primary;
-        border-radius: 0.4rem;
-        height: 3.2rem;
-        width: 3.2rem;
-
-        &:hover {
-            color: #fff;
-            background-color: variables.$clr-primary;
-        }
-    }
-}
-
-/* botões de edicão  */
-.btns__options {
-    display: flex;
-    justify-content: end;
-    gap: 1.2rem;
-    padding-top: 1rem;
-    border-top: 1px solid variables.$bg-clr-primary;
 }
