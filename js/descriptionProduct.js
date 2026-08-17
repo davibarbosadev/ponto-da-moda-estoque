@@ -1,7 +1,7 @@
 const form = document.querySelector(".form");
 const descriptionList = document.querySelector(".description-list");
-const btnClean = document.querySelector(".btn--clean");
-const btnPrint = document.querySelector(".btn--print");
+const btnClean = document.querySelector(".btn-clean");
+const btnPrint = document.querySelector(".btn-print");
 const iframe = document.querySelector("#iframeContent");
 
 // Recupera a lista de produtos do localStorage ou inicializa uma lista vazia
@@ -23,53 +23,121 @@ const renderProducts = () => {
     descriptionList.innerHTML = productList
         .map(
             (product, index) => `
-        <div class="description product">
-            <div class="header-component">
-                <div class="product__description">
-                    <span class="description__text-content">${product.description}</span>
+        <div class="description-card">
+            <header class="description-card__header">
+                <div class="description-card__title">
+                    <span class="description-card__text-content">${product.description || ''}</span>
                 </div>
-                <div class="product__fashion-style">
-                    <span class="description__text-content">${product.fashionStyle}</span>
+
+                <div class="description-card__category">
+                    <span>${product.fashionStyle || ''}</span>
                 </div>
-            </div>
+            </header>
             
-            <div class="product__reference">
-                <span class="description__text-title">Ref:</span>
-                <span class="description__text-content">${product.reference}</span>
+            <div class="description-card__details">
+                <div class="description-card__reference">
+                    <span class="description-card__text-label">ref:</span>
+                    <span class="description-card__text-content">${product.reference || ''}</span>
+                </div>
+
+                <div class="description-card__price">
+                    <span class="description-card__text-label">R$:</span>
+                    <span class="description-card__text-content">${(product.price || '0')
+                        .toString()
+                        .replace(".", ",")}</span>
+                </div>
+
+                <div class="description-card__sizes">
+                    <span class="description-card__text-label">tamanho:</span>
+                    <span class="description-card__text-content">${product.sizes || ''}</span>
+                </div>
+
+                <div class="description-card__colors">
+                    <span class="description-card__text-label">cores:</span>
+                    <span class="description-card__text-content">
+                        ${product.colors.join(" - ")}
+                    </span>
+                </div>
             </div>
 
-            <div class="product__sizes">
-                <span class="description__text-title">Tamanho:</span>
-                <span class="description__text-content">${product.sizes}</span>
-            </div>
+            <div class="description-card__actions">
+                 <button class="btn btn--outline btn--small btn-edit" data-index="${index}">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="btn__icon"
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                        <path
+                            d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415"
+                        />
+                        <path d="M16 5l3 3" />
+                    </svg>
 
-            <div class="product__colors">
-                <span class="description__text-title">Cores:</span>
-                <span class="description__text-content">
-                    ${product.colors.join(" - ")}
-                </span>
-            </div>
-
-            <div class="product__price">
-                <span class="description__text-title">R$:</span>
-                <span class="description__text-content">${product.price
-                    .toString()
-                    .replace(".", ",")}</span>
-            </div>
-
-            <div class="btns__options">
-                <button class="btn--icons btn-edit" data-index="${index}">
-                    <ion-icon name="pencil-outline"></ion-icon>
+                    <span>Editar</span>
                 </button>
-                 
-                <button class="btn--icons btn-duplicate" data-index="${index}">
-                    <ion-icon name="duplicate-outline"></ion-icon>
+
+                <button class="btn btn--outline btn--small btn-duplicate" data-index="${index}">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="btn__icon"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+
+                    <path
+                        d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666"
+                    />
+
+                    <path
+                        d="M4.012 16.737a2 2 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1"
+                    />
+
+                    <path d="M11 14h6" />
+                    <path d="M14 11v6" />
+                </svg>
+                <span>Duplicar</span>
                 </button>
 
-                <button class="btn--icons btn-delete" data-index="${index}">
-                    <ion-icon name="trash-outline"></ion-icon>
+                <button class="btn btn--outline btn--small btn--danger btn-delete" data-index="${index}">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="btn__icon"
+                >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 7l16 0" />
+                    <path d="M10 11l0 6" />
+                    <path d="M14 11l0 6" />
+                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                </svg>
+                <span>Excluir</span>
                 </button>
             </div>
+        </div>
         </div>
     `
         )

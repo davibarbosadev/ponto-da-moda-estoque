@@ -1,0 +1,92 @@
+@use "../tokens/colors";
+
+.description-list {
+    display: grid;
+    gap: 2.4rem;
+
+    margin-top: 2.4rem;
+}
+
+.description-card {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    row-gap: 1.2rem;
+
+    padding: 2.4rem 2.4rem 1.6rem;
+
+    border-radius: 0.8rem;
+    background-color: colors.$bg-color-light;
+    box-shadow: 0 0 2.4rem rgba(0, 0, 0, 0.025);
+
+    &__header {
+        grid-column: 1 / -1;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+    }
+
+    &__title {
+        line-height: 1.7;
+
+        .description-card__text-content {
+            font-weight: 400;
+            font-size: 1.6rem;
+        }
+    }
+
+    &__category {
+        align-self: start;
+
+        display: flex;
+        align-items: center;
+
+        padding: 0.4rem 1.2rem;
+
+        font-size: 1rem;
+
+        border-radius: 0.4rem;
+        background-color: colors.$blue-100;
+        color: colors.$color-primary;
+    }
+
+    &__details {
+        grid-column: 1 / -1;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.2rem 2.4rem;
+    }
+
+    &__actions {
+        grid-column: 1 / -1;
+
+        display: flex;
+        justify-content: end;
+        gap: 0.8rem;
+
+        margin-top: 0.8rem;
+        padding-top: 1.6rem;
+
+        border-top: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    &__text-label {
+        margin-right: 0.2rem;
+
+        font-weight: 600;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+
+        color: colors.$gray-400;
+    }
+
+    &__text-content {
+        line-height: 1;
+        font-weight: 400;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        font-family: "Roboto", sans-serif;
+    }
+}

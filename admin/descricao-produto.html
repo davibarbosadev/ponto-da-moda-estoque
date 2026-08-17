@@ -1,57 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
     <head>
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="stylesheet" href="../css/style.css" />
-            <script
-                type="module"
-                src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-            ></script>
-            <script
-                nomodule
-                src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-            ></script>
-            <script defer src="../js/loadComponents.js"></script>
-            <script defer src="../js/btnMobile.js"></script>
+
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+                rel="stylesheet"
+            />
+
+            <script src="../js/auth.js"></script>
+            <script defer src="../js/loadSidebar.js"></script>
+            <script defer src="../js/menuToggle.js"></script>
             <script defer src="../js/extractReference.js"></script>
             <script defer src="../js/formateProduct.js"></script>
+
+            <link rel="icon" href="../assets/img/favicon-pdm.ico" />
+            <link rel="stylesheet" href="../css/styles.css" />
+
             <title>Ponto da Moda - Estoque</title>
         </head>
     </head>
     <body>
-        <header id="header" class="header"></header>
-        <div class="main-container">
-           <aside id="sidebar" class="sidebar"></aside>
-
+        <div class="view-container">
+            <h2 class="heading-secondary">🎯 Painel Admin - Descrição de produtos</h2>
             <main class="main">
                 <div class="form-container">
-                    <h1 class="heading-primary">🎯 Painel Admin - Descrição de produtos</h1>
+                    <div class="message-display">mensagem</div>
 
-                    <div class="message-display"></div>
-
-                    <h2 class="heading-secondary">Passo 1 - Extrair Referência</h2>
+                    <h3 class="heading-tertiary">Passo 1 - Extrair Referência</h3>
 
                     <form class="form form--extract-reference">
                         <div class="form__group">
-                            <label for="description" class="form__label">Dados CSV</label>
+                            <label for="description" class="form__label">Dados csv</label>
 
                             <textarea
                                 id="csvInput"
-                                placeholder='Cole aqui seus dados CSV no formato:
-"codigo";"descrição"
+                                placeholder='Cole aqui seus   dados CSV no formato:
 "ES07";"CF000480MISCL1M - PRODUTO..."'
                             ></textarea>
                         </div>
-                        <button class="btn btn--submit">Extrair referência e Copiar</button>
+
+                        <div class="form__actions">
+                            <button type="submit" class="btn btn--solid">
+                                Extrair referências
+                            </button>
+                        </div>
                     </form>
 
-                    <h3 class="heading-secondary">Passo 2 - Gerar Descrição</h3>
+                    <h3 class="heading-tertiary">Passo 2 - Gerar Descrição</h3>
 
                     <form class="form form--formate-product-description">
                         <div class="form__group">
-                            <label for="csvInput" class="form__label">Dados CSV</label>
+                            <label for="csvInput" class="form__label">Dados csv</label>
 
                             <textarea
                                 id="csvInput"
@@ -60,7 +64,12 @@
 "CF000480MISCL1G - DESCRIÇÃO DO PRODUTO";"79,99"'
                             ></textarea>
                         </div>
-                        <button class="btn btn--submit">Gerar descrição</button>
+
+                        <div class="form__actions">
+                            <button type="submit" class="btn btn--solid">
+                                Cadastrar descrição
+                            </button>
+                        </div>
                     </form>
                 </div>
             </main>
