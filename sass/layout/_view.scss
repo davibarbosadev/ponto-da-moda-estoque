@@ -18,6 +18,8 @@
     grid-template-rows: auto 1fr;
     align-items: start;
 
+    position: relative;
+
     padding: 1.6rem;
     height: calc(100dvh - 115px);
     overflow-y: auto;
