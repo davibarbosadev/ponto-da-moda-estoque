@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
         "sass": "sass sass/main.scss css/styles.css --watch"
     },
     "author": "Davi barbosa",
@@ -10,19 +13,20 @@
     "description": "",
     "dependencies": {
         "eslint": "^9.31.0",
-        "jspdf": "^3.0.0"
+        "jspdf": "^3.0.4"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/davibarbosadev/ponto-da-moda-estoque.git"
     },
     "keywords": [],
-    "type": "commonjs",
+    "type": "module",
     "bugs": {
         "url": "https://github.com/davibarbosadev/ponto-da-moda-estoque/issues"
     },
     "homepage": "https://github.com/davibarbosadev/ponto-da-moda-estoque#readme",
     "devDependencies": {
-        "sass": "^1.93.3"
+        "sass": "^1.93.3",
+        "vite": "^8.2.1"
     }
 }
