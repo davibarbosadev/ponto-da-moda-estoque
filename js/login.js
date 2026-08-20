@@ -1,3 +1,5 @@
+import '../sass/main.scss'
+
 import { LOGIN } from "./config.js";
 
 const form = document.getElementById("loginForm");
