@@ -1,45 +1,54 @@
-const form = document.querySelector(".form--circular");
-const notification = document.querySelector(".copied-notice");
+// js/circular.js
 
-let newString = "";
+export function initCircularPage() {
+    const form = document.querySelector(".form--circular");
+    const notification = document.querySelector(".copied-notice");
 
-form.addEventListener("submit", (evt) => {
-    evt.preventDefault();
+    // GUARDA DE SEGURANÇA: Se o formulário não existir na página atual, aborta
+    if (!form) return;
 
-    const str = form.text.value.trim();
-    const references = stringToArray(str);
+    let newString = "";
 
-    newString = formatNewString(references);
-    copy();
+    const stringToArray = (str) => {
+        return str.split(/\s+/);
+    };
 
-    form.text.value = "";
-});
+    const formatNewString = (array) => {
+        return array.map(ref => ref + "   ,").join("");
+    };
 
-const stringToArray = (str) => {
-    return str.split(/\s+/);
-};
+    const showNotification = () => {
+        if (!notification) return;
+        notification.classList.add("active");
+        setTimeout(() => {
+            notification.classList.remove("active");
+        }, 1000);
+    };
 
-const formatNewString = (array) => {
-    return array.map(ref => ref + "   ,").join("");
-};
+    const copy = () => {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(newString)
+                .then(() => {
+                    showNotification();
+                })
+                .catch(err => {
+                    alert('Falha ao copiar: ' + err);
+                });
+        } else {
+            alert('Clipboard API não suportada neste navegador');
+        }
+    };
 
-const copy = () => {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(newString)
-            .then(() => {
-                showNotification();
-            })
-            .catch(err => {
-                alert('Falha ao copiar: ' + err);
-            });
-    } else {
-        alert('Clipboard API não suportada neste navegador');
-    }
-};
+    form.addEventListener("submit", (evt) => {
+        evt.preventDefault();
 
-const showNotification = () => {
-    notification.classList.add("active");
-    setTimeout(() => {
-        notification.classList.remove("active");
-    }, 1000);
-};
+        const str = form.text.value.trim();
+        if (!str) return;
+
+        const references = stringToArray(str);
+        newString = formatNewString(references);
+        copy();
+
+        form.text.value = "";
+    });
+}
