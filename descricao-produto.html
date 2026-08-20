@@ -15,12 +15,7 @@
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" href="css/styles.css" />
-
-        <script src="./js/auth.js"></script>
-        <script defer src="./js/loadSidebar.js"></script>
-        <script defer src="./js/menuToggle.js"></script>
-        <script defer src="./js/descriptionAuto.js"></script>
+        <script type="module" src="index.js"></script>
     </head>
     <body>
         <div class="view-container">
@@ -90,7 +85,11 @@
                 </form>
 
                 <div class="description-list"></div>
-                <iframe id="iframeContent" style="display: none; width: 0; height: 0"></iframe>
+                <!-- descricao-produto.html -->
+                <iframe
+                    id="iframeContent"
+                    style="position: absolute; width: 0; height: 0; border: 0; visibility: hidden"
+                ></iframe>
             </main>
         </div>
     </body>
