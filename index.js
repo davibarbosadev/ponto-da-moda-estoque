@@ -10,11 +10,9 @@ loadSidebar();
 // Módulos das telas
 import { initProductsPage } from './js/product.js';
 import { initCircularPage } from './js/circular.js';
-import { initDescriptionAutoPage } from './js/descriptionAuto.js';
-import { initDescriptionManualPage } from './js/descriptionProduct.js'; // <-- Importado aqui
+import { initDescriptionProductPage } from './js/descriptionProduct.js';
 
 // Inicializa todos os módulos
 initProductsPage();
 initCircularPage();
-initDescriptionAutoPage();
-initDescriptionManualPage(); // <-- Inicializado aqui
+initDescriptionProductPage();

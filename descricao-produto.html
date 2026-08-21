@@ -4,26 +4,24 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Ponto da Moda - Estoque</title>
-
         <link rel="icon" href="assets/img/favicon-pdm.ico" />
-
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet"
         />
-
         <script type="module" src="index.js"></script>
     </head>
     <body>
         <div class="view-container">
             <h2 class="heading-secondary">Descrição de Produto</h2>
+
             <main class="main">
+                <!-- Busca Automática -->
                 <form class="form form--description-auto">
                     <div class="form__group">
-                        <label for="references" class="form__label">Referencia do produto</label>
+                        <label for="references" class="form__label">Referência do produto</label>
                         <input
                             class="form__input"
                             type="text"
@@ -85,12 +83,62 @@
                 </form>
 
                 <div class="description-list"></div>
-                <!-- descricao-produto.html -->
                 <iframe
                     id="iframeContent"
                     style="position: absolute; width: 0; height: 0; border: 0; visibility: hidden"
                 ></iframe>
             </main>
+        </div>
+
+        <!-- Modal Centralizado -->
+        <div class="modal-overlay" id="modalProduct" aria-hidden="true">
+            <div class="modal">
+                <header class="modal__header">
+                    <h3 class="modal__title" id="modalTitle">Cadastrar Produto</h3>
+                    <button class="modal__close" type="button" id="btnCloseModal">&times;</button>
+                </header>
+
+                <form class="form" id="formModalProduct">
+                    <input type="hidden" id="editIndex" value="" />
+
+                    <div class="form__group">
+                        <label for="description" class="form__label">Descrição</label>
+                        <input class="form__input" type="text" id="description" required />
+                    </div>
+
+                    <div class="form__group">
+                        <label for="reference" class="form__label">Referência</label>
+                        <input class="form__input" type="text" id="reference" required />
+                    </div>
+
+                    <div class="form__group">
+                        <label for="fashionStyle" class="form__label">Estilo/Seção</label>
+                        <input class="form__input" type="text" id="fashionStyle" required />
+                    </div>
+
+                    <div class="form__group">
+                        <label for="sizes" class="form__label">Grade</label>
+                        <input class="form__input" type="text" id="sizes" required />
+                    </div>
+
+                    <div class="form__group">
+                        <label for="price" class="form__label">Preço</label>
+                        <input class="form__input" type="number" id="price" step="any" required />
+                    </div>
+
+                    <div class="form__group">
+                        <label for="colors" class="form__label">Cores</label>
+                        <input class="form__input" type="text" id="colors" required />
+                    </div>
+
+                    <div class="form__actions">
+                        <button class="btn btn--solid" type="submit">Salvar</button>
+                        <button class="btn btn--outline btn-cancel-modal" type="button">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </body>
 </html>

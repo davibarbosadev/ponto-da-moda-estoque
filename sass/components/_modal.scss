@@ -1,0 +1,85 @@
+@use "../tokens/colors";
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.275);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); // Suporte para Safari/iOS
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000;
+
+    &--active {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+.modal {
+    background-color: colors.$bg-color-light;
+    border-radius: 0.8rem;
+    padding: 2.4rem;
+    width: 90%;
+    max-width: 50rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.2rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    &__title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: colors.$gray-400;
+    }
+
+    &__close {
+        background: none;
+        border: none;
+        font-size: 2.4rem;
+        cursor: pointer;
+        line-height: 1;
+        color: colors.$gray-400;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: colors.$color-primary;
+        }
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+
+        &__group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        &__actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1.2rem;
+            margin-top: 1rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+    }
+}
