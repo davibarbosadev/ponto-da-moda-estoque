@@ -4,6 +4,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
     build: {
+        target: 'es2022', // Garante suporte CSS moderno (como backdrop-filter) no build final
         rollupOptions: {
             input: {
                 // Páginas da Raiz
