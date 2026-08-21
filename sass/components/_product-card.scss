@@ -30,7 +30,12 @@
 
     &__img {
         width: 100%;
-        aspect-ratio: 3/4;
+        height: 100%;
+
+        @media screen and (min-width: 436px) {
+            height: auto;
+            aspect-ratio: 3/4;
+        }
     }
 
     &__content {
@@ -66,7 +71,7 @@
         display: flex;
         gap: 0.8rem;
 
-        padding-bottom: .8rem;
+        padding-bottom: 0.8rem;
 
         overflow-x: auto;
 
