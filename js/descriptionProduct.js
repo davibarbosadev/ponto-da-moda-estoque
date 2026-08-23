@@ -251,31 +251,79 @@ export function initDescriptionProductPage() {
     }
 
     if (formModal) {
-        formModal.addEventListener("submit", (event) => {
+        formModal.addEventListener("submit", async (event) => {
             event.preventDefault();
 
             const editIndexInput = document.querySelector("#editIndex");
             const indexValue = editIndexInput ? editIndexInput.value : "";
 
-            if (indexValue !== "" && indexValue !== null) {
-                const index = Number(indexValue);
-                productList[index] = {
-                    description: formModal.description ? formModal.description.value.toUpperCase().trim() : '',
-                    reference: formModal.reference ? formModal.reference.value.toUpperCase().trim() : '',
-                    fashionStyle: formModal.fashionStyle ? formModal.fashionStyle.value.toUpperCase().trim() : '',
-                    sizes: formModal.sizes ? formModal.sizes.value.toUpperCase().trim() : '',
-                    colors: formModal.colors
-                        ? formModal.colors.value.toUpperCase().split("-").map((i) => i.trim()).filter((i) => i.length > 0)
-                        : [],
-                    price: formModal.price ? formModal.price.value : '',
-                };
+            if (indexValue === "" || indexValue === null) return;
+
+            const index = Number(indexValue);
+            const originalProduct = productList[index];
+
+            if (!originalProduct) return;
+
+            // Trata a entrada de cores para transformar em array de strings limpas
+            const colorsValue = formModal.colors ? formModal.colors.value : "";
+            const processedColors = colorsValue
+                ? colorsValue.toUpperCase().split("-").map((item) => item.trim()).filter((item) => item.length > 0)
+                : [];
+
+            // Monta o objeto com os dados editados
+            const updatedProductData = {
+                description: formModal.description ? formModal.description.value.toUpperCase().trim() : "",
+                reference: formModal.reference ? formModal.reference.value.toUpperCase().trim() : "",
+                fashionStyle: formModal.fashionStyle ? formModal.fashionStyle.value.toUpperCase().trim() : "",
+                sizes: formModal.sizes ? formModal.sizes.value.toUpperCase().trim() : "",
+                colors: processedColors,
+                price: formModal.price ? parseFloat(formModal.price.value) || 0 : 0,
+            };
+
+            const submitBtn = formModal.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.textContent : "Salvar";
+
+            try {
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = "Salvando...";
+                }
+
+                // Envia a atualização para a API usando a referência do produto
+                const response = await fetch(`${API_BASE_URL}/reference/${originalProduct.reference}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(updatedProductData),
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || `Erro HTTP: ${response.status}`);
+                }
+
+                // Atualiza o estado local com os dados confirmados do servidor ou com o objeto editado
+                productList[index] = result.data || updatedProductData;
 
                 updateLocalStorage();
                 renderProducts();
                 closeModal();
+
+                alert("Produto atualizado no banco de dados com sucesso!");
+            } catch (error) {
+                console.error("Erro ao atualizar produto no banco:", error);
+                alert(`Falha ao salvar no banco de dados: ${error.message}`);
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
             }
         });
     }
+
 
     if (descriptionList) {
         descriptionList.addEventListener("click", (event) => {
