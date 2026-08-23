@@ -1,37 +1,31 @@
-import '../sass/main.scss'
+import "../sass/main.scss";
+import { USERS } from './users.js';
 
-import { LOGIN } from "./config.js";
+const formLogin = document.getElementById("loginForm");
 
-const form = document.getElementById("loginForm");
+if (formLogin) {
+    formLogin.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-if (form) {
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
+        const inputUsuario = document.getElementById("username").value.trim();
+        const inputSenha = document.getElementById("password").value;
 
-        const username = form.querySelector("#username").value.trim();
-        const password = form.querySelector("#password").value.trim();
-        const submitBtn = form.querySelector(".form-submit");
-
-        console.log(submitBtn.value)
-
-        submitBtn.textContent = "Entrando...";
-        submitBtn.disabled = true;
-
-        const inputUser = username.toLowerCase();
-        const inputPass = password.toLowerCase();
-        const validUser = LOGIN.USER.toLowerCase();
-        const validPass = LOGIN.PASSWORD.toLowerCase();
-
-        setTimeout(() => {
-            if (inputUser === validUser && inputPass === validPass) {
-                localStorage.setItem("logado", "true");
-                localStorage.setItem("loginTime", Date.now()); // salva o horário do login
-                window.location.href = "index.html";
-            } else {
-                alert("Usuário ou senha incorretos!");
-                submitBtn.textContent = "Entrar";
-                submitBtn.disabled = false;
-            }
-        }, 1500);
+        fazerLogin(inputUsuario, inputSenha);
     });
+}
+
+function fazerLogin(inputUsuario, inputSenha) {
+    const user = USERS.find(u => u.username === inputUsuario && u.password === inputSenha);
+
+    if (user) {
+        localStorage.setItem("logado", "true");
+        localStorage.setItem("loginTime", Date.now());
+        localStorage.setItem("userRole", user.role);
+        localStorage.setItem("username", user.username);
+        localStorage.setItem("displayName", user.displayName); // <-- Salva o nome de exibição
+
+        window.location.href = "/index.html";
+    } else {
+        alert("Usuário ou senha incorretos!");
+    }
 }
