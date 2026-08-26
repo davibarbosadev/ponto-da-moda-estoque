@@ -1,10 +1,14 @@
-// admin/admin.js
+// admin.js
 import '../sass/main.scss';
 
-import '../js/auth.js';
+import { initLogoutButton } from '../js/auth.js';
 import '../js/menuToggle.js';
 
 import { loadSidebar } from '../js/loadSidebar.js';
+import { renderUserSummary } from '../js/userSummary.js';
 
-// Executa passando a sidebar do admin
-loadSidebar('/admin/sidebar.html');
+// Aguarda a sidebar injetar o HTML no DOM para então preencher os dados do usuário e ativar o logout
+loadSidebar('/admin/sidebar.html').then(() => {
+    renderUserSummary();
+    initLogoutButton();
+});

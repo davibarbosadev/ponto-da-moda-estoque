@@ -280,16 +280,29 @@ export function initDescriptionProductPage() {
                 price: formModal.price ? parseFloat(formModal.price.value) || 0 : 0,
             };
 
+            // Verifica a role do usuário logado no localStorage
+            const userRole = localStorage.getItem("userRole");
+
+            // Se NÃO for admin, atualiza apenas o localStorage e a tela
+            if (userRole !== "admin") {
+                productList[index] = updatedProductData;
+                updateLocalStorage();
+                renderProducts();
+                closeModal();
+                alert("Alterações salvas localmente com sucesso!");
+                return;
+            }
+
+            // Se for ADMIN, faz a requisição no banco via API
             const submitBtn = formModal.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn ? submitBtn.textContent : "Salvar";
 
             try {
                 if (submitBtn) {
                     submitBtn.disabled = true;
-                    submitBtn.textContent = "Salvando...";
+                    submitBtn.textContent = "Salvando no banco...";
                 }
 
-                // Envia a atualização para a API usando a referência do produto
                 const response = await fetch(`${API_BASE_URL}/reference/${originalProduct.reference}`, {
                     method: "PUT",
                     headers: {
@@ -304,7 +317,7 @@ export function initDescriptionProductPage() {
                     throw new Error(result.message || `Erro HTTP: ${response.status}`);
                 }
 
-                // Atualiza o estado local com os dados confirmados do servidor ou com o objeto editado
+                // Atualiza a lista local com os dados confirmados pelo servidor
                 productList[index] = result.data || updatedProductData;
 
                 updateLocalStorage();

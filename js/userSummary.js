@@ -36,5 +36,3 @@ export function renderUserSummary() {
     roleElement.textContent = formattedRole;
     avatarElement.textContent = avatarInitials;
 }
-
-document.addEventListener("DOMContentLoaded", renderUserSummary);
